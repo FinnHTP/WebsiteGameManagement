@@ -25,8 +25,6 @@ public class OrderDetail implements Serializable {
     private Game game;
     @ManyToOne @JoinColumn(name = "orderId")
     private Order order;
-    @ManyToOne @JoinColumn(name = "accountId")
-    private Account account;
 
 
 }

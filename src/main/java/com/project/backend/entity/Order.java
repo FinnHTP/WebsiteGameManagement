@@ -22,7 +22,7 @@ public class Order implements Serializable {
     private Long id;
     @Column(name = "date")
     private Date date = new Date();
-    @ManyToOne @JoinColumn(name = "userName")
+    @ManyToOne @JoinColumn(name = "accountId")
     private Account account;
     @JsonIgnore
     @OneToMany(mappedBy = "order")

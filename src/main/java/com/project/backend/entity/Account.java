@@ -40,9 +40,6 @@ public class Account {
     private List<Deposit> deposits;
     @JsonIgnore
     @OneToMany(mappedBy = "account")
-    private List<ProfileAccount> profileAccount;
-    @JsonIgnore
-    @OneToMany(mappedBy = "account")
     private List<Comment> comments;
     @JsonIgnore
     @OneToMany(mappedBy = "account")

@@ -25,8 +25,5 @@ public class User {
     private String sdt;
     @ManyToOne @JoinColumn(name = "accountId")
     private Account account;
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<ProfileAccount> profileAccounts;
 
 }
