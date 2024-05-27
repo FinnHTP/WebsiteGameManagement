@@ -20,8 +20,8 @@ public class GameTypeServiceImpl implements GameTypeService {
 
     @Override
     public GameTypeDto createGameType(GameTypeDto gameTypeDto) {
-        GameType game = GameTypeMapper.mapToGameType(gameTypeDto);
-        GameType savedGameType = gameTypeRepository.save(game);
+        GameType gameType = GameTypeMapper.mapToGameType(gameTypeDto);
+        GameType savedGameType = gameTypeRepository.save(gameType);
         return GameTypeMapper.mapToGameTypeDto(savedGameType);
     }
 
