@@ -1,4 +1,7 @@
 package com.project.backend.repository;
 
-public interface GameImageRepository {
+import com.project.backend.entity.GameImage;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GameImageRepository extends JpaRepository<GameImage,Long> {
 }
