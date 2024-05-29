@@ -25,13 +25,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleDto getRoleById(Long roleId) {
+    public RoleDto getRoleById(String roleId) {
         Role role = roleRepository.findById(roleId).orElseThrow(() -> new ResourceNotFoundException("Role is not exist with given id " + roleId));
         return RoleMapper.MaptoRoleDto(role);
     }
 
     @Override
-    public RoleDto updateRole(Long roleId, RoleDto roleDto) {
+    public RoleDto updateRole(String roleId, RoleDto roleDto) {
         Role role = roleRepository.findById(roleId).orElseThrow(() -> new ResourceNotFoundException("Role is not exist with given id " + roleId));
         role.setId(roleDto.getId());
         role.setName(roleDto.getName());
@@ -45,7 +45,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void deleteRole(Long roleId) {
+    public void deleteRole(String roleId) {
         Role role = roleRepository.findById(roleId).orElseThrow(() -> new ResourceNotFoundException("Role is not exist with given id " + roleId));
         roleRepository.deleteById(roleId);
     }
