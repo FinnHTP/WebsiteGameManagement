@@ -26,7 +26,7 @@ public class RoleController {
         RoleDto role = roleService.getRoleById(roleId);
         return ResponseEntity.ok(role);
     }
-    @PostMapping("{id}")
+    @PutMapping("{id}")
     public ResponseEntity<RoleDto> updatedRole(@PathVariable("id") String roleId, @RequestBody RoleDto roleDto){
         RoleDto savedRole = roleService.updateRole(roleId, roleDto);
         return ResponseEntity.ok(savedRole);
