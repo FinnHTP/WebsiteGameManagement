@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RankAccountDto {
+public class AuthorityDto {
     private Long id;
-    private String name;
-    private Double price;
+    private Long accountId;
+    private String roleId;
 }
