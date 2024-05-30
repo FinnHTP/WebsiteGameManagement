@@ -28,15 +28,7 @@ public class RoleController {
         RoleDto role = roleService.getRoleById(roleId);
         return ResponseEntity.ok(role);
     }
-<<<<<<< HEAD
-    @PutMapping("{id}")
-    public ResponseEntity<RoleDto> updatedRole(@PathVariable("id") String roleId, @RequestBody RoleDto roleDto){
-        RoleDto savedRole = roleService.updateRole(roleId, roleDto);
-        return ResponseEntity.ok(savedRole);
-    }
-=======
 
->>>>>>> origin/user-acount-crud-api
     @GetMapping("")
     public ResponseEntity<List<RoleDto>> getAllRole(){
         List<RoleDto> roles = roleService.getAllRole();
