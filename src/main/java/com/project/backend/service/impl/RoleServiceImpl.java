@@ -33,9 +33,9 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public RoleDto updateRole(String roleId, RoleDto roleDto) {
         Role role = roleRepository.findById(roleId).orElseThrow(() -> new ResourceNotFoundException("Role is not exist with given id " + roleId));
-        role.setId(roleDto.getId());
         role.setName(roleDto.getName());
-        return RoleMapper.MaptoRoleDto(role);
+        Role savedRole = roleRepository.save(role);
+        return RoleMapper.MaptoRoleDto(savedRole);
     }
 
     @Override
