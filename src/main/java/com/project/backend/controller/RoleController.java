@@ -16,21 +16,27 @@ import java.util.List;
 @RequestMapping("/api/roles")
 public class RoleController {
     private RoleService roleService;
+
     @PostMapping
     public ResponseEntity<RoleDto> createRole(@RequestBody RoleDto roleDto){
         RoleDto savedRole = roleService.createRole(roleDto);
         return new ResponseEntity<>(savedRole , HttpStatus.CREATED);
     }
+
     @GetMapping("{id}")
     public ResponseEntity<RoleDto> getRoleById(@PathVariable("id") String roleId){
         RoleDto role = roleService.getRoleById(roleId);
         return ResponseEntity.ok(role);
     }
-    @PostMapping("{id}")
+<<<<<<< HEAD
+    @PutMapping("{id}")
     public ResponseEntity<RoleDto> updatedRole(@PathVariable("id") String roleId, @RequestBody RoleDto roleDto){
         RoleDto savedRole = roleService.updateRole(roleId, roleDto);
         return ResponseEntity.ok(savedRole);
     }
+=======
+
+>>>>>>> origin/user-acount-crud-api
     @GetMapping("")
     public ResponseEntity<List<RoleDto>> getAllRole(){
         List<RoleDto> roles = roleService.getAllRole();
@@ -42,4 +48,9 @@ public class RoleController {
         return ResponseEntity.ok("Role Deleted Successfully");
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<RoleDto> updateRole(@PathVariable("id") String id, @RequestBody RoleDto roleDto){
+        RoleDto newRoleDto = roleService.updateRole(id, roleDto);
+        return new ResponseEntity<>(newRoleDto, HttpStatus.OK);
+    }
 }
