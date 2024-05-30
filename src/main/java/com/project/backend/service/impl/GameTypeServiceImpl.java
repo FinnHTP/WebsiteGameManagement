@@ -40,10 +40,9 @@ public class GameTypeServiceImpl implements GameTypeService {
     @Override
     public GameTypeDto updatedGameType(Long gameTypeId, GameTypeDto gameTypeDto) {
         GameType gameType = gameTypeRepository.findById(gameTypeId).orElseThrow(() -> new ResourceNotFoundException("GameType is not exist with given id " + gameTypeId));
-        gameType.setId(gameTypeDto.getId());
         gameType.setName(gameTypeDto.getName());
-        GameType updatedGameType = gameTypeRepository.save(gameType);
-        return GameTypeMapper.mapToGameTypeDto(updatedGameType);
+        GameType savedGameType = gameTypeRepository.save(gameType);
+        return GameTypeMapper.mapToGameTypeDto(savedGameType);
     }
 
     @Override
