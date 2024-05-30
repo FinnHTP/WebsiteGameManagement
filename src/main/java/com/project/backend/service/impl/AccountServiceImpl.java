@@ -2,9 +2,12 @@ package com.project.backend.service.impl;
 
 import com.project.backend.dto.AccountDto;
 import com.project.backend.entity.Account;
+import com.project.backend.entity.RankAccount;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.mapper.AccountMapper;
+import com.project.backend.mapper.RankTypeMapper;
 import com.project.backend.repository.AccountRepository;
+import com.project.backend.repository.RankAccountRepository;
 import com.project.backend.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,10 +23,12 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDto createAccount(AccountDto accountDto) {
         Account account = AccountMapper.MapToAccount(accountDto);
-        // Set default account balance is 0 and account level is 1 when user fresh create an account
+        RankAccount rankAccount = new RankAccount();
+        // Set default account balance is 0, rank type is 1 equal to Bronze and account level is 1 when user fresh create an account
         account.setAccountBalance(0.0);
         account.setLevel(1);
-
+        rankAccount.setId(1L);
+        account.setRankAccount(rankAccount);
         Account newAccount = accountRepository.save(account);
         return AccountMapper.MapToAccountDto(newAccount);
     }
