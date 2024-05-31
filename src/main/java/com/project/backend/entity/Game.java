@@ -18,7 +18,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
-    @Column(name = "name")
+    @Column(name = "name", columnDefinition = "nvarchar(255)")
     private String name;
     @Column(name = "description_game", columnDefinition = "nvarchar(max)")
     private String description;
