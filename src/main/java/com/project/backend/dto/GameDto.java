@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -19,7 +20,7 @@ public class GameDto {
     private String description;
     private Double priceGame;
     private Boolean status;
-    private Date releaseDate;
+    private LocalDate releaseDate;
     private String version;
     private GameType gameType;
 }

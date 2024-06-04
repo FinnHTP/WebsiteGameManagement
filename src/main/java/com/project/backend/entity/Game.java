@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Game {
     @Column(name = "status")
     private Boolean status;
     @Column(name = "releaseDate")
-    private Date releaseDate;
+    private LocalDate releaseDate;
     @Column(name = "version")
     private String version;
     @ManyToOne @JoinColumn(name = "gameTypeId")

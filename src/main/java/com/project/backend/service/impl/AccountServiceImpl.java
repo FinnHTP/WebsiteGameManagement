@@ -8,7 +8,12 @@ import com.project.backend.mapper.AccountMapper;
 import com.project.backend.repository.AccountRepository;
 import com.project.backend.service.AccountService;
 import lombok.AllArgsConstructor;
+<<<<<<< HEAD
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+=======
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+>>>>>>> origin/updated
 import org.springframework.stereotype.Service;
 
 import java.util.List;
