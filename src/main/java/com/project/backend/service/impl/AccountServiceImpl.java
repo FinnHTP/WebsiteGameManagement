@@ -10,6 +10,8 @@ import com.project.backend.repository.AccountRepository;
 import com.project.backend.repository.RankAccountRepository;
 import com.project.backend.service.AccountService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +30,8 @@ public class AccountServiceImpl implements AccountService {
         account.setAccountBalance(0.0);
         account.setLevel(1);
         rankAccount.setId(1L);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+        account.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         account.setRankAccount(rankAccount);
         Account newAccount = accountRepository.save(account);
         return AccountMapper.MapToAccountDto(newAccount);
@@ -50,7 +54,7 @@ public class AccountServiceImpl implements AccountService {
         Account account = accountRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Account can't be found with given id " + id));
         // Update account info (ID, username, password, email) do not update (level, rank type id, balance)
         account.setId(accountDto.getId());
-        account.setUserName(accountDto.getUsername());
+        account.setUsername(accountDto.getUsername());
         account.setPassword(accountDto.getPassword());
         account.setEmail(accountDto.getEmail());
         Account updatedAccount = accountRepository.save(account);

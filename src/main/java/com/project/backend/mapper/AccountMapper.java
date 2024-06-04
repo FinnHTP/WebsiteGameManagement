@@ -8,7 +8,7 @@ public class AccountMapper {
     public static AccountDto MapToAccountDto(Account account){
         AccountDto accountDto = new AccountDto();
         accountDto.setId(account.getId());
-        accountDto.setUsername(account.getUserName());
+        accountDto.setUsername(account.getUsername());
         accountDto.setLevel(account.getLevel());
         accountDto.setRankTypeId(account.getRankAccount().getId());
         accountDto.setPassword(account.getPassword());
@@ -24,7 +24,7 @@ public class AccountMapper {
 
         // Set properties for account
         account.setId(accountDto.getId());
-        account.setUserName(accountDto.getUsername());
+        account.setUsername(accountDto.getUsername());
         account.setLevel(accountDto.getLevel());
         account.setPassword(accountDto.getPassword());
         account.setRankAccount(rankAccount);

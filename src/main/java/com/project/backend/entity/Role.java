@@ -1,27 +1,20 @@
 package com.project.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.backend.utilies.RoleName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Profile;
 
-import java.util.List;
-
-@SuppressWarnings("serial")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "roles")
 public class Role {
     @Id
-    @Column(name = "id")
-    private String id;
-    @Column(name = "name")
-    private String name;
-    @JsonIgnore
-    @OneToMany(mappedBy = "role")
-    private List<Authority> authorities;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Enumerated(EnumType.STRING)
+    private RoleName name;
+
 }
