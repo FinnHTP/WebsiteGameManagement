@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -21,7 +22,7 @@ public class GameImage {
     @ManyToOne @JoinColumn(name = "gameId")
     private Game game;
     @Column(name = "date")
-    private Date date = new Date();
+    private LocalDate date;
 
 
 }

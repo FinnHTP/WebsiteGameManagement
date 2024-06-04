@@ -13,7 +13,7 @@ import java.util.List;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/GameImages")
+@RequestMapping("/api/gameimages")
 public class GameImageController {
     private GameImageService service;
 

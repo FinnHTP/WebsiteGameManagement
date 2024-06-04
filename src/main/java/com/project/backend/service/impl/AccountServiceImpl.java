@@ -10,6 +10,8 @@ import com.project.backend.repository.AccountRepository;
 import com.project.backend.repository.RankAccountRepository;
 import com.project.backend.service.AccountService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
