@@ -5,6 +5,8 @@ import com.project.backend.entity.Account;
 import com.project.backend.entity.Authority;
 import com.project.backend.entity.Role;
 
+import java.util.List;
+
 public class AuthorityMapper {
     public static AuthorityDto MapToAuthorityDto(Authority authority){
         AuthorityDto authorityDto = new AuthorityDto();

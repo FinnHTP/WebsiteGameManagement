@@ -29,38 +29,36 @@ public class GameTypeController {
 
     @Operation(summary = "Add GameType", description = "API create new GameType")
     @PostMapping
-    public ResponseEntity<GameTypeDto> createGameType(@RequestBody GameTypeDto gameType){
+    public ResponseEntity<GameTypeDto> createGameType(@RequestBody GameTypeDto gameType) {
         GameTypeDto savedGameType = gameTypeService.createGameType(gameType);
         return new ResponseEntity<>(savedGameType, HttpStatus.CREATED);
     }
+
     @Operation(summary = "Get GameType By Id", description = "API Get GameType")
     @GetMapping("{id}")
-    public ResponseEntity<GameTypeDto> getGameTypeById(@PathVariable("id") Long gameTypeId){
+    public ResponseEntity<GameTypeDto> getGameTypeById(@PathVariable("id") Long gameTypeId) {
         GameTypeDto gameType = gameTypeService.getGameTypeById(gameTypeId);
         return ResponseEntity.ok(gameType);
     }
 
     @Operation(summary = "Get All GameType", description = "API Get All GameType")
     @GetMapping
-    public ResponseEntity<List<GameTypeDto>> getAllGameTypes(){
+    public ResponseEntity<List<GameTypeDto>> getAllGameTypes() {
         List<GameTypeDto> gameTypes = gameTypeService.getAllGameType();
         return ResponseEntity.ok(gameTypes);
     }
+
     @Operation(summary = "Delete GameType By Id", description = "API Delete GameType")
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteGameType(@PathVariable("id") Long gameTypeId){
+    public ResponseEntity<String> deleteGameType(@PathVariable("id") Long gameTypeId) {
         gameTypeService.deleteGameType(gameTypeId);
         return ResponseEntity.ok("GameType Deleted Successfully");
     }
+
     @Operation(summary = "Update GameType By Id", description = "API Update GameType")
     @PutMapping("{id}")
-    public ResponseEntity<GameTypeDto> updateGameType(@PathVariable("id") Long gameTypeId, @RequestBody GameTypeDto gameTypeDto){
+    public ResponseEntity<GameTypeDto> updateGameType(@PathVariable("id") Long gameTypeId, @RequestBody GameTypeDto gameTypeDto) {
         GameTypeDto updateGameType = gameTypeService.updatedGameType(gameTypeId, gameTypeDto);
         return new ResponseEntity<>(updateGameType, HttpStatus.OK);
     }
-
-
-
-
-
 }

@@ -5,14 +5,14 @@ import com.project.backend.entity.Account;
 import com.project.backend.entity.RankAccount;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.mapper.AccountMapper;
-import com.project.backend.mapper.RankTypeMapper;
 import com.project.backend.repository.AccountRepository;
-import com.project.backend.repository.RankAccountRepository;
 import com.project.backend.service.AccountService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<AccountDto> getAllAccount() {
         List<Account> accounts = accountRepository.findAll();
-        return accounts.stream().map((account) -> AccountMapper.MapToAccountDto(account)).collect(Collectors.toList());
+        return accounts.stream().map(AccountMapper::MapToAccountDto).collect(Collectors.toList());
     }
 
     @Override
@@ -62,4 +62,11 @@ public class AccountServiceImpl implements AccountService {
         Account account = accountRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Account can't be found with given id " + id));
         accountRepository.deleteById(id);
     }
+
+    @Override
+    public Account findByUsername(String username) {
+        return accountRepository.findByUserName(username);
+    }
+
+
 }

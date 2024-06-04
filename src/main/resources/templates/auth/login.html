@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <base href="/" />
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="auth/login" method="post">
+    <div class="form-group">
+        <label>[[#{lg.username}]]:</label>
+        <label>
+            <input class="form-control" type="text" name="username" th:placeholder="#{lg.phusername}">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>[[#{lg.password}]]:</label>
+        <label>
+            <input class="form-control" type="password" name="password" th:placeholder="#{lg.phpassword}">
+        </label>
+    </div>
+    <div class="form-group form-check">
+        <label>
+            <input type="checkbox" class="form-check-input" name="remember" checked="checked">
+        </label>
+        <label class="form-check-label">[[#{lg.remember}]]</label>
+    </div>
+    <button class="btn btn1 btn-primary">[[#{lg.login}]]</button>
+</form>
+</body>
+</html>

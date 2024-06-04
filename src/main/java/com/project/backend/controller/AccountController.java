@@ -1,7 +1,6 @@
 package com.project.backend.controller;
 
 import com.project.backend.dto.AccountDto;
-import com.project.backend.entity.Account;
 import com.project.backend.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

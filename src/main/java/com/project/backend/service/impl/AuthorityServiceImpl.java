@@ -1,9 +1,8 @@
 package com.project.backend.service.impl;
 
 import com.project.backend.dto.AuthorityDto;
-import com.project.backend.entity.Account;
+
 import com.project.backend.entity.Authority;
-import com.project.backend.entity.Role;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.mapper.AuthorityMapper;
 import com.project.backend.repository.AccountRepository;
@@ -44,3 +43,4 @@ public class AuthorityServiceImpl implements AuthorityService {
         authorityRepository.deleteById(id);
     }
 }
+

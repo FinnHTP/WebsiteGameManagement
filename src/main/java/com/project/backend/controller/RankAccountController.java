@@ -1,7 +1,6 @@
 package com.project.backend.controller;
 
 import com.project.backend.dto.RankAccountDto;
-import com.project.backend.entity.RankAccount;
 import com.project.backend.service.RankAccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
