@@ -1,0 +1,168 @@
+[33mcommit f1ab56689e6fa9501420e8ec93f00b22cb1d1a8b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mnew[m[33m, [m[1;31morigin/new[m[33m)[m
+Merge: 5365551 09498b6
+Author: Dungnguyen232002 <nguyendinhdung232002@gmail.com>
+Date:   Tue Jun 4 20:34:56 2024 +0700
+
+    dada
+
+[33mcommit 5365551a7b1c94a1e3ea23cc23f00c3c1c0811c5[m[33m ([m[1;32mnewbranch[m[33m)[m
+Author: Dungnguyen232002 <nguyendinhdung232002@gmail.com>
+Date:   Tue Jun 4 20:22:09 2024 +0700
+
+    deleted
+
+[33mcommit 09498b64091ddc9b7b23042eb072efa33e8caaa6[m[33m ([m[1;31morigin/updated[m[33m, [m[1;32mbranch[m[33m)[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Tue Jun 4 19:57:59 2024 +0700
+
+    updated token
+
+[33mcommit a2cbab72f5395e508c8ed93e6173c7b5b1e6926e[m
+Merge: d7bbefb 339230b
+Author: Dungnguyen232002 <nguyendinhdung232002@gmail.com>
+Date:   Fri May 31 13:50:49 2024 +0700
+
+    Merge remote-tracking branch 'origin/updated' into newbranch
+
+[33mcommit d7bbefbfbbf9f9fc4924cd10a3d5f4cbb9abb507[m[33m ([m[1;32mmain[m[33m)[m
+Author: Dungnguyen232002 <nguyendinhdung232002@gmail.com>
+Date:   Fri May 31 13:47:47 2024 +0700
+
+    delated
+
+[33mcommit 339230b91fe5bffec491c98409578118e11c75ca[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Fri May 31 13:42:25 2024 +0700
+
+    test
+
+[33mcommit c73714cf2e6f935dbc3849381c1e63d1f0d8ba9b[m
+Merge: 311d284 bd8316a
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Thu May 30 20:23:27 2024 +0700
+
+    Merge remote-tracking branch 'origin/feature' into updated
+
+[33mcommit 311d284b8a111fbff2b484aa9cd2e194b61e03fa[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Thu May 30 20:21:30 2024 +0700
+
+    updated
+
+[33mcommit 82510ef1a00da40c7d515dddf5fe1aa47dd27e06[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Thu May 30 15:53:04 2024 +0700
+
+    update code
+
+[33mcommit 4f668af5aaa08597eb749f43176df95afb2a8f70[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Thu May 30 14:56:36 2024 +0700
+
+    add file sql
+
+[33mcommit bd8316a68f9aa56700a39c48c9fa6f41ea9f6d8f[m[33m ([m[1;31morigin/feature[m[33m)[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Thu May 30 14:13:48 2024 +0700
+
+    add file sql
+
+[33mcommit 49b0d497ea15f45ebcf9ce0cb97310a30e410009[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Thu May 30 14:01:25 2024 +0700
+
+    update code role
+
+[33mcommit a7bee476595d1fa0848a11089bc534fdce13cf9d[m
+Merge: ca589bc 06ff9fb
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Thu May 30 13:46:20 2024 +0700
+
+    add code user-account
+
+[33mcommit ca589bce8e7432ba52c2dc8b7c09c6c6882aae0b[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Thu May 30 13:42:15 2024 +0700
+
+    updateCode
+
+[33mcommit 06ff9fbf3abff96914220f47fe606e530a88c364[m[33m ([m[1;31morigin/user-acount-crud-api[m[33m)[m
+Author: KhoaNguyen1004 <nguyentrongkhoa104@gmail.com>
+Date:   Thu May 30 13:25:48 2024 +0700
+
+    Add CRUD function for authority
+
+[33mcommit d6f0f3ec80600f1d2a7cc8b4d1f4235fa406e113[m
+Author: KhoaNguyen1004 <nguyentrongkhoa104@gmail.com>
+Date:   Wed May 29 17:21:57 2024 +0700
+
+    Modified update function for role and game-type. Add CRUD function for rank-type, account and user
+
+[33mcommit 44f3a0c04b0e0be0d8a72d416e7fc0c7a7f6eb29[m
+Merge: 35f3f0e 032542d
+Author: LeNgocKhanh130303 <127295591+LeNgocKhanh130303@users.noreply.github.com>
+Date:   Wed May 29 16:13:38 2024 +0700
+
+    Merge pull request #3 from PhatHuynh15042003/addtest
+    
+    add file
+
+[33mcommit 032542d3a338207420ab8e8bb5aae7ea8ca54d08[m[33m ([m[1;31morigin/addtest[m[33m)[m
+Author: LeNgocKhanh130303i <ngockhanh0869@gmail.com>
+Date:   Wed May 29 16:03:48 2024 +0700
+
+    add file
+
+[33mcommit 2ad63ccb32d165d8176fb8dcf9eae702ff53c9f4[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Wed May 29 13:07:00 2024 +0700
+
+    update Role Id
+
+[33mcommit 35f3f0efe260171293c2c064908770ba6c566685[m
+Merge: ba667d7 8e78ea4
+Author: hphat1078@gmail.com <161740254+PhatHuynh15042003@users.noreply.github.com>
+Date:   Wed May 29 13:03:27 2024 +0700
+
+    Merge pull request #2 from PhatHuynh15042003/feature
+    
+    Update Id Role
+
+[33mcommit 8e78ea4a92d0c165edacfe428c43afd490e7a984[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Wed May 29 13:01:02 2024 +0700
+
+    Update Id Role
+
+[33mcommit ba667d733db5e5b0c3910a1d361ad61e7b834588[m
+Merge: 1810912 510553d
+Author: Nguyễn Đình Dũng <161130846+Dungnguyen232002@users.noreply.github.com>
+Date:   Tue May 28 20:06:10 2024 +0700
+
+    Merge pull request #1 from PhatHuynh15042003/Dung_Dinh
+    
+    new freatures
+
+[33mcommit 510553d53bbe1f9080da2cb2ac5a2322ca7b674b[m[33m ([m[1;31morigin/Dung_Dinh[m[33m)[m
+Author: Dungnguyen232002 <nguyendinhdung232002@gmail.com>
+Date:   Tue May 28 20:00:21 2024 +0700
+
+    new freatures
+
+[33mcommit 1810912bda26ccf0bfaadbf6bebb36096d3ebce2[m
+Author: PhatWataTek <justin.pham@watatek.com>
+Date:   Mon May 27 19:15:55 2024 +0700
+
+    updated role API
+
+[33mcommit 7bba228359838d08d09d948f31db255c9854b71d[m
+Author: PhatHuynh15042003 <161740254+PhatHuynh15042003@users.noreply.github.com>
+Date:   Sun May 26 20:17:11 2024 +0700
+
+    fourth commit
+
+[33mcommit 7a000e57bca8189d94d7866683e117761b67be67[m
+Author: PhatHuynh15042003 <161740254+PhatHuynh15042003@users.noreply.github.com>
+Date:   Fri May 24 13:18:27 2024 +0700
+
+    third commit
