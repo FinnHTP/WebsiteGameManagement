@@ -37,6 +37,9 @@ public class AuthenticationService {
             roles.add(userRole);
         } else {
             rolesString.forEach(role -> {
+
+//
+
                 switch (role) {
                     case "ADMIN":
                         Role adminRole = roleRepository.findByName(RoleName.ADMIN).orElseThrow(

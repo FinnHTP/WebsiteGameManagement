@@ -1,17 +1,20 @@
 package com.project.backend.service;
 
 import com.project.backend.entity.Account;
+import com.project.backend.entity.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -56,15 +59,17 @@ public class JwtService {
             Map<String, Object> extraClaims,
             Account account
     ) {
+        List<String> roles = account.getAuthorities().stream().map(GrantedAuthority:: getAuthority).toList();
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(account.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)).claim("roles",roles)
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256) // Chuyển sang sử dụng HS256
                 .compact();
     }
+
 
     private Claims extractAllClaims(String token){
         return Jwts

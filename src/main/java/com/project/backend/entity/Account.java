@@ -2,6 +2,7 @@ package com.project.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,13 +37,14 @@ public class Account implements UserDetails {
     @Column(name = "accountBalance")
     private Double accountBalance;
     @Column(name = "email")
+    @Email
     private String email;
     @ManyToMany (fetch = FetchType.LAZY)
     @JoinTable (name = "user_roles", joinColumns = @JoinColumn (name = "user_id"), inverseJoinColumns = @JoinColumn (name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-    @JsonIgnore
-    @OneToMany(mappedBy = "account")
-    private List<User> user;
+    @OneToOne (cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn (name = "user_id", referencedColumnName = "id")
+    private User user;
     @JsonIgnore
     @OneToMany(mappedBy = "account")
     private List<Deposit> deposits;
@@ -52,7 +54,9 @@ public class Account implements UserDetails {
     @JsonIgnore
     @OneToMany(mappedBy = "account")
     private List<Rating> ratings;
-
+    @JsonIgnore
+    @OneToMany (mappedBy = "account")
+    private List<OTP> otpList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

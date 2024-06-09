@@ -24,7 +24,7 @@ public class User{
     private String lastName;
     @Column(name = "sdt")
     private String sdt;
-    @ManyToOne @JoinColumn(name = "accountId")
+    @OneToOne @JoinColumn(name = "accountId")
     private Account account;
 
 }

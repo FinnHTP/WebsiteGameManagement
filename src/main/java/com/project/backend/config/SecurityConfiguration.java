@@ -29,6 +29,13 @@ public class SecurityConfiguration {
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                         .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+//        http.authorizeHttpRequests(authorize ->
+//                authorize .anyRequest()
+//                        .authenticated()
+//                        .and()
+//                        .oauth2Login()
+//                        .defaultSuccessUrl("user",true);
+//        });
         return http.build();
     }
 }
