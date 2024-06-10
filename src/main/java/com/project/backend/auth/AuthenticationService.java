@@ -77,6 +77,7 @@ public class AuthenticationService {
             });
         }
         user.setRoles(roles);
+        user_account.setAccount(user);
         System.out.println(roles);
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
