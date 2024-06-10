@@ -1,7 +1,9 @@
 package com.project.backend.auth;
 
 import com.project.backend.entity.Account;
+import com.project.backend.entity.RankAccount;
 import com.project.backend.entity.Role;
+import com.project.backend.entity.User;
 import com.project.backend.repository.AccountRepository;
 import com.project.backend.repository.RoleRepository;
 import com.project.backend.service.JwtService;
@@ -27,8 +29,11 @@ public class AuthenticationService {
     private final RoleRepository roleRepository;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = Account.builder().username(request.getUsername()).password(
-                passwordEncoder.encode(request.getPassword())).email(request.getEmail()).build();
+        RankAccount rankAccount = new RankAccount();
+        rankAccount.setId(1L);
+        User user_account = new User();
+        var user = Account.builder().username(request.getUsername()).accountBalance(0.0).level(1).rankAccount(rankAccount).password(
+                passwordEncoder.encode(request.getPassword())).email(request.getEmail()).user(user_account).build();
         Set<String> rolesString = request.getRoles();
         Set<Role> roles = new HashSet<>();
         if (rolesString == null) {

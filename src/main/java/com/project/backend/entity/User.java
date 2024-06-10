@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
@@ -24,7 +25,9 @@ public class User{
     private String lastName;
     @Column(name = "sdt")
     private String sdt;
-    @OneToOne @JoinColumn(name = "accountId")
+    @JsonIgnore
+    @Setter
+    @OneToOne @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
 }
