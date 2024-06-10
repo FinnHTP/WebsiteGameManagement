@@ -37,23 +37,38 @@ public class AuthenticationService {
             roles.add(userRole);
         } else {
             rolesString.forEach(role -> {
-
+                if (role.equals("ADMIN"))
+                {
+                    Role adminRole = roleRepository.findByName(RoleName.ADMIN).orElseThrow(
+                            () -> new RuntimeException("Role not found"));
+                    roles.add(adminRole);
+                } else if (role.equals("STAFF"))
+                {
+                    Role staffRole = roleRepository.findByName(RoleName.STAFF).orElseThrow(
+                            () -> new RuntimeException("Role not found"));
+                    roles.add(staffRole);
+                } else
+                {
+                    Role userRole = roleRepository.findByName(RoleName.USER).orElseThrow(
+                            () -> new RuntimeException("Role customer not found"));
+                    roles.add(userRole);
+                }
 //
 
-                switch (role) {
-                    case "ADMIN":
-                        Role adminRole = roleRepository.findByName(RoleName.ADMIN).orElseThrow(
-                                () -> new RuntimeException("Role not found"));
-                        roles.add(adminRole);
-                    case "STAFF":
-                        Role staffRole = roleRepository.findByName(RoleName.STAFF).orElseThrow(
-                                () -> new RuntimeException("Role not found"));
-                        roles.add(staffRole);
-                    default:
-                        Role userRole = roleRepository.findByName(RoleName.USER).orElseThrow(
-                                () -> new RuntimeException("Role not found"));
-                        roles.add(userRole);
-                }
+//                switch (role) {
+//                    case "ADMIN":
+//                        Role adminRole = roleRepository.findByName(RoleName.ADMIN).orElseThrow(
+//                                () -> new RuntimeException("Role not found"));
+//                        roles.add(adminRole);
+//                    case "STAFF":
+//                        Role staffRole = roleRepository.findByName(RoleName.STAFF).orElseThrow(
+//                                () -> new RuntimeException("Role not found"));
+//                        roles.add(staffRole);
+//                    default:
+//                        Role userRole = roleRepository.findByName(RoleName.USER).orElseThrow(
+//                                () -> new RuntimeException("Role not found"));
+//                        roles.add(userRole);
+//                }
             });
         }
         user.setRoles(roles);

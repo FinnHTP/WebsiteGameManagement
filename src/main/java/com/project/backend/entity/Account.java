@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -60,7 +61,8 @@ public class Account implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(roles.stream().map(Role :: getName).toString()));
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName().toString())).collect(
+                Collectors.toList());
     }
 
     @Override
