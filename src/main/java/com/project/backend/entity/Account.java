@@ -37,11 +37,11 @@ public class Account implements UserDetails {
     private RankAccount rankAccount;
     @Column(name = "accountBalance")
     private Double accountBalance;
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     @Email
     private String email;
-    @ManyToMany (fetch = FetchType.LAZY)
-    @JoinTable (name = "user_roles", joinColumns = @JoinColumn (name = "user_id"), inverseJoinColumns = @JoinColumn (name = "role_id"))
+    @ManyToMany (fetch = FetchType.EAGER)
+    @JoinTable (name = "user_roles", joinColumns = @JoinColumn (name = "account_id"), inverseJoinColumns = @JoinColumn (name = "role_id"))
     private Set<Role> roles = new HashSet<>();
     @OneToOne (cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn (name = "user_id", referencedColumnName = "id")

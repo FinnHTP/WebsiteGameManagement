@@ -1,6 +1,7 @@
 package com.project.backend.config;
 
 import com.project.backend.service.JwtService;
+import com.project.backend.utilies.RoleName;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,6 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String username;
+        final RoleName role;
         if (authHeader == null || !authHeader.startsWith("Bearer ")){
             filterChain.doFilter(request ,response);
             return;

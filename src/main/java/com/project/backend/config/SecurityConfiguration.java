@@ -1,5 +1,6 @@
 package com.project.backend.config;
 
+import com.project.backend.utilies.RoleName;
 import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -25,10 +26,15 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/v1/auth/**").permitAll()
                         .anyRequest().authenticated())
-                .sessionManagement(session -> session  // Sử dụng cấu hình mặc định cho session management
+                .sessionManagement(session -> session // Sử dụng cấu hình mặc định cho session management
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                         .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .oauth2Login(oauth2Login ->
+                        oauth2Login
+                                .defaultSuccessUrl("/oauth2", true)
+                                .failureUrl("/login?error=true")
+                );
 //        http.authorizeHttpRequests(authorize ->
 //                authorize .anyRequest()
 //                        .authenticated()

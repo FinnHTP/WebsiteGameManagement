@@ -3,6 +3,7 @@ package com.project.backend.service.impl;
 import com.project.backend.dto.AccountDto;
 import com.project.backend.entity.Account;
 import com.project.backend.entity.RankAccount;
+import com.project.backend.entity.User;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.mapper.AccountMapper;
 import com.project.backend.mapper.RankTypeMapper;
@@ -21,6 +22,21 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
+
+    @Override
+    public Account createAccountEmail(Account account) {
+        RankAccount rankAccount = new RankAccount();
+        // Set default account balance is 0, rank type is 1 equal to Bronze and account level is 1 when user fresh create an account
+        account.setAccountBalance(0.0);
+        account.setLevel(1);
+        rankAccount.setId(1L);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
+        account.setRankAccount(rankAccount);
+        account.setUser(new User());
+        Account newAccount = accountRepository.save(account);
+        return newAccount;
+    }
 
     @Override
     public AccountDto createAccount(AccountDto accountDto) {

@@ -6,6 +6,7 @@ import com.project.backend.entity.Account;
 import java.util.List;
 
 public interface AccountService {
+    Account createAccountEmail(Account account);
     AccountDto createAccount(AccountDto accountDto);
     List<AccountDto> getAllAccount();
     AccountDto getAccountById(Long id);

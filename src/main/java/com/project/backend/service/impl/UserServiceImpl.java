@@ -18,6 +18,12 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
+    public User createUserByOAuth2(User user) {
+        userRepository.save(user);
+        return user;
+    }
+
+    @Override
     public UserDto createUser(UserDto userDto) {
         User user = UserMapper.MapToUser(userDto);
         User newUser = userRepository.save(user);
