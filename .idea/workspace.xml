@@ -4,42 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86757bd5-4d17-4eed-a767-02f2e212281c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/config/OpenAPIConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/CommentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/mapper/CommentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/repository/CommentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/service/CommentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/service/impl/CommentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/auth/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/auth/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/auth/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/auth/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/GameImageController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/GameSystemRequirementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/GameSystemRequirementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/GameTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/GameTypeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/KeycodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/KeycodeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/OAuth2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/OAuth2Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/RankAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/RankAccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/dto/CommentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/dto/CommentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/dto/GameDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/dto/GameDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/dto/GameImageDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/entity/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/entity/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/entity/GameImage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/mapper/GameImageMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/mapper/GameMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/mapper/GameMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/repository/GameImageRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/service/GameImageService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/service/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/service/impl/GameImageServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/backend/service/impl/ResetPasswordUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/backend/service/impl/ResetPasswordUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/project/backend/GameImageControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/project/backend/GameImageControllerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="86757bd5-4d17-4eed-a767-02f2e212281c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
