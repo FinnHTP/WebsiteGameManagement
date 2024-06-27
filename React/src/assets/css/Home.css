@@ -1,0 +1,21 @@
+.list-keyword {
+  background-color: black;
+  margin-top: -1px;
+}
+.list-keyword span {
+  font-size: 1.5rem;
+  margin: 10px;
+  color: white;
+}
+
+.list-keyword-finding button.btn {
+  width: 150px;
+  height: 60px;
+  border-radius: 5px;
+  margin-left: 15px;
+  font-size: 1.5rem;
+}
+
+.list-keyword-finding {
+  text-align: center;
+}

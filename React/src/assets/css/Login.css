@@ -1,0 +1,126 @@
+* {
+  font-size: 0.625rem;
+}
+
+.form-input {
+  margin-left: -45px;
+  background-color: #262424;
+}
+
+.form-input h5 {
+  font-size: 1.6rem;
+
+  color: #83858e;
+}
+
+.form-input .h5-login {
+  font-size: 1.6rem;
+  color: #ffa623;
+}
+
+.form-input .h5-register {
+  font-size: 1.6rem;
+  color: #83858e;
+  cursor: pointer;
+}
+
+.form-control {
+  font-size: 1.6rem;
+  display: inline-block;
+  background-color: #262424;
+  border: none;
+  color: #fff;
+  margin-right: auto;
+}
+.form-control label {
+  font-size: 1.4rem;
+  margin-right: 200px;
+  margin-top: 40px;
+}
+
+.form-control:nth-child(2) {
+  background-color: transparent;
+  margin-top: -10px;
+}
+
+.form-control input {
+  width: 280px;
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  background-color: #000;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.form-control input::placeholder {
+  font-size: 1rem;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.d-flex {
+  margin-top: 30px;
+}
+
+.d-flex .btn {
+  margin-left: 20px;
+  width: 60px;
+  border-radius: 15px;
+}
+
+.d-flex img {
+  margin-left: 15px;
+}
+
+p.forgot-pass a {
+  color: rgb(174, 174, 174);
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 30px;
+  font-size: 1.2rem;
+}
+.container {
+  position: relative;
+}
+
+.notification-panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #28a745; /* Màu nền cho thông báo thành công */
+  color: #fff; /* Màu chữ cho thông báo */
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: slide-in 0.5s forwards; /* Hiệu ứng slide-in */
+}
+
+.notification-panel.error {
+  background-color: #dc3545; /* Màu nền cho thông báo lỗi */
+}
+
+.notification-content {
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff; /* Màu chữ cho nút đóng */
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

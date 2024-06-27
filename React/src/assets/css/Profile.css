@@ -1,0 +1,152 @@
+.profile-user {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 500px;
+  height: 500px;
+}
+
+.icon-user {
+  border-radius: 50%;
+}
+
+.panel-user {
+  margin-top: 5px;
+  border-right: 2px solid white;
+  height: 480px;
+}
+
+.list-info {
+  list-style: none;
+  color: black;
+}
+ul.list-group li {
+  border: 1px solid #ccc;
+}
+ul.list-group {
+  border-radius: 0%;
+}
+ul.list-group li.list-group-item a {
+  display: inline-block;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  color: black;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.infor-user {
+  margin-top: 5px;
+  height: 397px;
+  border: 1px solid #ccc;
+}
+
+.h6-infor-user {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.infor-user-item {
+  display: inline-block;
+}
+
+.infor-user-span-p {
+  margin-left: 2px;
+  margin-top: 15px;
+}
+.span-infor-user {
+  font-size: 1.2rem;
+}
+.p-infor-user {
+  font-size: 1.2rem;
+}
+
+.personal-infor {
+  position: relative;
+}
+.btn-confirm {
+  position: absolute;
+  left: 30%;
+  bottom: 43%;
+}
+.infor-image {
+  margin-left: 2px;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.update-image {
+  margin-left: 20px;
+}
+
+.data-image {
+  border-left: 1px solid #ccc;
+}
+
+.h6-personal {
+  margin-top: 15px;
+  margin-left: 18.5px;
+}
+
+input.input-personal {
+  font-size: 1.05rem;
+  width: 200px;
+  border: 1px solid #ccc;
+  height: 20px;
+  border-radius: 7px;
+}
+
+input.input-personal::placeholder {
+  font-size: 1rem;
+}
+
+.list-group-item {
+  padding: 12.5px 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.list-group-item p {
+  cursor: pointer;
+  color: #000;
+}
+
+.search-order {
+  border-top: 1px solid black;
+  padding-top: 15px;
+}
+
+.search-order input {
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 5px 0;
+  font-size: 0.8rem;
+  width: 65px;
+}
+
+.search-order label {
+  margin-top: 8px;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.search-order input:not(:first-child) {
+  margin-left: 0px;
+}
+
+.tbl-order th,
+.tbl-order td {
+  font-size: 1.2rem;
+}
+
+.modal-body p strong {
+  font-size: 1.3rem;
+}
+
+.modal-footer {
+  font-size: 1.7rem;
+}
+.modal-footer button {
+  border-radius: 10px;
+}
