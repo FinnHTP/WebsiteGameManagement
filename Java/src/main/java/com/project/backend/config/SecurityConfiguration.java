@@ -25,7 +25,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/v1/auth/**","/api/password/**","/api/payment/**","/api/payment").permitAll().requestMatchers("/api/**").hasAuthority(String.valueOf(RoleName.USER))
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/excel/*","/api/v1/auth/**","/api/password/**","/api/payment/**","/api/payment").permitAll()
                         .requestMatchers(
                                 "/api/v1/auth/**",
                                 "/v2/api-docs",
