@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "jquery";
@@ -18,13 +18,16 @@ import ProfileComponent from "./Shared/components/pages/profile/ProfileComponent
 import ForgotComponent from "./Shared/components/pages/forgotpass/ForgotComponent";
 import ChangePassComponent from "./Shared/components/pages/changepass/ChangePassComponent";
 import GameDetailComponent from "./Shared/components/pages/comments/GameDetailComponent";
-
+import Game from "./Admin/pages/Manage/GameImage/Game";
 function App() {
+
+  const [isAdmin, setIsAdmin] = useState(false)
+
   return (
     <BrowserRouter>
       <div className="App">
         <Fragment>
-          <HeaderComponent />
+          { isAdmin === false ? <HeaderComponent /> : ""}
           <Routes>
             {/* Home Component */}
             <Route path="/" element={<HomeComponent />}></Route>
@@ -55,7 +58,8 @@ function App() {
 
             {/* ADMIN */}
             <Route path="/admin/game" element={<Game />} />
-          <Route path="/admin/gametypes" element={<Gametypes />} />
+
+          {/* <Route path="/admin/gametypes" element={<Gametypes />} />
           <Route path="/admin/gametypes" element={<Gametypes />} />
           <Route path="/admin/order" element={<Order/>} />
           <Route path="/admin/keycode" element={<Keycode/>} />
@@ -64,12 +68,12 @@ function App() {
           <Route path="/admin/chart" element={<Chart2/>} />
           <Route path="/admin/chartdetail" element={<ChartDetail/>}/>
           <Route path="/admin/group" element={<Group/>} />
-          <Route path="/admin/widget" element={<Widgets />} />
+          <Route path="/admin/widget" element={<Widgets />} /> */}
 
 
 
           </Routes>
-          <FooterComponent />
+          { isAdmin === false ?  <FooterComponent /> : ""}
         </Fragment>
       </div>
     </BrowserRouter>
