@@ -49,6 +49,25 @@ function App() {
               path="/gamedetail/:id"
               element={<GameDetailComponent />}
             ></Route>
+
+
+
+
+            {/* ADMIN */}
+            <Route path="/admin/game" element={<Game />} />
+          <Route path="/admin/gametypes" element={<Gametypes />} />
+          <Route path="/admin/gametypes" element={<Gametypes />} />
+          <Route path="/admin/order" element={<Order/>} />
+          <Route path="/admin/keycode" element={<Keycode/>} />
+          <Route path="/admin/gamerqm" element={<GameSystemRequirement/>} />
+          <Route path="/admin/rankaccount" element={<RankAccount/>} />
+          <Route path="/admin/chart" element={<Chart2/>} />
+          <Route path="/admin/chartdetail" element={<ChartDetail/>}/>
+          <Route path="/admin/group" element={<Group/>} />
+          <Route path="/admin/widget" element={<Widgets />} />
+
+
+
           </Routes>
           <FooterComponent />
         </Fragment>
