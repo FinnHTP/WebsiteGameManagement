@@ -1,6 +1,8 @@
 package com.project.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -59,7 +61,11 @@ public class Account implements UserDetails {
     @JsonIgnore
     @OneToMany (mappedBy = "account")
     private List<OTP> otpList;
-    @Override
+    @ManyToMany (fetch = FetchType.EAGER)
+    @JoinTable (name = "group_account", joinColumns = @JoinColumn (name = "account_id"), inverseJoinColumns = @JoinColumn (name = "group_id"))
+    private Set<Group> groups = new HashSet<>();
+    
+    @Override	
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream().map((role) -> new SimpleGrantedAuthority(role.getName().toString())).collect(
                 Collectors.toList());
@@ -93,5 +99,8 @@ public class Account implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+	
+	
 
 }

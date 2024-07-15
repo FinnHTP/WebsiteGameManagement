@@ -48,7 +48,10 @@ const HeaderComponent = () => {
               <a href="/review">Review</a>
             </li>
             <li>
-              <a href="/category">Blog</a>
+              <a href="/category">Category</a>
+            </li>
+            <li>
+              <a href="/group">Group</a>
             </li>
             <li>
               <a href="/games">Game</a>

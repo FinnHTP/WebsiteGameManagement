@@ -4,6 +4,7 @@ import com.project.backend.dto.GameDto;
 import com.project.backend.entity.Game;
 
 import java.util.List;
+import java.util.Map;
 
 public interface GameService {
   GameDto createGame(GameDto gameDto);
@@ -14,5 +15,7 @@ public interface GameService {
 
   GameDto updateGame(Long gameId, GameDto updatedGameDto);
   void deleteGame(Long gameId);
+List<Object[]> getTotalRevenueByGame();
+Map<String, Double> getMonthlyStatistics(); 
 
 }

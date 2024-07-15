@@ -66,7 +66,7 @@ public class JwtService {
                 .setSubject(account.getUsername())
                 .claim("email", account.getEmail())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)).claim("roles",roles).claim("id",account.getId()).claim("accountBalance", account.getAccountBalance()).claim("email", account.getEmail())
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 10000)).claim("roles",roles).claim("id",account.getId()).claim("accountBalance", account.getAccountBalance()).claim("email", account.getEmail())
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256) // Chuyển sang sử dụng HS256
                 .compact();
     }

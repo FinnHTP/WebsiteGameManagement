@@ -33,7 +33,7 @@ const FooterComponent = () => {
                       style={{
                         height: "100px",
                         width: "100px",
-                        marginLeft: "-300px",
+                        marginLeft: "-110px",
                       }}
                     />
                     <div className="lb-content" style={{ marginTop: "-100px" }}>
@@ -54,7 +54,7 @@ const FooterComponent = () => {
                       style={{
                         height: "100px",
                         width: "100px",
-                        marginLeft: "-200px",
+                        marginLeft: "-110px",
                         position: "absolute",
                       }}
                     />
@@ -77,7 +77,7 @@ const FooterComponent = () => {
                       style={{
                         height: "100px",
                         width: "100px",
-                        marginLeft: "-200px",
+                        marginLeft: "-110px",
                         position: "absolute",
                       }}
                     />
@@ -106,7 +106,7 @@ const FooterComponent = () => {
                       style={{
                         height: "80px",
                         width: "80px",
-                        marginLeft: "-185px",
+                        marginLeft: "-70px",
                         position: "absolute",
                         borderRadius: "50%",
                       }}
@@ -126,7 +126,7 @@ const FooterComponent = () => {
                       style={{
                         height: "80px",
                         width: "80px",
-                        marginLeft: "-185px",
+                        marginLeft: "-70px",
                         position: "absolute",
                         borderRadius: "50%",
                       }}
@@ -146,7 +146,7 @@ const FooterComponent = () => {
                       style={{
                         height: "80px",
                         width: "80px",
-                        marginLeft: "-185px",
+                        marginLeft: "-70px",
                         position: "absolute",
                         borderRadius: "50%",
                       }}
@@ -166,7 +166,7 @@ const FooterComponent = () => {
                       style={{
                         height: "80px",
                         width: "80px",
-                        marginLeft: "-185px",
+                        marginLeft: "-70px",
                         position: "absolute",
                         borderRadius: "50%",
                       }}

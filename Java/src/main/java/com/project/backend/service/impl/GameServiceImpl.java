@@ -9,7 +9,10 @@ import com.project.backend.service.GameService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,4 +64,25 @@ public class GameServiceImpl implements GameService {
         Game game = gameRepository.findById(gameId).orElseThrow(() -> new ResourceNotFoundException("Game is not exist with given id + " + gameId));
         gameRepository.delete(game);
     }
+
+	@Override
+	public Map<String, Double> getMonthlyStatistics() {
+        List<Object[]> stats = gameRepository.getMonthlyStatistics();
+        Map<String, Double> data = new HashMap<>();
+        for (Object[] stat : stats) {
+            String gameName = (String) stat[0];
+            Double total = ((Number) stat[1]).doubleValue();
+            data.put(gameName, total);
+        }
+        return data;
+    }
+
+	@Override
+	public List<Object[]> getTotalRevenueByGame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
+    
+
 }

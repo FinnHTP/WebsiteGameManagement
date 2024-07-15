@@ -42,42 +42,25 @@ public class OrderServiceImpl implements OrderService {
     private OrderDetailRepository orderDetailRepository;
 
     public Order createOrder(Long accountId, Long gameId, Double price) {
-        // Tạo một đối tượng Order mới
         Order order = new Order();
-
-        // Thiết lập tài khoản cho đơn hàng từ accountId
         order.setAccount(accountRepository.findById(accountId).orElse(null));
-
-        // Tạo một OrderDetail mới
         OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setPrice(price); // Thiết lập giá
+        orderDetail.setPrice(price);
         orderDetail.setOrder(order);
 
-        // Thiết lập Game cho OrderDetail từ gameId
         orderDetail.setGame(gameRepository.findById(gameId).orElse(null));
 
-        // Lưu OrderDetail vào cơ sở dữ liệu
-
-
-        // Tạo một đối tượng KeyCode mới và tạo mã ngẫu nhiên cho nó
         KeyCode keyCode = new KeyCode();
-        keyCode.generateKeyCode(); // Phương thức generateKeyCode() tạo mã ngẫu nhiên
-
-        // Thiết lập thông tin cho KeyCode
+        keyCode.generateKeyCode(); 
         keyCode.setGame(orderDetail.getGame());
         keyCode.setCreateDate(LocalDate.now());
         keyCode.setIsActive(true);
 
-        // Liên kết KeyCode với OrderDetail
         keyCode.setOrderDetail(orderDetail);
         orderDetail.setKeycode(keyCode);
-        // Lưu KeyCode vào cơ sở dữ liệu
         keyCodeRepository.save(keyCode);
         orderDetailRepository.save(orderDetail);
-        // Thiết lập OrderDetail cho Order
         order.setOrderDetails(Collections.singletonList(orderDetail));
-
-        // Lưu đơn hàng và trả về kết quả
         return orderRepository.save(order);
     }
 
@@ -122,4 +105,17 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orders = orderRepository.findListById(accountId);
         return orders.stream().map((order) -> OrderMapper.mapToOrderDto(order)).collect(Collectors.toList());
     }
+	@Override
+	public List<Object[]> getMonthlyStatistics(int year) {
+		return orderDetailRepository.getMonthlyStatistics(year);
+		 
+	}
+    
+
+//	@Override
+//	public List<Object[]> getMonthlyStatistics2024() {
+//		  return orderDetailRepository.getMonthlyStatistics2024();
+//	}
+//    
+	
 }

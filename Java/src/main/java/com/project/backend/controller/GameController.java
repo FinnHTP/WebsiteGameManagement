@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("*")
 @AllArgsConstructor
@@ -39,6 +41,12 @@ public class GameController {
         List<GameDto> games = gameService.get8Game();
         return ResponseEntity.ok(games);
     }
+
+    @GetMapping("/profit")
+    public Map<String, Double> getRevenueData() {
+        return gameService.getMonthlyStatistics();
+    }
+    
 
     @PutMapping("{id}")
     public ResponseEntity<GameDto> updateGame(@PathVariable("id") Long gameId, @RequestBody GameDto updatedGame){
