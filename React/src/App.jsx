@@ -19,6 +19,8 @@ import ForgotComponent from "./Shared/components/pages/forgotpass/ForgotComponen
 import ChangePassComponent from "./Shared/components/pages/changepass/ChangePassComponent";
 import GameDetailComponent from "./Shared/components/pages/comments/GameDetailComponent";
 import Game from "./Admin/pages/Manage/GameImage/Game";
+import GroupComponent from "./Shared/components/pages/group/GroupComponent";
+import BlogComponent from "./Shared/components/pages/group/BlogComponent";
 function App() {
 
   const [isAdmin, setIsAdmin] = useState(false)
@@ -34,6 +36,10 @@ function App() {
             {/* Category Component */}
             <Route path="/category" element={<CategoryComponent />}></Route>
             {/* Review Component */}
+            <Route path="/group" element={<GroupComponent/>}></Route>
+            {/* Group Component */}
+            <Route path="/blogs/group/:groupId" element={<BlogComponent/>}></Route>
+            {/* Blog Component */}
             <Route path="/review" element={<ReviewComponent />}></Route>
             {/* Login Component */}
             <Route path="/login" element={<LoginComponent />}></Route>
