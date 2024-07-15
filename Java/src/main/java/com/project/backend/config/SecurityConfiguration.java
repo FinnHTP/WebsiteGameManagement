@@ -25,10 +25,12 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers("/excel/*","/api/v1/auth/**","/api/password/**","/api/payment/**","/api/payment").permitAll()
+ 
                         .requestMatchers(
                                 "/api/v1/auth/**",
-                                "/v2/api-docs",
+                                "/v2/api-docs",       
                                 "/v3/api-docs",
                                 "/v3/api-docs/**",
                                 "/swagger-resources",
@@ -40,7 +42,7 @@ public class SecurityConfiguration {
                                 "/webjars/**"
                         )
                         .permitAll()
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .sessionManagement(session -> session  // Sử dụng cấu hình mặc định cho session management
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authenticationProvider(authenticationProvider)

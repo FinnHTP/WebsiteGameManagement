@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/excel")
+@RequestMapping("api/excel")
 public class ExcelController {
     @Autowired
     private ExcelGameService excelService;
@@ -21,7 +21,7 @@ public class ExcelController {
     @Autowired
     private ExcelOrderDetaiService excelOrderDetaiService;
 
-    @GetMapping("/Game")
+    @GetMapping("/game")
     public void generateExcel(HttpServletResponse response) throws Exception {
 
         response.setContentType("application/vnd.ms-excel");
@@ -31,7 +31,7 @@ public class ExcelController {
         excelService.exportToExcel(response);
     }
 
-    @GetMapping("/Account")
+    @GetMapping("/account")
     public void excelaccount(HttpServletResponse response) throws Exception {
 
         response.setContentType("application/vnd.ms-excel");
@@ -41,7 +41,7 @@ public class ExcelController {
         excelAccountService.AccourtExport(response);
     }
 
-    @GetMapping("/User")
+    @GetMapping("/user")
     public void ExcelUser(HttpServletResponse response) throws Exception {
         response.setContentType("application/vnd.ms-excel");
         String headerKey = "Content-Disposition";
@@ -51,7 +51,7 @@ public class ExcelController {
     }
 
 
-    @GetMapping("/GameSyS")
+    @GetMapping("/gamesys")
     public void ExcelGameSys(HttpServletResponse response) throws Exception {
         response.setContentType("application/vnd.ms-excel");
         String headerKey = "Content-Disposition";

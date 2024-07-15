@@ -1,7 +1,7 @@
 package com.project.backend.controller;
 
 import com.project.backend.dto.KeyCodeDto;
-
+import com.project.backend.entity.KeyCode;
 import com.project.backend.service.KeycodeService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
@@ -36,11 +36,30 @@ public class KeycodeController {
         List<KeyCodeDto> codeDtos = service.getAllkeycode();
         return ResponseEntity.ok(codeDtos);
     }
+
+    
+    @GetMapping("enablekey")
+    public ResponseEntity<List<KeyCode>> getAllEnable(){
+        List<KeyCode> codeDtos = service.findByStatusEnable();
+        return ResponseEntity.ok(codeDtos);
+    }
+    
+    @GetMapping("disablekey")
+    public ResponseEntity<List<KeyCode>> getAllDisable(){
+        List<KeyCode> codeDtos = service.findByStatusDisable();
+        return ResponseEntity.ok(codeDtos);
+    }
+    
+    
     @PutMapping("{id}")
     public ResponseEntity<KeyCodeDto> updateKeycode(@PathVariable("id") Long keycodeId, @RequestBody KeyCodeDto dto){
         KeyCodeDto keyCodeDto = service.Updatekeycode(keycodeId , dto);
         return ResponseEntity.ok(keyCodeDto);
     }
+    
+    
+  
+    
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteKeycode(@PathVariable("id") Long keycodeId){
         service.deleteGamekeycode(keycodeId);

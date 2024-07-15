@@ -9,6 +9,7 @@ import com.project.backend.entity.OrderDetail;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.mapper.OrderMapper;
 import com.project.backend.repository.*;
+
 import com.project.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -113,4 +114,19 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
         orderRepository.delete(order);
     }
+
+	@Override
+	public List<Object[]> getMonthlyStatistics(int year) {
+		return orderDetailRepository.getMonthlyStatistics(year);
+		 
+	}
+    
+
+//	@Override
+//	public List<Object[]> getMonthlyStatistics2024() {
+//		  return orderDetailRepository.getMonthlyStatistics2024();
+//	}
+//    
+	
+	    
 }

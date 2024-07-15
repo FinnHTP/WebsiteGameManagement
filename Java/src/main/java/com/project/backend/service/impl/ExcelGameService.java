@@ -43,6 +43,7 @@ public class ExcelGameService {
             dataRow.createCell(5).setCellValue(game.getVersion());
             dataRowIndex ++;
 
+            System.out.println(game.getReleaseDate());
         }
         ServletOutputStream outputStream = response.getOutputStream();
         workbook.write(outputStream);

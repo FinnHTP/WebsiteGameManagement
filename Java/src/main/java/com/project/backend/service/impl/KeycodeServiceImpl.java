@@ -52,4 +52,17 @@ public class KeycodeServiceImpl implements KeycodeService {
         KeyCode keyCode = repository.findById(keycodeId).orElseThrow(() -> new ResourceNotFoundException("Game is not exist with given id + " + keycodeId));
         repository.delete(keyCode);
     }
+
+    @Override
+	public List<KeyCode> findByStatusDisable() {
+		List<KeyCode> keyCode = repository.findByStatusEnable();
+		  return keyCode;
+	}
+	@Override
+	public List<KeyCode> findByStatusEnable() {
+		List<KeyCode> keyCode = repository.findByStatusEnable();
+		  return keyCode;
+	}
+    
+    
 }

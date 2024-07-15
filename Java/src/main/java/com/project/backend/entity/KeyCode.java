@@ -34,6 +34,7 @@ public class KeyCode {
     private OrderDetail orderDetail;
 
     public void generateKeyCode() {
+    	
         // Tạo chuỗi keycode ngẫu nhiên
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder sb = new StringBuilder();

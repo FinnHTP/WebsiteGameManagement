@@ -48,6 +48,14 @@ public class CommentController {
         return ResponseEntity.ok(comments);
     }
 
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<CommentDto> getCommentById(@PathVariable("id") Long commentId){
+        CommentDto comments = commentService.getCommentById(commentId);
+        return ResponseEntity.ok(comments);
+    }
+
+
     @GetMapping("/findByGame/{id}")
     public ResponseEntity<List<CommentDto>> getListCommentByGame(@PathVariable("id") Long gameId){
         List<CommentDto> comments = commentService.listCommentByGame(gameId);
