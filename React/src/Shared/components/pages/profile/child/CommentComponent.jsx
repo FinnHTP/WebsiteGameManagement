@@ -1,17 +1,22 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import OrderDetailModal from "../../../common/OrderDetailModal";
 import { useParams } from "react-router-dom";
-// import { Modal } from "bootstrap";
+import { jwtDecode } from "jwt-decode";
 
 const CommentComponent = () => {
-  const [visibleComments, setVisibleComments] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
   const [comments, setComments] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [itemsPerPage] = useState(3); // Số lượng comment trên mỗi trang
   const { id } = useParams();
+
+  // Hàm lấy danh sách tất cả comment từ API
   const listAllComments = async () => {
     const token = localStorage.getItem("accesstoken");
+    const decode = jwtDecode(token);
+    const accountId = decode.id;
 
     if (!token) {
       console.error("Token Not Found");
@@ -20,7 +25,7 @@ const CommentComponent = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/comment/findByAccount/3`,
+        `http://localhost:8080/api/comment/findByAccount/${accountId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -38,14 +43,27 @@ const CommentComponent = () => {
       console.error("Fail to Request", error);
     }
   };
-  const showMoreComments = () => {
-    setVisibleComments(visibleComments + 5); // Hiển thị thêm 5 comment
+
+  // Hàm xử lý khi người dùng chuyển đổi trang
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
+  // Tính toán phân đoạn của danh sách comments để hiển thị trên trang hiện tại
+  const indexOfLastComment = currentPage * itemsPerPage;
+  const indexOfFirstComment = indexOfLastComment - itemsPerPage;
+  const currentComments = comments.slice(
+    indexOfFirstComment,
+    indexOfLastComment
+  );
+
+  // Hàm đóng modal chi tiết đơn hàng
   const handleCloseModal = () => {
     setSelectedOrder(null);
     setShowModal(false);
   };
+
+  // Hàm hiển thị chi tiết đơn hàng
   const showOrderDetail = async (orderId) => {
     const token = localStorage.getItem("accesstoken");
     if (!token) {
@@ -70,8 +88,9 @@ const CommentComponent = () => {
   };
 
   useEffect(() => {
-    listAllComments();
+    listAllComments(); // Gọi hàm lấy danh sách comment khi component được render
   }, []);
+
   return (
     <div>
       <h6 className="h6-infor-user">Comment History</h6>
@@ -91,24 +110,59 @@ const CommentComponent = () => {
             <th scope="col">Index</th>
             <th scope="col">Content</th>
             <th scope="col">Date</th>
-            <th scope="col">GameId</th>
+            <th scope="col">Game</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          {comments.slice(0, visibleComments).map((comment, index) => (
+          {currentComments.map((comment, index) => (
             <tr key={comment.id}>
               <th scope="row">{index + 1}</th>
               <td>{comment.content}</td>
               <td>{comment.date}</td>
-              <td>{comment.game.id}</td>
+              <td>{comment.game.name}</td>
               <td>
-                <span className="btn btn-warning">Detail</span>
+                <span
+                  className="btn btn-warning"
+                  onClick={() => showOrderDetail(comment.game.id)}
+                >
+                  Detail
+                </span>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <nav className="pagination-nav" style={{ marginTop: "-13px" }}>
+        <ul className="pagination justify-content-center">
+          {Array.from(
+            { length: Math.ceil(comments.length / itemsPerPage) },
+            (_, index) => (
+              <li
+                key={index}
+                className={`page-item ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+                style={{ width: "32px", textAlign: "center" }}
+              >
+                <span
+                  className="page-link"
+                  onClick={() => handlePageChange(index + 1)}
+                  style={{ fontSize: "1.3rem" }}
+                >
+                  {index + 1}
+                </span>
+              </li>
+            )
+          )}
+        </ul>
+      </nav>
+      {showModal && (
+        <OrderDetailModal
+          order={selectedOrder}
+          handleCloseModal={handleCloseModal}
+        />
+      )}
     </div>
   );
 };

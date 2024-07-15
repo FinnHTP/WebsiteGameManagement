@@ -9,6 +9,8 @@ const AccountComponent = () => {
   const [sdt, setSdt] = useState("");
   const [avatar, setAvatar] = useState("");
   const [account, setAccount] = useState({});
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const findUserById = async () => {
     const token = localStorage.getItem("accesstoken");
@@ -38,7 +40,7 @@ const AccountComponent = () => {
     }
   };
 
-  const recharge = async (e) => {
+  const recharge = async (Money) => {
     const token = localStorage.getItem("accesstoken");
     if (!token) {
       console.log("Token not found!");
@@ -47,14 +49,15 @@ const AccountComponent = () => {
     try {
       const decoded = jwtDecode(token);
       const accountId = decoded.id;
+      const amountAccount = Money;
       const paymentValues = {
-        amount: "1600000",
+        amount: JSON.stringify(amountAccount),
         accountId: accountId,
       };
       const queryString = new URLSearchParams(paymentValues).toString();
       console.log(queryString);
       const response = await axios.post(
-        `http://localhost:8080/api/payment/create?amount=1600000&accountId=3`,
+        `http://localhost:8080/api/payment/create?${queryString}`,
 
         {
           headers: {
@@ -66,12 +69,24 @@ const AccountComponent = () => {
         const responseUrl = response.data.data;
         window.location.href = responseUrl;
         console.log(responseUrl);
+        const resultPayment = await axios.post(
+          `http://localhost:8080/api/payment/save-payment?${queryString}`,
+
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
       }
     } catch (error) {
       console.error("Invalid token", error);
     }
   };
 
+  const ButtonOpenModal = () => {
+    setShowModal(true);
+  };
   const updateAccount = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("accesstoken");
@@ -131,6 +146,11 @@ const AccountComponent = () => {
     }
   };
 
+  const handleCloseModal = () => {
+    setSelectedOrder(null);
+    setShowModal(false);
+  };
+
   const handleFirstName = (e) => setFirstName(e.target.value);
   const handleLastName = (e) => setLastName(e.target.value);
 
@@ -152,7 +172,7 @@ const AccountComponent = () => {
           <span className="span-infor-user">Balance</span>
           <p className="p-infor-user">
             {new Intl.NumberFormat("de-DE").format(account.accountBalance)}đ
-            <a href="#" onClick={recharge}>
+            <a href="#" onClick={ButtonOpenModal}>
               <strong
                 style={{
                   marginLeft: "3px",
@@ -231,6 +251,104 @@ const AccountComponent = () => {
           Confirm
         </button>
       </div>
+      <div
+        className={`modal fade ${showModal ? "show" : ""}`}
+        style={{ display: showModal ? "block" : "none" }}
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Recharge</h5>
+              <button
+                type="button"
+                className="btn-close"
+                aria-label="Close"
+                onClick={handleCloseModal}
+              ></button>
+            </div>
+            <div className="modal-body">
+              {
+                <>
+                  <div>
+                    <h6>Credit Boosters</h6>
+                  </div>
+                  <div>
+                    <div
+                      className="btn btn-warning"
+                      style={{
+                        marginRight: "15px",
+                        marginTop: "10px",
+                        fontSize: "1.5rem",
+                        width: "130px",
+                      }}
+                      onClick={() => recharge(75000)}
+                    >
+                      75000 đ
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="btn btn-warning"
+                      style={{
+                        marginRight: "15px",
+                        marginTop: "10px",
+                        fontSize: "1.5rem",
+                        width: "130px",
+                      }}
+                      onClick={() => recharge(150000)}
+                    >
+                      150.000 đ
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="btn btn-warning"
+                      style={{
+                        marginRight: "15px",
+                        marginTop: "10px",
+                        fontSize: "1.5rem",
+                        width: "130px",
+                      }}
+                      onClick={() => recharge(225000)}
+                    >
+                      225.000 đ
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="btn btn-warning"
+                      style={{
+                        marginRight: "15px",
+                        marginTop: "10px",
+                        fontSize: "1.5rem",
+                        width: "130px",
+                      }}
+                      onClick={() => recharge(300000)}
+                    >
+                      300.000 đ
+                    </div>
+                  </div>
+                  <p>
+                    <strong className="text-danger">Notes:</strong> Very
+                    understanding because you can only top up in packages with a
+                    fixed price. Sorry for the inconvenience
+                  </p>
+                </>
+              }
+            </div>
+            <div className="modal-footer">
+              <button
+                className="btn btn-warning"
+                variant="secondary"
+                onClick={handleCloseModal}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {showModal && <div className="modal-backdrop fade show"></div>}
     </div>
   );
 };

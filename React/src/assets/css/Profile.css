@@ -150,3 +150,20 @@ input.input-personal::placeholder {
 .modal-footer button {
   border-radius: 10px;
 }
+
+.pagination-nav {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.page-item.active .page-link {
+  color: black;
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #212529;
+}
+
+li.page-item span.page-link {
+  color: black;
+}

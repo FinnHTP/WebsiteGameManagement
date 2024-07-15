@@ -53,4 +53,11 @@ public class DepositServiceImpl implements DepositService{
         depositRepository.delete(deposit);
     }
 
+    @Override
+    public List<DepositDto> GetAllDepositById(Long accountId) {
+        // TODO Auto-generated method stub
+        List<Deposit> deposits = depositRepository.findListById(accountId);
+        return deposits.stream().map((deposit) -> DepositMapper.mapToDTO(deposit)).collect(Collectors.toList());
+    }
+
 }

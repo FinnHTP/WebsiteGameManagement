@@ -1,19 +1,29 @@
 package com.project.backend.controller;
 
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.project.backend.dto.OrderDto;
 import com.project.backend.entity.Order;
 import com.project.backend.repository.AccountRepository;
 import com.project.backend.repository.GameRepository;
 import com.project.backend.service.OrderService;
+
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin("*")
 @AllArgsConstructor
@@ -46,6 +56,11 @@ public class OrderController {
     public ResponseEntity<List<OrderDto>> getAllOrder(){
         List<OrderDto> orderDtos = service.getAllOrders();
         return ResponseEntity.ok(orderDtos);
+    }
+    @GetMapping("/list/{id}")
+    public ResponseEntity<List<OrderDto>> getListOrderById(@PathVariable("id") Long accountId){
+        List<OrderDto> orders = service.GetAllOrderById(accountId);
+        return ResponseEntity.ok(orders);
     }
     @PutMapping("{id}")
     public ResponseEntity<OrderDto> updateOrder(@PathVariable("id") Long orderId, @RequestBody OrderDto dto){

@@ -80,17 +80,22 @@ const ProfileComponent = () => {
               </ul>
             </div>
             <div className="col-9 infor-user text-left">
-              <Routes>
-                <Route path="" element={<AccountComponent />}></Route>
-                <Route path="account" element={<AccountComponent />}></Route>
-                <Route path="order" element={<OrderComponent />}></Route>
-                <Route
-                  path="transaction"
-                  element={<TransactionComponent />}
-                ></Route>
-                <Route path="favorite" element={<FavoriteComponent />}></Route>
-                <Route path="comment" element={<CommentComponent />}></Route>
-              </Routes>
+              <div>
+                <Routes>
+                  <Route path="" element={<AccountComponent />}></Route>
+                  <Route path="account" element={<AccountComponent />}></Route>
+                  <Route path="order" element={<OrderComponent />}></Route>
+                  <Route
+                    path="transaction"
+                    element={<TransactionComponent />}
+                  ></Route>
+                  <Route
+                    path="favorite"
+                    element={<FavoriteComponent />}
+                  ></Route>
+                  <Route path="comment" element={<CommentComponent />}></Route>
+                </Routes>
+              </div>
             </div>
           </div>
         </div>

@@ -1,12 +1,9 @@
 package com.project.backend.service;
 
-import com.project.backend.dto.KeyCodeDto;
-import com.project.backend.dto.OrderDto;
-import com.project.backend.entity.Account;
-import com.project.backend.entity.Game;
-import com.project.backend.entity.Order;
-
 import java.util.List;
+
+import com.project.backend.dto.OrderDto;
+import com.project.backend.entity.Order;
 
 public interface OrderService {
     Order createOrder(Long accountId, Long gameId, Double priced);
@@ -14,4 +11,5 @@ public interface OrderService {
     List<OrderDto> getAllOrders();
     OrderDto UpdateOrder(Long orderId ,OrderDto updatedOrderDto);
     void deleteOrder(Long orderId);
+    List<OrderDto> GetAllOrderById(Long accountId);
 }

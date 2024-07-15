@@ -1,25 +1,33 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import OrderDetailModal from "../../../common/OrderDetailModal";
+import { jwtDecode } from "jwt-decode";
 // import { Modal } from "bootstrap";
 
 const OrderComponent = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [orders, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [itemsPerPage] = useState(3);
   const ListAllOrder = async () => {
     const token = localStorage.getItem("accesstoken");
+    const decoded = jwtDecode(token);
+    const accountId = decoded.id;
     if (!token) {
       console.log("token not found");
       return;
     }
 
     try {
-      const response = await axios.get("http://localhost:8080/api/orders", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `http://localhost:8080/api/orders/list/${accountId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data =
         typeof response.data === String
           ? JSON.parse(response.data)
@@ -30,6 +38,14 @@ const OrderComponent = () => {
       console.error(error);
     }
   };
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Tính toán phân đoạn của danh sách comments để hiển thị trên trang hiện tại
+  const indexOfLastComment = currentPage * itemsPerPage;
+  const indexOfFirstComment = indexOfLastComment - itemsPerPage;
+  const currentOrders = orders.slice(indexOfFirstComment, indexOfLastComment);
   const handleCloseModal = () => {
     setSelectedOrder(null);
     setShowModal(false);
@@ -89,7 +105,7 @@ const OrderComponent = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order, index) => (
+          {currentOrders.map((order, index) => (
             <tr key={order.id}>
               <th scope="row">{index + 1}</th>
               <td>{order.date}</td>
@@ -157,6 +173,29 @@ const OrderComponent = () => {
           </div>
         </div>
       </div>
+      <nav className="pagination-nav" style={{ marginTop: "-13px" }}>
+        <ul className="pagination justify-content-center">
+          {Array.from(
+            { length: Math.ceil(orders.length / itemsPerPage) },
+            (_, index) => (
+              <li
+                key={index}
+                className={`page-item ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+              >
+                <span
+                  className="page-link"
+                  onClick={() => handlePageChange(index + 1)}
+                  style={{ fontSize: "1.3rem" }}
+                >
+                  {index + 1}
+                </span>
+              </li>
+            )
+          )}
+        </ul>
+      </nav>
       {showModal && <div className="modal-backdrop fade show"></div>}
     </div>
   );

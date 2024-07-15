@@ -1,24 +1,26 @@
 package com.project.backend.service.impl;
 
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.project.backend.dto.OrderDto;
-import com.project.backend.entity.Account;
-import com.project.backend.entity.Game;
 import com.project.backend.entity.KeyCode;
 import com.project.backend.entity.Order;
 import com.project.backend.entity.OrderDetail;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.mapper.OrderMapper;
-import com.project.backend.repository.*;
+import com.project.backend.repository.AccountRepository;
+import com.project.backend.repository.GameRepository;
+import com.project.backend.repository.KeycodeRepository;
+import com.project.backend.repository.OrderDetailRepository;
+import com.project.backend.repository.OrderRepository;
 import com.project.backend.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -112,5 +114,12 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
         orderRepository.delete(order);
+    }
+
+    @Override
+    public List<OrderDto> GetAllOrderById(Long accountId) {
+        // TODO Auto-generated method stub
+        List<Order> orders = orderRepository.findListById(accountId);
+        return orders.stream().map((order) -> OrderMapper.mapToOrderDto(order)).collect(Collectors.toList());
     }
 }

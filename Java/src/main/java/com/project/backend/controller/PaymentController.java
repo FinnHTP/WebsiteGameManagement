@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.backend.config.VNPayConfig;
 import com.project.backend.dto.AccountDto;
 import com.project.backend.entity.Account;
+import com.project.backend.mapper.AccountMapper;
 import com.project.backend.repository.AccountRepository;
 import com.project.backend.service.AccountService;
 import com.project.backend.service.DepositService;
@@ -43,23 +44,24 @@ public class PaymentController {
 
     @PostMapping("/save-payment")
     public Map<String, String> createPayment(@RequestParam String amount,
-                                             @RequestParam Long bookingId,
                                              @RequestParam Long accountId,
                                              HttpServletRequest req) throws Exception {
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
 
         String vnp_TxnRef = VNPayConfig.getRandomNumber(8);
-        Double amountValue = Double.parseDouble(amount) * 100;
+        Double amountValue = Double.parseDouble(amount);
         Date createDate = new Date(); // or fetch from your specific logic
         Double accountBalance = account.getAccountBalance();
+        System.out.println("Account Balance" + accountBalance);
+        System.out.println("Amount" + amountValue);
         Double totalMoney = accountBalance + amountValue;
+        String totalString = String.valueOf(totalMoney);
+        System.out.println("Total"+ totalMoney);
         account.setAccountBalance(totalMoney);
-        AccountDto accountDto = new AccountDto();
-        accountDto.setAccountBalance(accountBalance);
-        accountService.updateAccountBalance(accountId, accountDto);
-        System.out.println(accountDto.getAccountBalance());              
-        paymentService.savePayment(vnp_TxnRef, amount, createDate, account);
+        AccountDto accountDto = AccountMapper.MapToAccountDto(account);
+        accountService.updateAccountBalance(accountId, accountDto);             
+        paymentService.savePayment(vnp_TxnRef, totalString, createDate, account);
         // Build and return response as needed
         // Example response map
         Map<String, String> response = Map.of("code", "00", "message", "success");
