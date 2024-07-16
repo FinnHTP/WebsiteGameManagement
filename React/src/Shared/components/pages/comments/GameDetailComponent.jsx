@@ -90,7 +90,13 @@ const GameDetailComponent = () => {
       try {
         const decodedToken = jwtDecode(token);
         const accountId = decodedToken.id;
-        const accountBalance = decodedToken.accountBalance;
+        const responseAccount = await axios.get(`http://localhost:8080/api/account/${accountId}`, {
+            headers:{
+              "Content-Type": "application/json",
+              Authorization : `Bearer ${token}`,
+            }
+        })
+        const accountBalance = responseAccount.data.accountBalance;
         const account = { id: accountId };
         const gameId = game.id;
         const price = game.priceGame;

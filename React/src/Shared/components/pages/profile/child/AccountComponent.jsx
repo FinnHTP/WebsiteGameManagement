@@ -11,6 +11,25 @@ const AccountComponent = () => {
   const [account, setAccount] = useState({});
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState(null);
+  
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
+    };
+
+    const handleUpload = async () => {
+      const token = localStorage.getItem("accesstoken");
+      const decoded = jwtDecode(token);
+      const accountId = decoded.id;
+        if (selectedFile) {
+            await uploadAvatar(accountId, selectedFile);
+            console.log(selectedFile);
+            // const url = getAvatar(accountId);
+            // setAvatarUrl(url);
+        }
+    };
 
   const findUserById = async () => {
     const token = localStorage.getItem("accesstoken");
@@ -39,6 +58,43 @@ const AccountComponent = () => {
       console.error("Invalid token", error);
     }
   };
+
+
+const uploadAvatar = async (accountId, file) => {
+  const token = localStorage.getItem("accesstoken");
+
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    try {
+        const response = await axios.post(`http://localhost:8080/api/user/${accountId}/avatar`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        handleGetAvatar();
+        console.log('Avatar uploaded successfully:', response.data);
+    } catch (error) {
+        console.error('Failed to upload avatar:', error.response ? error.response.data : error.message);
+    }
+};
+
+const getAvatar = async (accountId) => {
+  try {
+      const response = await axios.get(`http://localhost:8080/api/user/${accountId}/avatar`, {
+          responseType: 'arraybuffer'
+      });
+
+      const blob = new Blob([response.data], { type: response.headers['content-type'] });
+      const url = URL.createObjectURL(blob);
+      console.log(url);
+      return url; // Trả về URL để bạn có thể sử dụng trong thẻ <img>
+  } catch (error) {
+      console.error('Failed to get avatar:', error.response ? error.response.data : error.message);
+  }
+};
+
 
   const recharge = async (Money) => {
     const token = localStorage.getItem("accesstoken");
@@ -150,6 +206,13 @@ const AccountComponent = () => {
     setSelectedOrder(null);
     setShowModal(false);
   };
+  const handleGetAvatar = async () => {
+    const token = localStorage.getItem("accesstoken");
+    const decoded = jwtDecode(token);
+    const accountId = decoded.id;
+    const url = await getAvatar(accountId, token);
+    setAvatarUrl(url);
+};
 
   const handleFirstName = (e) => setFirstName(e.target.value);
   const handleLastName = (e) => setLastName(e.target.value);
@@ -157,6 +220,7 @@ const AccountComponent = () => {
   useEffect(() => {
     findAccountById();
     findUserById();
+    handleGetAvatar();
   }, []);
 
   if (!account) {
@@ -206,18 +270,21 @@ const AccountComponent = () => {
       </div>
       <div className="row infor-image">
         <div className="col-6 infor-image-item">
-          <img
-            src={
-              user.avatar ||
-              "https://cdn-icons-png.flaticon.com/128/149/149071.png"
-            }
-            alt="User Avatar"
-            width={60}
-          />
-          <button className="btn update-image">Update Avatar</button>
+          {avatarUrl ?  <img src={avatarUrl} alt="User Avatar" width={60} style={{borderRadius:"50%"}}/> :<img
+          
+          src={
+            "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+          }
+          alt="User Avatar"
+          width={60}
+          style={{borderRadius:"50%"}}
+        />}
+          <button className="btn update-image" onClick={handleUpload}>Update Avatar</button>
+         <div><input type="file" onChange={handleFileChange} style={{fontSize:"1rem",marginTop:"10px"}}/></div>
+         
         </div>
         <div className="col-6 data-image">
-          <p>Vui lòng chọn ảnh nhỏ hơn 5MB, Chọn ảnh phù hợp, không phản cảm</p>
+          <p>Please choose a photo smaller than 5MB, choose a suitable, non-offensive photo</p>
         </div>
       </div>
       <div className="personal-infor">

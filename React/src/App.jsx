@@ -40,6 +40,11 @@ function App() {
             {/* Group Component */}
             <Route path="/blogs/group/:groupId" element={<BlogComponent/>}></Route>
             {/* Blog Component */}
+
+            <Route
+              path="/commentblog/blog/:id"
+              element={<BlogComponent />}
+            ></Route>
             <Route path="/review" element={<ReviewComponent />}></Route>
             {/* Login Component */}
             <Route path="/login" element={<LoginComponent />}></Route>
@@ -58,7 +63,6 @@ function App() {
               path="/gamedetail/:id"
               element={<GameDetailComponent />}
             ></Route>
-
 
 
 

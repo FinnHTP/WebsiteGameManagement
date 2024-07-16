@@ -141,9 +141,8 @@ const OrderComponent = () => {
             <div className="modal-body">
               {selectedOrder && (
                 <>
-                  <p>
-                    <strong>ID:</strong> {selectedOrder.id}
-                  </p>
+                <div className="row">
+                  <div className="col-6">
                   <p>
                     <strong>Price:</strong>{" "}
                     {new Intl.NumberFormat("de-DE").format(selectedOrder.price)}
@@ -158,6 +157,15 @@ const OrderComponent = () => {
                   <p>
                     <strong>Order:</strong> {selectedOrder.order.id}
                   </p>
+                  </div>
+                  <div className="col-6">
+                  <img src={`/img/recent-game/${selectedOrder.game.image}`} alt="" />
+                  <p>
+                    <strong>GameType:</strong> {selectedOrder.game.gameType.name}
+                  </p>
+                  </div>
+                </div>
+                  
                 </>
               )}
             </div>
