@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../../../../assets/css/Login.css";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import GoogleLoginButton from "./GoogleLoginComponent";
 
 const LoginComponent = () => {
   const [username, setUsername] = useState("");
@@ -13,7 +14,9 @@ const LoginComponent = () => {
   });
 
   const navigator = useNavigate();
+
   const handleRedirectRegister = () => navigator("/register");
+
   const handleUsername = (e) => setUsername(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
@@ -45,9 +48,7 @@ const LoginComponent = () => {
           setUserInfo(decodedToken);
           console.log("Login successful, token stored:", token);
           console.log("Decoded token:", decodedToken);
-          console.log("Login successful, token stored:", token);
           window.location.href = "/profile";
-          // navigator("/profile");
         })
         .catch((error) => {
           console.error("Login error:", error);
@@ -55,13 +56,6 @@ const LoginComponent = () => {
     }
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("accesstoken");
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      setUserInfo(decodedToken);
-    }
-  }, []);
   function validateForm() {
     let valid = true;
     const errorsCopy = { ...errors };
@@ -81,6 +75,7 @@ const LoginComponent = () => {
     setErrors(errorsCopy);
     return valid;
   }
+
   return (
     <div>
       <div className="form-login">
@@ -149,7 +144,15 @@ const LoginComponent = () => {
                         style={{ color: "white" }}
                       />
                     </div>
-                    <div className="d-flex">
+                    <div
+                      style={{
+                        marginTop: "10px",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      <GoogleLoginButton></GoogleLoginButton>
+                    </div>
+                    <div>
                       <button
                         type="submit"
                         onClick={handleLogin}
@@ -157,12 +160,6 @@ const LoginComponent = () => {
                       >
                         Login
                       </button>
-                      <a href="#!">
-                        <img src="img/icons/google.png" alt="" width={32} />
-                      </a>
-                      <a href="#!">
-                        <img src="img/icons/facebook.png" alt="" width={32} />
-                      </a>
                     </div>
                     <p className="forgot-pass">
                       <a href="">Forgot Your Password?</a>

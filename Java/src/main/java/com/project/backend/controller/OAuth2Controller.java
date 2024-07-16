@@ -1,83 +1,75 @@
-//package com.project.backend.controller;
-//
-//import com.project.backend.dto.AccountDto;
-//import com.project.backend.entity.Account;
-//import com.project.backend.entity.Role;
-//import com.project.backend.entity.User;
-//import com.project.backend.repository.AccountRepository;
-//import com.project.backend.service.AccountService;
-//import com.project.backend.service.UserService;
-//import com.project.backend.utilies.RoleName;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.security.core.annotation.AuthenticationPrincipal;
-//import org.springframework.security.oauth2.core.user.OAuth2User;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import java.net.URI;
-//import java.net.URISyntaxException;
-//import java.util.HashSet;
-//import java.util.Map;
-//import java.util.Set;
-//
-//@RestController
-//public class OAuth2Controller {
-//    @Autowired
-//    private AccountService accountService;
-//
-//    @RestController
-//    public class MyController {
-//        @Autowired
-//        private AccountRepository accountRepository;
-//        @Autowired
-//        private AccountService accountService;
-//        @Autowired
-//        private UserService userService;
-//        @GetMapping("/oauth2")
-//        public ResponseEntity<?> getUser(@AuthenticationPrincipal OAuth2User oAuth2User) {
-//            Set<Role> roles = new HashSet<>();
-//            roles.add(new Role(3L, RoleName.USER));
-//            Account account = new Account();
-//            User user = new User();
-//            account.setEmail(oAuth2User.getAttribute("email"));
-//            account.setPassword("1234");
-//            account.setUser(user);
-//            account.setRoles(roles);
-//            user.setFirstName(oAuth2User.getAttribute("family_name"));
-//            user.setLastName(oAuth2User.getAttribute("given_name"));
-//            user.setAccount(account);
-//
-//            if (accountRepository.findByEmail(oAuth2User.getAttribute("email").toString()) == null) {
-//                accountService.createAccountEmail(account);
-//
-//
-//
-//            } else {
-//                // Xác định URL mà bạn muốn redirect tới trong trường hợp else
-//                String redirectUrl = "http://localhost:3000";
-//
-//                try {
-//                    // Tạo URI từ URL
-//                    URI uri = new URI(redirectUrl);
-//                    // Trả về một redirect ResponseEntity
-//                    return ResponseEntity.status(302).location(uri).build();
-//                } catch (URISyntaxException e) {
-//                    e.printStackTrace();
-//                    // Trả về lỗi nếu có vấn đề khi tạo URI
-//                    return ResponseEntity.badRequest().build();
-//                }
-//            }
-//            String redirectUrl = "http://localhost:3000";
-//            try {
-//                URI uri = new URI(redirectUrl);
-//                // Nếu không phải vòng if hoặc else, trả về các thuộc tính OAuth2User
-//                return ResponseEntity.status(302).location(uri).build();
-//            } catch (URISyntaxException e) {
-//                throw new RuntimeException(e);
-//            }
-//
-//        }
-//    }
-//
-//}
+package com.project.backend.controller;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.project.backend.auth.AuthenticationResponse;
+import com.project.backend.entity.Account;
+import com.project.backend.entity.RankAccount;
+import com.project.backend.entity.Role;
+import com.project.backend.entity.User;
+import com.project.backend.repository.AccountRepository;
+import com.project.backend.repository.RoleRepository;
+import com.project.backend.service.JwtService;
+import com.project.backend.utilies.RoleName;
+
+import lombok.RequiredArgsConstructor;
+
+@CrossOrigin("*")
+@Controller
+@RequiredArgsConstructor
+public class OAuth2Controller {
+
+    private final AccountRepository repository;
+    private final JwtService jwtService;
+    private final RoleRepository roleRepository;
+
+    @GetMapping("/loginSuccess")
+    @ResponseBody
+public AuthenticationResponse getLoginInfo(Authentication authentication) {
+    if (authentication == null || !(authentication instanceof OAuth2AuthenticationToken)) {
+        throw new RuntimeException("Authentication information is missing or not OAuth2 authentication.");
+    }
+
+    OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+    Map<String, Object> attributes = oauthToken.getPrincipal().getAttributes();
+    String email = (String) attributes.get("email");
+    String name = (String) attributes.get("name");
+
+    // Check if user already exists
+    Account account = repository.findByEmail(email);
+    if (account == null) {
+        RankAccount rankAccount = new RankAccount();
+        rankAccount.setId(1L);
+        User user_account = new User();
+        account = Account.builder()
+                .username(email)
+                .accountBalance(0.0)
+                .level(1)
+                .rankAccount(rankAccount)
+                .password("") // Google users won't have a password
+                .email(email)
+                .user(user_account)
+                .build();
+
+        Set<Role> roles = new HashSet<>();
+        Role userRole = roleRepository.findByName(RoleName.USER).orElseThrow(
+                () -> new RuntimeException("Role not found"));
+        roles.add(userRole);
+        account.setRoles(roles);
+        user_account.setAccount(account);
+        repository.save(account);
+    }
+
+    var jwtToken = jwtService.generateToken(account);
+    return AuthenticationResponse.builder().token(jwtToken).build();
+}
+
+}
