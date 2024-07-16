@@ -11,8 +11,8 @@ public interface CommentBlogService {
 	 CommentBlogDto createComment(CommentBlogDto commentDto);
 	    CommentBlogDto updateComment(CommentBlogDto commentDto , Long commentId);
 	    List<CommentBlogDto> listComment();
-	    List<CommentBlogDto> listCommentByGame(Long gameId);
-	    List<CommentBlogDto> listCommentByAccount(Long account);
+//	    List<CommentBlogDto> listCommentByGame(Long gameId);
+//	    List<CommentBlogDto> listCommentByAccount(Long account);
 	    List<CommentBlogDto> listCommentByBlog(Long blog);
 	    CommentBlogDto getCommentById(Long commentId);
 	    void deleteComment(Long commentId);

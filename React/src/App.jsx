@@ -21,6 +21,7 @@ import GameDetailComponent from "./Shared/components/pages/comments/GameDetailCo
 import Game from "./Admin/pages/Manage/GameImage/Game";
 import GroupComponent from "./Shared/components/pages/group/GroupComponent";
 import BlogComponent from "./Shared/components/pages/group/BlogComponent";
+import ContactComponent from "./Shared/components/pages/contact/ContactComponent";
 function App() {
 
   const [isAdmin, setIsAdmin] = useState(false)
@@ -40,6 +41,12 @@ function App() {
             {/* Group Component */}
             <Route path="/blogs/group/:groupId" element={<BlogComponent/>}></Route>
             {/* Blog Component */}
+
+            <Route
+              path="/commentblog/blog/:id"
+              element={<BlogComponent />}
+            ></Route>
+              <Route path="/contact" element={<ContactComponent />}></Route>
             <Route path="/review" element={<ReviewComponent />}></Route>
             {/* Login Component */}
             <Route path="/login" element={<LoginComponent />}></Route>
@@ -58,7 +65,6 @@ function App() {
               path="/gamedetail/:id"
               element={<GameDetailComponent />}
             ></Route>
-
 
 
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Marquee from "../../common/MarqueeComponent";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";

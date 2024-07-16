@@ -14,6 +14,7 @@ import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.mapper.CommentBlogMapper;
 import com.project.backend.mapper.CommentMapper;
 import com.project.backend.repository.CommentBlogRepository;
+import com.project.backend.repository.CommentRepository;
 import com.project.backend.service.CommentBlogService;
 
 import lombok.AllArgsConstructor;
@@ -69,11 +70,11 @@ public class CommentBlogServiceImpl implements CommentBlogService {
 //			
 //		}
 
-//	@Override
-//	public List<CommentBlogDto> listCommentByBlog(Long blog) {
-//		  List<CommentBlog> comments = commentBlogRepository.findByBlog(blog);
-//	        return comments.stream().map((comment) -> CommentBlogMapper.MapToCommentBlogDto(comment)).collect(Collectors.toList());
-//	}
+	@Override
+	public List<CommentBlogDto> listCommentByBlog(Long blog) {
+		  List<CommentBlog> comments = commentBlogRepository.findByBlog(blog);
+	        return comments.stream().map((comment) -> CommentBlogMapper.MapToCommentBlogDto(comment)).collect(Collectors.toList());
+	}
 
 	   @Override
 	    public CommentBlogDto getCommentById(Long commentId) {
@@ -91,5 +92,6 @@ public class CommentBlogServiceImpl implements CommentBlogService {
 			// TODO Auto-generated method stub
 			return null;
 		}
-	
+
+
 }

@@ -1,5 +1,6 @@
 package com.project.backend.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Set;
 
 import org.eclipse.angus.mail.iap.Response;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.backend.dto.GameDto;
 import com.project.backend.dto.GroupAccountDto;
@@ -139,4 +142,32 @@ public ResponseEntity<String> deleteGroup(@PathVariable("id") Long groupId){
     groupservice.deleteGroup(groupId);
     return ResponseEntity.ok("Group deleted Successfully");
 }
+//@CrossOrigin(origins = "http://localhost:3000")
+//@PostMapping ("/{id}/avatar")
+//public ResponseEntity<String> uploadAvatar (@PathVariable Long id,  @RequestParam ("avatar") MultipartFile file) {
+//    try
+//    {
+//        userService.uploadAvatar(id , file);
+//        return ResponseEntity.ok("Avatar uploaded successfully");
+//    } catch (IOException e)
+//    {
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload avatar");
+//    } catch (RuntimeException e)
+//    {
+//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+//    }
+//}
+//@CrossOrigin(origins = "http://localhost:3000")
+//@GetMapping ("/{id}/avatar")
+//public ResponseEntity<byte[]> getAvatar (@PathVariable Long id) {
+//    try
+//    {
+//        byte[] avatar = userService.getAvatar(id);
+//        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG) // Adjust based on the image type stored
+//                .body(avatar);
+//    } catch (RuntimeException e)
+//    {
+//        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//    }
+//}
 }

@@ -1,5 +1,6 @@
 package com.project.backend.service.impl;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.backend.dto.GroupAccountDto;
 import com.project.backend.dto.GroupDto;
@@ -17,6 +19,7 @@ import com.project.backend.dto.JoinGroupDto;
 import com.project.backend.entity.Account;
 import com.project.backend.entity.Group;
 import com.project.backend.entity.RankAccount;
+import com.project.backend.entity.User;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.mapper.GroupMapper;
 import com.project.backend.repository.AccountRepository;
@@ -162,5 +165,33 @@ public List<GroupAccountDto> getAll2(Long groupId, Long accountId) {
 //@Override
 //public List<Long> findAccountIdsByGroupName(String groupName) {
 //    return grouprepo.findAccountIdsByGroupName(groupName);
+//}
+
+
+
+//@Override
+//public void uploadAvatar (Long id, MultipartFile file) throws IOException {
+//    Optional<User> optionalUser = userRepository.findById(id);
+//    if (optionalUser.isPresent())
+//    {
+//        User user = optionalUser.get();
+//        user.setAvatar(file.getBytes());
+//        userRepository.save(user);
+//    } else
+//    {
+//        throw new RuntimeException("User not found");
+//    }
+//}
+//
+//@Override
+//public byte[] getAvatar (Long id) {
+//    Optional<User> optionalUser = userRepository.findById(id);
+//    if (optionalUser.isPresent() && optionalUser.get().getAvatar() != null)
+//    {
+//        return optionalUser.get().getAvatar();
+//    } else
+//    {
+//        throw new RuntimeException("Avatar not found");
+//    }
 //}
 }

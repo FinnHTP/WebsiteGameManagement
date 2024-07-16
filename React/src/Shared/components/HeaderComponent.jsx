@@ -57,7 +57,7 @@ const HeaderComponent = () => {
               <a href="/games">Game</a>
             </li>
             <li>
-              <a href="#!">Contact</a>
+              <a href="/contact">Contact</a>
             </li>
           </ul>
         </nav>

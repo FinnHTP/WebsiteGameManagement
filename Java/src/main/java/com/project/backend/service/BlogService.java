@@ -13,7 +13,7 @@ public interface BlogService {
 	BlogDto Update(Long blogId ,BlogDto updatedDto);
 	void deleteBlog(Long blogId);
 	
-	  List<Blog> findBlogInGroup(Long groupId);
+	  List<BlogDto> findBlogInGroup(Long groupId);
 	  List<Blog> findBlogByAccount(Long accountId);
 	  List<Blog> findBlogByGame(Long gameId);
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { navigate } from 'react-router-dom';
 import { Table, Modal, Button } from "react-bootstrap";
@@ -15,7 +15,7 @@ const GroupComponent = () => {
   const navigate = useNavigate();
 
   const [groupId, setGroupId] = useState(0);
-  
+
   const ListAllGames = async () => {
     const token = localStorage.getItem("accesstoken");
     if (!token) {
@@ -101,8 +101,8 @@ const GroupComponent = () => {
         }
       );
       alert("Tham gia nhóm thành công");
- 
-      fetchJoinedGroups(); 
+
+      fetchJoinedGroups();
     } catch (error) {
       console.error("Lỗi khi tham gia nhóm:", error);
       alert("Tham gia nhóm thất bại");
@@ -132,7 +132,7 @@ const GroupComponent = () => {
         }
       );
       alert("Rời nhóm thành công");
-    
+
       fetchJoinedGroups();
     } catch (error) {
       console.error("Lỗi khi rời nhóm:", error);
@@ -141,7 +141,7 @@ const GroupComponent = () => {
   };
 
 
-  const fetchBlogsByGroup =  (groupId) => {
+  const fetchBlogsByGroup = (groupId) => {
     navigate(`/blogs/group/${groupId}`);
   };
 
@@ -203,7 +203,7 @@ const GroupComponent = () => {
                     <Button variant="secondary" onClick={handleCloseModal}>Close</Button>
                   </Modal.Footer>
                 </Modal> */}
-                <Table className="table text-start align-middle table-bordered table-hover mb-0 mt-3">
+                {/* <Table className="table text-start align-middle table-bordered table-hover mb-0 mt-3">
                   <thead>
                     <tr>
                       <th style={{ fontSize: '16px' }}>ID Group</th>
@@ -216,12 +216,51 @@ const GroupComponent = () => {
                       <tr key={index} style={{ fontSize: '16px' }}>
                         <td style={{ fontSize: '16px' }}>{group.id}</td>
                         <td style={{ fontSize: '16px' }}>{group.name}</td>
-                        <td>  
-                        {joinedGroups.includes(group.id) ? (
+                        <td>
+                          {joinedGroups.includes(group.id) ? (
                             <>
                               <button style={{ fontSize: '16px' }} className="btn btn-success mx-3" disabled>
                                 Đã tham gia
                               </button>
+                              <button style={{ fontSize: '16px' }} className="btn btn-info" onClick={() => fetchBlogsByGroup(group.id)}>
+                                Chi tiết
+                              </button>
+                              
+                              <button style={{ fontSize: '16px' }} className="btn btn-danger mx-3" onClick={() => handleLeaveGroup(group.id)}>
+                                Thoát nhóm
+                              </button>
+
+                            </>
+                          ) : (
+                            <button style={{ fontSize: '16px' }} className="btn btn-warning mx-3" onClick={() => handleJoinGroup(group.id)}>
+                              Tham gia ngay
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table> */}
+
+                <div className="row">
+                {groups.map((group) => (
+                  <div className="col-md-6">
+                    <div className="recent-game-item" key={group.id}>
+                      <div className="rgi-thumb set-bg">
+                        <img
+                          src={`img/recent-game/2.jpg`}
+                          alt="game1"
+                        />
+                        <div className="cata new"></div>
+                      </div>
+                      <div className="rgi-content">
+                        <h5 style={{marginLeft:'10px'}}>Nhóm: {group.name}</h5>
+                 
+                        {joinedGroups.includes(group.id) ? (
+                            <>
+                              {/* <button style={{ fontSize: '16px' }} className="btn btn-success mx-3" disabled>
+                                Đã tham gia
+                              </button> */}
                               <button style={{ fontSize: '16px' }} className="btn btn-info" onClick={() => fetchBlogsByGroup(group.id)}>
                             Chi tiết
                           </button>
@@ -235,11 +274,14 @@ const GroupComponent = () => {
                               Tham gia ngay
                             </button>
                           )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+
+
               </div>
               <div className="site-pagination">
                 <span className="active">01.</span>
