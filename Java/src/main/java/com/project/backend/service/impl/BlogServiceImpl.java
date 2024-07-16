@@ -56,12 +56,15 @@ public class BlogServiceImpl implements BlogService{
 	    Blog blog = blogRepository.findById(blogId).orElseThrow(() -> new ResourceNotFoundException("Blog is not found with " + blogId));
 	    blogRepository.delete(blog);
 	}
-
-	@Override
-	public List<Blog> findBlogInGroup(Long groupId) {
-		// TODO Auto-generated method stub
-		return blogRepository.findBlogInGroup(groupId);
-	}
+	
+@Override
+	   public List<BlogDto> findBlogInGroup(Long groupId) {
+	        List<Blog> blogs = blogRepository.findBlogInGroup(groupId);
+	        return blogs.stream()
+	                    .map(BlogMapper::mapToDTO)
+	                    .collect(Collectors.toList());
+	    }
+	
 
 	@Override
 	public List<Blog> findBlogByAccount(Long accountId) {

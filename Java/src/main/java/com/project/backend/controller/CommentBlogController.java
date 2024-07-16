@@ -45,9 +45,9 @@ public class CommentBlogController {
 
 	    }
 
-	    @GetMapping("")
-	    public ResponseEntity<List<CommentBlogDto>> getListComment(){
-	        List<CommentBlogDto> comments = commentService.listComment();
+	    @GetMapping("blog/{id}")
+	    public ResponseEntity<List<CommentBlogDto>> getListComment(@PathVariable("id") Long blogId){
+	        List<CommentBlogDto> comments = commentService.listCommentByBlog(blogId);
 	        return ResponseEntity.ok(comments);
 	    }
 	    
@@ -58,16 +58,16 @@ public class CommentBlogController {
 	    }
 
 
-	    @GetMapping("/findByGame/{id}")
-	    public ResponseEntity<List<CommentBlogDto>> getListCommentByGame(@PathVariable("id") Long gameId){
-	        List<CommentBlogDto> comments = commentService.listCommentByGame(gameId);
-	        return ResponseEntity.ok(comments);
-	    }
-	    @GetMapping("/findByAccount/{id}")
-	    public ResponseEntity<List<CommentBlogDto>> getListCommentByAccount(@PathVariable("id") Long accountId){
-	        List<CommentBlogDto> comments = commentService.listCommentByAccount(accountId);
-	        return ResponseEntity.ok(comments);
-	    }
+//	    @GetMapping("/findByGame/{id}")
+//	    public ResponseEntity<List<CommentBlogDto>> getListCommentByGame(@PathVariable("id") Long gameId){
+//	        List<CommentBlogDto> comments = commentService.listCommentByGame(gameId);
+//	        return ResponseEntity.ok(comments);
+//	    }
+//	    @GetMapping("/findByAccount/{id}")
+//	    public ResponseEntity<List<CommentBlogDto>> getListCommentByAccount(@PathVariable("id") Long accountId){
+//	        List<CommentBlogDto> comments = commentService.listCommentByAccount(accountId);
+//	        return ResponseEntity.ok(comments);
+//	    }
 	    
 	    @GetMapping("/findByBlog/{id}")
 	    public ResponseEntity<List<CommentBlogDto>> getListCommentByBlog(@PathVariable("id") Long blogId){

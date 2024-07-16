@@ -44,10 +44,15 @@ public class BlogController {
 //	    }
 	 
 
-	    @GetMapping("/group/{groupId}")
-	    public ResponseEntity<List<Blog>> getBlogsByGroup(@PathVariable("groupId") Long groupId) {
-	        List<Blog> blogs = blogService.findBlogInGroup(groupId);
-	        return ResponseEntity.ok(blogs);
+//	    @GetMapping("/group/{groupId}")
+//	    public ResponseEntity<List<Blog>> getBlogsByGroup(@PathVariable("groupId") Long groupId) {
+//	        List<Blog> blogs = blogService.findBlogInGroup(groupId);
+//	        return ResponseEntity.ok(blogs);
+//	    }
+	 
+	   @GetMapping("/group/{groupId}")
+	    public List<BlogDto> getBlogsByGroupId(@PathVariable Long groupId) {
+	        return blogService.findBlogInGroup(groupId);
 	    }
 	 
 	 
