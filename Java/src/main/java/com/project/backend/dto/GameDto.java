@@ -24,4 +24,8 @@ public class GameDto {
     private String version;
     private String image;
     private GameType gameType;
+
+    public GameDto(String name, Double priceGame, LocalDate releaseDate) {
+    }
+    
 }
