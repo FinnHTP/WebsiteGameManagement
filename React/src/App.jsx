@@ -2,10 +2,6 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import { Fragment, useState } from "react";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-import "jquery";
-import "owl.carousel";
 import HeaderComponent from "./Shared/components/HeaderComponent";
 import FooterComponent from "./Shared/components/FooterComponent";
 import LoginComponent from "./Shared/components/pages/login/LoginComponent";
@@ -23,30 +19,32 @@ import GroupComponent from "./Shared/components/pages/group/GroupComponent";
 import BlogComponent from "./Shared/components/pages/group/BlogComponent";
 import ContactComponent from "./Shared/components/pages/contact/ContactComponent";
 function App() {
-
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" style={{ backgroundColor: "#171615" }}>
         <Fragment>
-          { isAdmin === false ? <HeaderComponent /> : ""}
+          {isAdmin === false ? <HeaderComponent /> : ""}
           <Routes>
             {/* Home Component */}
             <Route path="/" element={<HomeComponent />}></Route>
             {/* Category Component */}
             <Route path="/category" element={<CategoryComponent />}></Route>
             {/* Review Component */}
-            <Route path="/group" element={<GroupComponent/>}></Route>
+            <Route path="/group" element={<GroupComponent />}></Route>
             {/* Group Component */}
-            <Route path="/blogs/group/:groupId" element={<BlogComponent/>}></Route>
+            <Route
+              path="/blogs/group/:groupId"
+              element={<BlogComponent />}
+            ></Route>
             {/* Blog Component */}
 
             <Route
               path="/commentblog/blog/:id"
               element={<BlogComponent />}
             ></Route>
-              <Route path="/contact" element={<ContactComponent />}></Route>
+            <Route path="/contact" element={<ContactComponent />}></Route>
             <Route path="/review" element={<ReviewComponent />}></Route>
             {/* Login Component */}
             <Route path="/login" element={<LoginComponent />}></Route>
@@ -66,12 +64,10 @@ function App() {
               element={<GameDetailComponent />}
             ></Route>
 
-
-
             {/* ADMIN */}
             <Route path="/admin/game" element={<Game />} />
 
-          {/* <Route path="/admin/gametypes" element={<Gametypes />} />
+            {/* <Route path="/admin/gametypes" element={<Gametypes />} />
           <Route path="/admin/gametypes" element={<Gametypes />} />
           <Route path="/admin/order" element={<Order/>} />
           <Route path="/admin/keycode" element={<Keycode/>} />
@@ -81,11 +77,9 @@ function App() {
           <Route path="/admin/chartdetail" element={<ChartDetail/>}/>
           <Route path="/admin/group" element={<Group/>} />
           <Route path="/admin/widget" element={<Widgets />} /> */}
-
-
-
           </Routes>
-          { isAdmin === false ?  <FooterComponent /> : ""}
+          {/* {isAdmin === false ? <FooterComponent /> : ""} */}
+          <FooterComponent></FooterComponent>
         </Fragment>
       </div>
     </BrowserRouter>

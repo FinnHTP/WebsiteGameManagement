@@ -141,31 +141,37 @@ const OrderComponent = () => {
             <div className="modal-body">
               {selectedOrder && (
                 <>
-                <div className="row">
-                  <div className="col-6">
-                  <p>
-                    <strong>Price:</strong>{" "}
-                    {new Intl.NumberFormat("de-DE").format(selectedOrder.price)}
-                    đ
-                  </p>
-                  <p>
-                    <strong>Game:</strong> {selectedOrder.game.name}
-                  </p>
-                  <p>
-                    <strong>Keycode:</strong> {selectedOrder.keycode.keycode}
-                  </p>
-                  <p>
-                    <strong>Order:</strong> {selectedOrder.order.id}
-                  </p>
+                  <div className="row">
+                    <div className="col-6">
+                      <p>
+                        <strong>Price:</strong>{" "}
+                        {new Intl.NumberFormat("de-DE").format(
+                          selectedOrder.price
+                        )}
+                        đ
+                      </p>
+                      <p>
+                        <strong>Game:</strong> {selectedOrder.game.name}
+                      </p>
+                      <p>
+                        <strong>Keycode:</strong>{" "}
+                        {selectedOrder.keycode.keycode}
+                      </p>
+                      <p>
+                        <strong>Order:</strong> {selectedOrder.order.id}
+                      </p>
+                    </div>
+                    <div className="col-6">
+                      <img
+                        src={`/img/recent-game/${selectedOrder.game.image}`}
+                        alt=""
+                      />
+                      <p>
+                        <strong>GameType:</strong>{" "}
+                        {selectedOrder.game.gameType.name}
+                      </p>
+                    </div>
                   </div>
-                  <div className="col-6">
-                  <img src={`/img/recent-game/${selectedOrder.game.image}`} alt="" />
-                  <p>
-                    <strong>GameType:</strong> {selectedOrder.game.gameType.name}
-                  </p>
-                  </div>
-                </div>
-                  
                 </>
               )}
             </div>
@@ -181,7 +187,7 @@ const OrderComponent = () => {
           </div>
         </div>
       </div>
-      <nav className="pagination-nav" style={{ marginTop: "-13px" }}>
+      <nav className="pagination-nav">
         <ul className="pagination justify-content-center">
           {Array.from(
             { length: Math.ceil(orders.length / itemsPerPage) },
@@ -195,7 +201,7 @@ const OrderComponent = () => {
                 <span
                   className="page-link"
                   onClick={() => handlePageChange(index + 1)}
-                  style={{ fontSize: "1.3rem" }}
+                  style={{ fontSize: "1.3rem", cursor: "pointer" }}
                 >
                   {index + 1}
                 </span>

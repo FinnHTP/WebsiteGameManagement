@@ -173,7 +173,7 @@ const TransactionComponent = () => {
           </div>
         </div>
       </div>
-      <nav className="pagination-nav" style={{ marginTop: "-13px" }}>
+      <nav className="pagination-nav">
         <ul className="pagination justify-content-center">
           {Array.from(
             { length: Math.ceil(deposits.length / itemsPerPage) },
@@ -183,12 +183,11 @@ const TransactionComponent = () => {
                 className={`page-item ${
                   currentPage === index + 1 ? "active" : ""
                 }`}
-                style={{ width: "32px", textAlign: "center" }}
               >
                 <span
                   className="page-link"
                   onClick={() => handlePageChange(index + 1)}
-                  style={{ fontSize: "1.3rem" }}
+                  style={{ fontSize: "1.3rem", cursor: "pointer" }}
                 >
                   {index + 1}
                 </span>

@@ -1,7 +1,7 @@
 .profile-user {
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 500px;
+  width: 1000px;
   height: 500px;
 }
 
@@ -11,15 +11,16 @@
 
 .panel-user {
   margin-top: 5px;
-  border-right: 2px solid white;
+  border-right: none;
 }
 
 .list-info {
   list-style: none;
   color: black;
+  background-color: white;
 }
 ul.list-group li {
-  border: 1px solid #ccc;
+  border: none;
 }
 ul.list-group {
   border-radius: 0%;
@@ -36,12 +37,13 @@ ul.list-group li.list-group-item a {
 .infor-user {
   margin-top: 5px;
   height: 460px;
-  border: 1px solid #ccc;
+  background-color: white;
 }
 
 .h6-infor-user {
   margin-top: 15px;
   margin-left: 15px;
+  font-size: 1.7rem;
 }
 
 .infor-user-item {
@@ -152,7 +154,7 @@ input.input-personal::placeholder {
 
 .pagination-nav {
   position: absolute;
-  bottom: 0;
+  bottom: 3;
   right: 0;
   left: 0;
 }
@@ -165,4 +167,17 @@ input.input-personal::placeholder {
 
 li.page-item span.page-link {
   color: black;
+}
+
+.profile * {
+  color: black;
+  font-family: "Inter", sans-serif;
+}
+
+p.text-photo {
+  color: #262626;
+}
+
+.list-group-item p {
+  font-weight: bold;
 }

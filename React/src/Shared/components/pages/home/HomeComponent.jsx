@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import LatestNewsSectionComponent from "../../common/LatestNewsSectionComponent";
 import "../../../../assets/css/Home.css";
 import axios from "axios";
+import Carousel from "../../CarouselComponent";
 
 const HomeComponent = () => {
   const [games, setGames] = useState([]);
+  const gamesToShow = games.slice(0, 5);
+  const gameDiscounts = games.slice(0, 4);
   const ListAllGames = async () => {
     const token = localStorage.getItem("accesstoken");
 
@@ -38,236 +41,420 @@ const HomeComponent = () => {
   useEffect(() => {
     ListAllGames();
   }, []);
+
   return (
     <div>
       <section className="page-info-section set-bg">
-        <img
-          src="img/page-top-bg/6.jpg"
-          style={{ width: "100%", height: "100%" }}
-        />
-
-        <div className="pi-content">
-          <div className="container">
-            <div className="row">
-              <div className="col-xl-5 col-lg-6 text-white">
-                <h2
-                  style={{
-                    fontFamily: "Arial, sans-serif",
-                    fontSize: "2.5rem",
-                    color: "#ffffff",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Bee Home
-                </h2>
-                <p>
-                  Welcome to BeeGaming, where gaming enthusiasts can immerse
-                  themselves in a diverse collection of thrilling and engaging
-                  titles. Whether you're a fan of intense shooters, strategic
-                  RPGs, or captivating simulations, our platform offers
-                  something for everyone.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div className="text-center bg-black">
+          <img
+            src="img/page-top-bg/6.jpg"
+            style={{
+              width: "75%",
+              height: "500px",
+            }}
+          />
         </div>
       </section>
       <div className="list-keyword d-flex justify-content-center text-center">
-        <span>Featured products</span>
-        <span>Featured keywords</span>
-        <span>Bestselling products</span>
-        <span>New arrivals</span>
+        <span>Featured Discounts</span>
+        <span>Featured Products</span>
+        <span>Featured Keywords</span>
+        <span>Bestselling Products</span>
+        <span>New Arrivals</span>
       </div>
-      <h4 style={{ margin: "15px", marginTop: "30px" }}>Featured products</h4>
+      <div className="container">
+        <h2 style={{ margin: "15px", marginTop: "30px", fontSize: "2.5rem" }}>
+          Featured products
+        </h2>
+        {/* <div className="d-flex justify-content-center text-center">
+          <div>
+            <img src="img/recent-game/callofduty.jpg" alt="" height={400} />
+          </div>
+          <div className="collect-gametypes">
+            <div>
+              <img src="img/recent-game/gta-vi.jpg" alt="" width={152} />
+              <img
+                src="img/recent-game/red-dead-redemption-2.jpg"
+                alt=""
+                width={152}
+                height={187}
+              />
+            </div>
 
-      <div className="row" style={{ paddingLeft: "25px" }}>
-        {games.map((game) => (
-          <div className="col-3" key={game.id}>
-            <div className="card" style={{ border: "1px solid transparent" }}>
+            <div className="mt-3">
+              <img src="img/recent-game/cyperpunk.jpg" alt="" width={152} />
               <img
-                src={`/img/recent-game/${game.image}`}
-                className="card-img-top"
-                alt="..."
-                height={180}
-                style={{ borderRadius: "15px" }}
+                src="img/recent-game/city-skylines.jpg"
+                alt=""
+                height={202}
+                width={152}
               />
-              <div className="card-body">
-                <h5 className="card-title">{game.name}</h5>
-                <p className="card-text">
-                  {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
-                </p>
-                <a href={`/gamedetail/${game.id}`} className="btn btn-primary">
-                  Buy Now
-                </a>
-              </div>
             </div>
           </div>
-        ))}
-      </div>
-
-      <h4
-        style={{
-          margin: "15px",
-          marginTop: "50px",
-          borderTop: "1px solid #ccc",
-          paddingTop: "35px",
-        }}
-      >
-        Featured keywords
-      </h4>
-      <div className="d-flex list-keyword-finding text-center justify-content-center text-align-center">
-        <button type="button" class="btn btn-primary">
-          Work
-        </button>
-        <button type="button" class="btn btn-secondary">
-          Relax
-        </button>
-        <button type="button" class="btn btn-success">
-          Study
-        </button>
-        <button type="button" class="btn btn-danger">
-          Spofity
-        </button>
-        <button type="button" class="btn btn-warning">
-          Wallet
-        </button>
-        <button type="button" class="btn btn-info">
-          Youtube
-        </button>
-      </div>
-      <h4
-        style={{
-          margin: "15px",
-          marginTop: "50px",
-          borderTop: "1px solid #ccc",
-          paddingTop: "35px",
-        }}
-      >
-        Best Selling
-      </h4>
-      <div className="row" style={{ paddingLeft: "25px" }}>
-        {games.map((game) => (
-          <div className="col-3" key={game.id}>
-            <div className="card" style={{ border: "1px solid transparent" }}>
-              <img
-                src={`/img/recent-game/${game.image}`}
-                className="card-img-top"
-                alt="..."
-                height={180}
-                style={{ borderRadius: "15px" }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{game.name}</h5>
-                <p className="card-text">
-                  {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
-                </p>
-                <a href={`/gamedetail/${game.id}`} className="btn btn-primary">
-                  Buy Now
-                </a>
+        </div> */}
+        <Carousel games={gamesToShow}></Carousel>
+        <h4
+          style={{
+            margin: "15px",
+            marginTop: "50px",
+            borderTop: "1px solid #ccc",
+            paddingTop: "35px",
+            fontSize: "2.5rem",
+          }}
+        >
+          Featured Discounts
+        </h4>
+        <div className="row" style={{ paddingLeft: "25px" }}>
+          {gameDiscounts.map((game) => (
+            <div className="col-3" key={game.id}>
+              <div className="card" style={{ border: "1px solid transparent" }}>
+                <img
+                  src={`/img/recent-game/${game.image}`}
+                  className="card-img-top"
+                  alt="..."
+                  height={180}
+                  style={{ borderRadius: "15px" }}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{game.name}</h5>
+                  <p
+                    className="card-text"
+                    style={{
+                      fontSize: "1.5rem",
+                      color: "white",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    <del
+                      style={{
+                        fontSize: "1.5rem",
+                        color: "#ccc",
+                        paddingRight: "10px",
+                      }}
+                    >
+                      {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
+                    </del>
+                    {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
+                  </p>
+                  <div
+                    className="btn btn-danger px-4"
+                    style={{ fontWeight: "bold" }}
+                  >
+                    -50%
+                  </div>
+                  <div
+                    className=""
+                    style={{
+                      position: "absolute",
+                      top: "0",
+                      right: "0",
+                      marginRight: "2px",
+                      borderTopLeftRadius: "0px",
+                      borderTopRightRadius: "0px",
+                      paddingBottom: "10px",
+                    }}
+                  >
+                    <img src="img/icons/tag.png " alt="" width={45} />
+                  </div>
+                  <a
+                    href={`/gamedetail/${game.id}`}
+                    className="btn btn-success"
+                    style={{
+                      padding: "7px",
+                      fontSize: "1.3rem",
+                      position: "relative",
+                      left: "46%",
+                    }}
+                  >
+                    Detail More
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <h4
-        style={{
-          margin: "15px",
-          marginTop: "50px",
-          borderTop: "1px solid #ccc",
-          paddingTop: "35px",
-        }}
-      >
-        Affordable Pricing
-      </h4>
-      <div className="d-flex list-keyword-finding text-center justify-content-center text-align-center">
-        <button type="button" class="btn">
-          {new Intl.NumberFormat("de-DE").format(20000)}đ
-        </button>
-        <button type="button" class="btn">
-          {new Intl.NumberFormat("de-DE").format(50000)}đ
-        </button>
-        <button type="button" class="btn">
-          {new Intl.NumberFormat("de-DE").format(100000)}đ
-        </button>
-        <button type="button" class="btn">
-          {new Intl.NumberFormat("de-DE").format(200000)}đ
-        </button>
-        <button type="button" class="btn">
-          {new Intl.NumberFormat("de-DE").format(500000)}đ
-        </button>
-        <button type="button" class="btn">
-          {new Intl.NumberFormat("de-DE").format(1000000)}đ
-        </button>
-      </div>
-      <h4
-        style={{
-          margin: "15px",
-          marginTop: "50px",
-        }}
-      >
-        Game on Steam
-      </h4>
-      <p style={{ margin: "15px", marginTop: "-15px" }}>
-        Highly-rated games with captivating and engaging content are waiting for
-        you.
-      </p>
-      <div className="row" style={{ paddingLeft: "25px" }}>
-        {games.map((game) => (
-          <div className="col-3" key={game.id}>
-            <div className="card" style={{ border: "1px solid transparent" }}>
-              <img
-                src={`/img/recent-game/${game.image}`}
-                className="card-img-top"
-                alt="..."
-                height={180}
-                style={{ borderRadius: "15px" }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{game.name}</h5>
-                <p className="card-text">
-                  {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
-                </p>
-                <a href={`/gamedetail/${game.id}`} className="btn btn-primary">
-                  Buy Now
-                </a>
+          ))}
+        </div>
+        <h4
+          style={{
+            margin: "15px",
+            marginTop: "50px",
+            borderTop: "1px solid #ccc",
+            paddingTop: "35px",
+            fontSize: "2.5rem",
+          }}
+        >
+          Game on Steam
+        </h4>
+        <div className="row mx-5 text-center justify-content-center">
+          <div className="col-3 header-list-game">
+            <div
+              className="d-flex"
+              style={{
+                borderBottom: "1px solid #616161",
+                paddingBottom: "15px",
+              }}
+            >
+              <h3>Best Sellings</h3>
+              <div
+                className="btn btn-header-list-game border-light text-light"
+                style={{
+                  borderRadius: "0px",
+                  marginLeft: "100px",
+                  paddingBottom: "0px",
+                }}
+              >
+                VIEW MORE
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <h4
-        style={{
-          margin: "15px",
-          marginTop: "50px",
-          borderTop: "1px solid #ccc",
-          paddingTop: "35px",
-        }}
-      >
-        New arrivals
-      </h4>
-      <div className="row" style={{ paddingLeft: "25px" }}>
-        {games.map((game) => (
-          <div className="col-3" key={game.id}>
-            <div className="card" style={{ border: "1px solid transparent" }}>
-              <img
-                src={`/img/recent-game/${game.image}`}
-                className="card-img-top"
-                alt="..."
-                height={180}
-                style={{ borderRadius: "15px" }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{game.name}</h5>
-                <p className="card-text">
-                  {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
-                </p>
-                <a href={`/gamedetail/${game.id}`} className="btn btn-primary">
-                  Buy Now
-                </a>
-              </div>
+            <div className="">
+              {gamesToShow.map((game) => (
+                <div className="d-flex item-header-list-game">
+                  <img
+                    src={`/img/recent-game/${game.image}`}
+                    className="card-img-top"
+                    alt="..."
+                    style={{
+                      borderRadius: "15px",
+                      width: "110px",
+                      height: "80px",
+                    }}
+                  />
+                  <div className="mt-2">
+                    <p style={{ fontSize: "1.19rem", marginLeft: "10px" }}>
+                      {game.name}
+                    </p>
+                    <p style={{ fontSize: "1.3rem", marginLeft: "20px" }}>
+                      {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
+          <div className="col-3 header-list-game">
+            <div
+              className="d-flex"
+              style={{
+                borderBottom: "1px solid #616161",
+                paddingBottom: "15px",
+              }}
+            >
+              <h3>Most Played</h3>
+              <div
+                className="btn btn-header-list-game border-light text-light"
+                style={{
+                  borderRadius: "0px",
+                  marginLeft: "100px",
+                  paddingBottom: "0px",
+                }}
+              >
+                VIEW MORE
+              </div>
+            </div>
+            <div className="">
+              {gamesToShow.map((game) => (
+                <div className="d-flex item-header-list-game">
+                  <img
+                    src={`/img/recent-game/${game.image}`}
+                    className="card-img-top"
+                    alt="..."
+                    style={{
+                      borderRadius: "15px",
+                      width: "110px",
+                      height: "80px",
+                    }}
+                  />
+                  <div className="mt-2">
+                    <p style={{ fontSize: "1.19rem", marginLeft: "10px" }}>
+                      {game.name}
+                    </p>
+                    <p style={{ fontSize: "1.3rem", marginLeft: "20px" }}>
+                      {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="col-3 header-list-game">
+            <div
+              className="d-flex"
+              style={{
+                borderBottom: "1px solid #616161",
+                paddingBottom: "15px",
+              }}
+            >
+              <h3>Top Rating</h3>
+              <div
+                className="btn btn-header-list-game border-light text-light"
+                style={{
+                  borderRadius: "0px",
+                  marginLeft: "100px",
+                  paddingBottom: "0px",
+                }}
+              >
+                VIEW MORE
+              </div>
+            </div>
+            <div className="">
+              {gamesToShow.map((game) => (
+                <div className="d-flex item-header-list-game">
+                  <img
+                    src={`/img/recent-game/${game.image}`}
+                    className="card-img-top"
+                    alt="..."
+                    style={{
+                      borderRadius: "15px",
+                      width: "110px",
+                      height: "80px",
+                    }}
+                  />
+                  <div className="mt-2">
+                    <p style={{ fontSize: "1.19rem", marginLeft: "10px" }}>
+                      {game.name}
+                    </p>
+                    <p style={{ fontSize: "1.3rem", marginLeft: "20px" }}>
+                      {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <h2
+          style={{
+            margin: "15px",
+            marginTop: "50px",
+            borderTop: "1px solid #ccc",
+            paddingTop: "35px",
+            fontSize: "2.5rem",
+          }}
+        >
+          Featured keywords
+        </h2>
+        <div className="d-flex list-keyword-finding text-center justify-content-center text-align-center">
+          <button type="button" class="btn btn-primary">
+            Work
+          </button>
+          <button type="button" class="btn btn-secondary">
+            Relax
+          </button>
+          <button type="button" class="btn btn-success">
+            Study
+          </button>
+          <button type="button" class="btn btn-danger">
+            Spofity
+          </button>
+          <button type="button" class="btn btn-warning">
+            Wallet
+          </button>
+          <button type="button" class="btn btn-info">
+            Youtube
+          </button>
+        </div>
+        <h2
+          style={{
+            margin: "15px",
+            marginTop: "50px",
+            fontSize: "2.2rem",
+          }}
+        >
+          Top Rating
+        </h2>
+        <p
+          style={{
+            margin: "15px",
+            marginTop: "-15px",
+            fontSize: "1.5rem",
+            color: "#ccc",
+          }}
+        >
+          Highly-rated games with captivating and engaging content are waiting
+          for you.
+        </p>
+        <div className="row" style={{ paddingLeft: "25px" }}>
+          {games.map((game) => (
+            <div className="col-3" key={game.id}>
+              <div className="card" style={{ border: "1px solid transparent" }}>
+                <img
+                  src={`/img/recent-game/${game.image}`}
+                  className="card-img-top"
+                  alt="..."
+                  height={180}
+                  style={{ borderRadius: "15px" }}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{game.name}</h5>
+                  <p
+                    className="card-text"
+                    style={{ fontSize: "1.5rem", color: "#ccc" }}
+                  >
+                    {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
+                  </p>
+                  <a
+                    href={`/gamedetail/${game.id}`}
+                    className="btn btn-success"
+                    style={{
+                      padding: "7px",
+                      fontSize: "1.3rem",
+                      position: "relative",
+                      left: "68%",
+                    }}
+                  >
+                    Detail More
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <h2
+          style={{
+            margin: "15px",
+            marginTop: "50px",
+            borderTop: "1px solid #ccc",
+            paddingTop: "35px",
+            fontSize: "2.5rem",
+          }}
+        >
+          New arrivals
+        </h2>
+        <div className="row" style={{ paddingLeft: "25px" }}>
+          {games.map((game) => (
+            <div className="col-3" key={game.id}>
+              <div className="card" style={{ border: "1px solid transparent" }}>
+                <img
+                  src={`/img/recent-game/${game.image}`}
+                  className="card-img-top"
+                  alt="..."
+                  height={180}
+                  style={{ borderRadius: "15px" }}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{game.name}</h5>
+                  <p
+                    className="card-text"
+                    style={{ fontSize: "1.5rem", color: "#ccc" }}
+                  >
+                    {new Intl.NumberFormat("de-DE").format(game.priceGame)}đ{" "}
+                  </p>
+                  <a
+                    href={`/gamedetail/${game.id}`}
+                    className="btn btn-success"
+                    style={{
+                      padding: "7px",
+                      fontSize: "1.3rem",
+                      position: "relative",
+                      left: "68%",
+                    }}
+                  >
+                    Detail More
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

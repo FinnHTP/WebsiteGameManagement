@@ -19,6 +19,7 @@ public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -39,10 +40,11 @@ public class SecurityConfiguration {
                 ).permitAll()
                 .anyRequest().authenticated()
             )
-            .oauth2Login(oauth2Login -> oauth2Login
-                .loginPage("/oauth2/authorization/google")
-                .defaultSuccessUrl("/loginSuccess")
-            )
+            // .oauth2Login(null)
+            // .oauth2Login(oauth2Login -> oauth2Login
+            //     .loginPage("/oauth2/authorization/google")
+            //     .defaultSuccessUrl("/loginSuccess")
+            // )
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
             )

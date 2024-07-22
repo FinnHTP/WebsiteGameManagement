@@ -61,6 +61,9 @@ public class Account implements UserDetails {
     @JsonIgnore
     @OneToMany (mappedBy = "account")
     private List<OTP> otpList;
+    @JsonIgnore
+    @OneToMany (mappedBy = "account")
+    private List<Favorite> favorites;
     @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable (name = "group_account", joinColumns = @JoinColumn (name = "account_id"), inverseJoinColumns = @JoinColumn (name = "group_id"))
     private Set<Group> groups = new HashSet<>();
