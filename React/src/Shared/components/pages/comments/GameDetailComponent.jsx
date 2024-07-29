@@ -8,6 +8,7 @@ const GameDetailComponent = () => {
   const [showToast, setShowToast] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState(null);
   const [gameRequirementsMinimum, setGameRequirementsMinimum] = useState([]);
   const [gameRequirementsRecommend, setGameRequirementsRecommend] = useState(
     []
@@ -18,9 +19,10 @@ const GameDetailComponent = () => {
   const [account, setAccount] = useState({});
   const [game, setGame] = useState({});
   const [gameId, setGameId] = useState(0);
-
+    const [favorite, setFavorite] = useState({});
   const [parentId, setParentId] = useState(null); // State to store parentId
   const { id } = useParams();
+  const [Waslike, setWaslike] = useState(false);
 
   const handleContent = (e) => setContent(e.target.value);
 
@@ -60,6 +62,40 @@ const GameDetailComponent = () => {
       } catch (error) {
         console.error("Lỗi khi gửi bình luận:", error);
       }
+    }
+  };
+  const uploadAvatar = async (accountId, file) => {
+    const token = localStorage.getItem("accesstoken");
+  
+      const formData = new FormData();
+      formData.append('avatar', file);
+  
+      try {
+          const response = await axios.post(`http://localhost:8080/api/user/${accountId}/avatar`, formData, {
+              headers: {
+                  'Content-Type': 'multipart/form-data',
+                  Authorization: `Bearer ${token}`,
+              }
+          });
+          handleGetAvatar();
+          console.log('Avatar uploaded successfully:', response.data);
+      } catch (error) {
+          console.error('Failed to upload avatar:', error.response ? error.response.data : error.message);
+      }
+  };
+  
+  const getAvatar = async (accountId) => {
+    try {
+        const response = await axios.get(`http://localhost:8080/api/user/${accountId}/avatar`, {
+            responseType: 'arraybuffer'
+        });
+  
+        const blob = new Blob([response.data], { type: response.headers['content-type'] });
+        const url = URL.createObjectURL(blob);
+        console.log(url);
+        return url; // Trả về URL để bạn có thể sử dụng trong thẻ <img>
+    } catch (error) {
+        console.error('Failed to get avatar:', error.response ? error.response.data : error.message);
     }
   };
 
@@ -144,6 +180,13 @@ const GameDetailComponent = () => {
       }
     }
   };
+  const handleGetAvatar = async () => {
+    const token = localStorage.getItem("accesstoken");
+    const decoded = jwtDecode(token);
+    const accountId = decoded.id;
+    const url = await getAvatar(accountId, token);
+    setAvatarUrl(url);
+};
 
   const listAllComments = async () => {
     const token = localStorage.getItem("accesstoken");
@@ -173,6 +216,55 @@ const GameDetailComponent = () => {
       console.error("Fail to Request", error);
     }
   };
+
+
+  const addFavorite = async () => {
+    const token = localStorage.getItem("accesstoken");
+    const decodedToken = jwtDecode(token);
+    const accountId = decodedToken.id;
+    const gameId = game.id;
+
+
+
+    if (!token) {
+      console.error("Token Not Found");
+      return;
+    }
+    const favorite = {
+      account: { id: accountId},
+      isActive:1,
+      game: {id: gameId}
+    };
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/api/favorites`, favorite,
+        {
+          headers: {
+           
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data =
+        typeof response.data === "string"
+          ? JSON.parse(response.data)
+          : response.data;
+
+      setFavorite(Array.isArray(data) ? data : []);
+        if(response.status === 201)
+        {
+          setWaslike(true)
+        }
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
+
+
+
+
+
 
   const listGameRequirements = async () => {
     const token = localStorage.getItem("accesstoken");
@@ -237,12 +329,15 @@ const GameDetailComponent = () => {
   const renderComments = (comments) => {
     return comments.map((comment) => (
       <div key={comment.id} className="comment mt-4 text-justify">
-        <img
-          src="https://cdn-icons-png.flaticon.com/128/149/149071.png"
-          width={55}
-          height={55}
-          alt=""
-        />
+         {avatarUrl ?  <img src={avatarUrl} alt="User Avatar" width={60} style={{borderRadius:"50%"}}/> :<img
+          
+          src={
+            "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+          }
+          alt="User Avatar"
+          width={60}
+          style={{borderRadius:"50%"}}
+        />}
         <h4>{comment.account ? comment.account.email : "Anonymous"}</h4>
         <span>{comment.date}</span>
         <br />
@@ -269,6 +364,7 @@ const GameDetailComponent = () => {
       listAllComments();
       console.log(game);
       listGameRequirements();
+      handleGetAvatar()
     }
   }, [id]);
 
@@ -379,6 +475,21 @@ const GameDetailComponent = () => {
                 >
                   Buy Game
                 </div>
+
+                <div
+                  className="btn bg-dark text-center"
+                  style={{
+                    color: "white",
+                    width: "150px",
+                    height: "40px",
+                    fontSize: "17px",
+                    marginTop: "9px",
+                  }}
+                  onClick={addFavorite}
+                >
+                  {Waslike ? 'Was liked' : 'Add to favorite'}
+                </div>
+
               </div>
               <div className="col-3">
                 <div>

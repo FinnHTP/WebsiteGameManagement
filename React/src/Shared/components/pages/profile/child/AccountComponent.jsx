@@ -15,6 +15,7 @@ const AccountComponent = () => {
 
   const [selectedFile, setSelectedFile] = useState(null);
 
+
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
@@ -26,10 +27,10 @@ const AccountComponent = () => {
     if (selectedFile) {
       await uploadAvatar(accountId, selectedFile);
       console.log(selectedFile);
-      // const url = getAvatar(accountId);
-      // setAvatarUrl(url);
+      
     }
   };
+
 
   const findUserById = async () => {
     const token = localStorage.getItem("accesstoken");
