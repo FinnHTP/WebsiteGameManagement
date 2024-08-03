@@ -7,17 +7,15 @@ const BlogComponent = () => {
   const [blogs, setBlogs] = useState([]);
   const [idblog, setIdblog] = useState([]);
   const [content, setContent] = useState("");
-  const [parentId, setParentId] = useState(null); // State to store parentId
-  const { id } = useParams();
-    const {groupId} = useParams();
-  useEffect(() => {
-    listAllComments();
-    findBlogsByGroup(groupId);
- 
-    // getGroup(groupId);
-
-  }, [groupId]);
+  const [parentId, setParentId] = useState(null); 
   const [comments, setComments] = useState([]);
+  const { id } = useParams();
+  const url = window.location.href; 
+  const parts = url.split('/'); 
+  const groupId = parts[parts.length - 1]; 
+    // const {groupId} = useParams();
+  
+
 
   const buildCommentTree = (comments) => {
     const map = {};
@@ -93,7 +91,7 @@ const BlogComponent = () => {
         }
 
         const response = await axios.post(
-          `http://localhost:8080/api/blogs/group/${groupId}/${id}`,
+          `http://localhost:8080/api/commentblog/blog/${groupId}`,
           comment,
           {
             headers: {
@@ -114,6 +112,8 @@ const BlogComponent = () => {
 
   const handleContent = (e) => setContent(e.target.value);
 
+
+
   const listAllComments = async () => {
     const token = localStorage.getItem("accesstoken");
 
@@ -124,7 +124,7 @@ const BlogComponent = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/commentblog/blog/${id}`,
+        `http://localhost:8080/api/commentblog/blog/1`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -132,19 +132,26 @@ const BlogComponent = () => {
         }
       );
 
-      const data =
-        typeof response.data === "string"
-          ? JSON.parse(response.data)
-          : response.data;
+      // const data =
+      //   typeof response.data === "string"
+      //     ? JSON.parse(response.data)
+      //     : response.data;
 
-      setComments(Array.isArray(data) ? data : []);
+      setComments(Array.isArray(response.data) ? response.data : []);
+      console.log(comments);
     } catch (error) {
       console.error("Fail to Request", error);
     }
   };
 
 
+  useEffect(() => {
+    listAllComments();
+    findBlogsByGroup(groupId);
+ 
+    // getGroup(groupId);
 
+  }, [groupId]);
   return (
     <div>
       <div className='container'>
@@ -211,9 +218,10 @@ const BlogComponent = () => {
                 >
                   Leave Your Comment Here.
                 </p>
-              ) : (
+              ) : (                       
                 renderComments(commentTree)
               )}
+              
      </div>
     </div>
     

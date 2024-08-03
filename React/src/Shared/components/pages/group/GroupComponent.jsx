@@ -248,7 +248,7 @@ const GroupComponent = () => {
                     <div className="recent-game-item" key={group.id}>
                       <div className="rgi-thumb set-bg">
                         <img
-                          src={`img/recent-game/2.jpg`}
+                          src={`img/latest-blog/1.jpg`}
                           alt="game1"
                         />
                         <div className="cata new"></div>

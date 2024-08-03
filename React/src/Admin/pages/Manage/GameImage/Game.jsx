@@ -44,14 +44,8 @@ function Game() {
   });
 
   useEffect(() => {
-    setToken();
     loadGames();
   }, []);
-  const setToken = () => {
-    const bearertoken =
-      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaHVjIiwiZW1haWwiOiJ0cmluaHBodW5naG9uZ3BodWNAZ21haWwuY29tIiwiaWF0IjoxNzIwNDI2MzI3LCJleHAiOjE3MjE5NDE0MjUsInJvbGVzIjpbIlVTRVIiXSwiaWQiOjIsImFjY291bnRCYWxhbmNlIjowLjB9.oVBcWZIKVm48DxSPRP74Z1NDQutnIW4vIoY-LnFakwU";
-    localStorage.setItem("accesstoken", bearertoken);
-  };
 
   //Search theo id
   const searchGameById = async () => {
