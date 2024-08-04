@@ -9,7 +9,9 @@ const RecentTopImage = () => {
           className="w-9/12 mx-auto"
           alt=""
         />
+        <p class="text-white text-3xl ml-96">Chào mừng đến với Bee Gaming</p>
       </div>
+     
     </div>
   );
 };
