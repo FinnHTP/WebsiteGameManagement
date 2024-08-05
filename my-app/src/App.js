@@ -15,27 +15,26 @@ import RolePage from "./locale/admin/role/RolePage";
 import GamePage from "./locale/admin/game/GamePage";
 import Header from "./locale/share/components/Header.component.jsx";
 import Footer from "./locale/share/components/Footer.component.jsx";
-import LoginPage from "./locale/share/login/LoginPage";
-import RegisterPage from "./locale/share/register/RegisterPage";
+import LoginPage from "./locale/auth/login/LoginPage.jsx";
+import RegisterPage from "./locale/auth/register/RegisterPage.jsx";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App bg-neutral-900">
+      <div className="App bg-customBg">
         <div className="flex flex-col min-h-screen">
           <Header></Header>
           <main className="flex-grow">
             <Routes>
               {/* Shared */}
-              <Route path="/login" element={<LoginPage/>} />
-              <Route path="/register" element={<RegisterPage/>} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
               <Route path="" element={<StorePage />} />
               <Route path="/store" element={<StorePage />} />
-              <Route path="/profile" element={<ProfilePage/>} />
+              <Route path="/profile" element={<ProfilePage />} />
               <Route path="/forum" element={<ForumPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/category" element={<CategoryPage />} />
-
 
               {/* Admin */}
               <Route path="/api/game" element={<GamePage />} />

@@ -17,6 +17,288 @@ INSERT INTO gametypes VALUES ('MOBA (Multiplayer Online Battle Arena)');
 
 -- Bảng Game --
 INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES 
+('Build bridges, grow towers, terraform terrain, and fuel flying machines in the stunning followup to the multi-award winning World of Goo.',
+        'worldofgoo2.jpeg',
+        'World of Goo 2',
+        313000,
+        '2024-08-02',
+        1,
+        '1.0',
+        2); 
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES 
+('Overlay custom crosshairs on every game you play. Choose from thousands of unique crosshairs created by the Crosshair X community or design your own using the designer.',
+        'crosshair.png',
+        'Crosshair X',
+        84000,
+        '2020-08-17',
+        1,
+        '1.0',
+        3); 
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES 
+('Overlay custom crosshairs on every game you play. Choose from thousands of unique crosshairs created by the Crosshair X community or design your own using the designer.',
+        'crosshair.png',
+        'Crosshair X',
+        84000,
+        '2020-08-17',
+        1,
+        '1.0',
+        3); 
+  INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('Horizon Forbidden West™ Complete Edition takes you into a vast open world with dramatic battles and exciting exploration in a post-apocalyptic future. Featuring stunning graphics and expanded content, this is the complete edition of the acclaimed game.',
+        'horizon.jpg',
+        'Horizon Forbidden West™ Complete Edition',
+        499000,
+        '2024-08-10',
+        1,
+        '1.0',
+        12);
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('In "Suicide Squad: Kill the Justice League", players take on the role of the infamous Suicide Squad members tasked with defeating the corrupted Justice League. This action-packed game features a blend of chaotic combat and strategic gameplay.',
+        'suicidesquad.jpeg',
+        'Suicide Squad: Kill the Justice League',
+        699000,
+        '2024-08-15',
+        1,    
+        '1.0',
+        4);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"F1® Manager 2024" offers players the chance to step into the shoes of a team principal, managing every aspect of a Formula 1 team, from car development to race strategy. This latest edition features enhanced graphics, more detailed management options, and up-to-date team and driver information.',
+        'f1manager.jpeg',
+        'F1® Manager 2024',
+        799000,       -- Adjust the price as needed
+        '2024-08-20', -- Adjust the release date as needed
+        1,            -- Status set to 1 (bit type, represents active or released)
+        '1.0',        -- Adjust the version as needed
+        1);
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('In "Hades," you play as Zagreus, the son of Hades, trying to escape the Underworld. This critically acclaimed rogue-like dungeon crawler features fast-paced combat, rich narrative, and stunning art.',
+        'hades.jpeg',
+        'Hades',
+        399000,        -- Adjust the price as needed
+        '2024-08-01',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        12); 
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Banishers: Ghost of New Eden" is an action-adventure game where players hunt down malevolent spirits and explore a richly detailed, haunted world. It combines immersive storytelling with thrilling combat mechanics.',
+        'banishers.jpeg',
+        'Banishers: Ghost of New Eden',
+        549000,        -- Adjust the price as needed
+        '2024-09-15',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        7);
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Intonight" is an immersive adventure game where players navigate a dystopian world filled with intrigue and danger. The game features an engaging storyline and intricate gameplay mechanics.',
+        'intonight.jpeg',
+        'Intonight',
+        459000,        -- Adjust the price as needed
+        '2024-08-25',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        5);
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Pacific Drive" offers a thrilling survival experience in a post-apocalyptic coastal setting. Players must navigate through treacherous environments and manage limited resources.',
+        'pacific.jpeg',
+        'Pacific Drive',
+        399000,        -- Adjust the price as needed
+        '2024-09-01',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        7);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"SKULL AND BONES" is a high-seas adventure game that allows players to command their own pirate ship, engage in naval combat, and explore a vast open world full of danger and treasure.',
+        'skull.jpeg',
+        'SKULL AND BONES',
+        699000,        -- Adjust the price as needed
+        '2024-09-10',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        4);  
+      INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Manor Lords" is a grand strategy game that combines city-building and real-time tactical combat. Players manage their own medieval manor and lead their forces in epic battles.',
+        'manor.jpeg',
+        'Manor Lords',
+        549000,        -- Adjust the price as needed
+        '2024-09-20',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        15);
+
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Taxi Life: A City Driving Simulator" offers a realistic driving experience where players take on the role of a taxi driver navigating a bustling city. The game features detailed urban environments and dynamic driving challenges.',
+        'taxilife.jpeg',
+        'Taxi Life: A City Driving Simulator',
+        349000,        -- Adjust the price as needed
+        '2024-08-30',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        1);
+
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Tomb Raider I-III Remastered Starring Lara Croft" brings the classic Tomb Raider games into high definition with updated graphics and improved gameplay. Players can relive the iconic adventures of Lara Croft in a modernized format.',
+        'tombraider.jpeg',
+        'Tomb Raider I-III Remastered Starring Lara Croft',
+        499000,        -- Adjust the price as needed
+        '2024-09-05',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        12);
+
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"For Honor" is a melee combat game where players choose from various historical warriors to battle in intense, strategic fights. The game features a blend of swordplay, tactical combat, and multiplayer modes.',
+        'forhonor.jpeg',
+        'For Honor',
+        399000,        -- Adjust the price as needed
+        '2024-09-15',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        4);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Darkblade Ascent" is an action RPG where players ascend through dark and dangerous dungeons, battling fierce enemies and collecting powerful loot. The game features engaging combat and intricate dungeon design.',
+        'darkblade.jpeg',
+        'Darkblade Ascent',
+        459000,        -- Adjust the price as needed
+        '2024-09-25',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        12); 
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Fallout 4" is an open-world RPG set in a post-apocalyptic wasteland where players explore, build settlements, and engage in deep narrative choices. The game features a vast open world with rich storytelling and immersive gameplay.',
+        'fallout4.jpeg',
+        'Fallout 4',
+        499000,        -- Adjust the price as needed
+        '2024-08-30',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        12); 
+        
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('Thank Goodness Youre Here is a charming and humorous adventure game where players help quirky characters in a whimsical world through various puzzles and tasks. The game combines engaging storylines with creative problem-solving.',
+        'thankgoodness.jpeg',
+        'Thank Goodness Youre Here',
+        399000,        -- Adjust the price as needed
+        '2024-09-01',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        5);            -- Assuming the ID for 'Adventure Game' is 5
+
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Dying Light" is an open-world survival horror game where players navigate a city overrun by zombies, utilizing parkour skills and combat to survive. The game features dynamic day-night cycles and intense gameplay.',
+        'dyinglight.jpeg',
+        'Dying Light',
+        449000,        -- Adjust the price as needed
+        '2024-09-05',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        7); 
+
+      INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Prince of Persia: The Lost Crown" is an action-adventure game set in a richly detailed Persian world. Players embark on a quest to uncover lost secrets and restore balance through a combination of platforming and combat.',
+        'princeofpersia.jpeg',
+        'Prince of Persia: The Lost Crown',
+        499000,        -- Adjust the price as needed
+        '2024-08-25',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        12); 
+          INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+  VALUES ('"F1® 24" is a racing simulation game that captures the excitement and intensity of Formula 1 racing. Players can experience realistic driving physics, detailed car models, and immersive tracks from the F1 circuit.',
+          'f1.jpeg',
+          'F1® 24',
+          599000,        -- Adjust the price as needed
+          '2024-09-01',  -- Adjust the release date as needed
+          1,             -- Status set to 1 (bit type, represents active or released)
+          '1.0',         -- Adjust the version as needed
+          1); 
+
+          INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"A Way Out" is a cooperative action-adventure game where players work together to escape from prison and unravel a gripping story. The game emphasizes teamwork and features split-screen gameplay.',
+        'a-way-out.jpg',
+        'A Way Out',
+        499000,        -- Adjust the price as needed
+        '2024-08-20',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        5);
+        
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Need for Speed™ Heat Deluxe Edition" is an action-packed racing game that lets players explore a vibrant city while participating in high-stakes races and illegal street racing events. The Deluxe Edition includes exclusive content and bonus items.',
+        'need-for-speed-deluxe.jpg',
+        'Need for Speed™ Heat Deluxe Edition',
+        699000,        -- Adjust the price as needed
+        '2024-09-10',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        1);
+
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Kenshi" is an open-world RPG that offers a unique blend of sandbox gameplay and strategic elements. Players build their own factions, explore a vast world, and engage in complex survival mechanics.',
+        'kenshi.jpeg',
+        'Kenshi',
+        399000,        -- Adjust the price as needed
+        '2024-08-15',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        12);
+
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"HomeWorld 3" is a real-time strategy game set in space where players command fleets of ships and engage in large-scale space battles. The game features intricate tactical gameplay and a compelling story.',
+        'homeworld-3.jpeg',
+        'HomeWorld 3',
+        549000,        -- Adjust the price as needed
+        '2024-09-25',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        15); 
+
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Need for Speed™ Most Wanted" is a high-octane racing game featuring an open-world environment where players compete in thrilling street races and evade the police. The game emphasizes customization and illicit racing.',
+        'need-for-speed.jpeg',
+        'Need for Speed™ Most Wanted',
+        499000,        -- Adjust the price as needed
+        '2024-08-25',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        1);            -- Assuming the ID for 'Simulation Game' is 1, if this game fits the category
+
+  INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Expeditions - A MudRunner Game" is a simulation game that challenges players to navigate through rugged terrains and overcome difficult driving conditions using various off-road vehicles. The game features realistic physics and dynamic environments.',
+        'expeditions.jpeg',
+        'Expeditions - A MudRunner Game',
+        399000,        -- Adjust the price as needed
+        '2024-09-10',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        1); 
+
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Fabledom" is a city-building simulation game where players construct and manage a fantasy kingdom. The game combines elements of strategy and management with a charming and whimsical setting.',
+        'fabledom.jpeg',
+        'Fabledom',
+        349000,        -- Adjust the price as needed
+        '2024-08-20',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        1);
+
+        INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
+VALUES ('"Battlefield™ 1 Revolution" is a first-person shooter set during World War I, offering a comprehensive experience with a mix of large-scale battles, immersive environments, and historical accuracy. The Revolution Edition includes all major expansions and bonus content.',
+        'battlefield-1.jpeg',
+        'Battlefield™ 1 Revolution',
+        699000,        -- Adjust the price as needed
+        '2024-09-15',  -- Adjust the release date as needed
+        1,             -- Status set to 1 (bit type, represents active or released)
+        '1.0',         -- Adjust the version as needed
+        3);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type_id)
 VALUES
 (
   'Grand Theft Auto V is an action-adventure game played from either a first-person or third-person perspective. Players complete missions—linear scenarios with set objectives—to progress through the story.',

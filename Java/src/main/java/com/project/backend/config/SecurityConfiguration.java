@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                         "/swagger-ui/**",
                         "/webjars/**"
                 ).permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             )
             // .oauth2Login(null)
             // .oauth2Login(oauth2Login -> oauth2Login
