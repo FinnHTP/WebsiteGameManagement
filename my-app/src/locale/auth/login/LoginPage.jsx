@@ -1,4 +1,4 @@
-// LoginPage.jsx
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import GoogleLoginButton from "../components/login/GoogleLoginButton.Component";
@@ -18,11 +18,15 @@ const LoginPage = () => {
     <div className="flex justify-center items-center min-h-screen bg-black-200">
       <div className="flex max-w-4xl w-full bg-gray-700 p-0 rounded-lg shadow-lg">
         <div className="w-1/2 flex justify-center items-center">
+
           <img
             src="image/logo-login.jpg"
             alt="Logo"
             className="w-full h-full"
           />
+
+          <img src="image/logo-login.jpg" alt="Logo" className="w-full h-full" />
+
         </div>
         <div className="w-1/2 flex flex-col justify-center items-center">
           <h2 className="text-center text-3xl font-extrabold text-white">
@@ -34,6 +38,9 @@ const LoginPage = () => {
               Register
             </span>
           </h2>
+
+
+
 
           <LoginComponent onLoginSuccess={handleLoginSuccess} />
           <GoogleLoginButton />

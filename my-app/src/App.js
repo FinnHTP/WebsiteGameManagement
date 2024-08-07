@@ -15,8 +15,16 @@ import RolePage from "./locale/admin/role/RolePage";
 import GamePage from "./locale/admin/game/GamePage";
 import Header from "./locale/share/components/Header.component.jsx";
 import Footer from "./locale/share/components/Footer.component.jsx";
+
 import LoginPage from "./locale/auth/login/LoginPage.jsx";
 import RegisterPage from "./locale/auth/register/RegisterPage.jsx";
+
+// import LoginPage from "./locale/auth/login/LoginPage";
+// import RegisterPage from "./locale/auth/register/RegisterPage";
+import RegisterComponent from "./locale/auth/components/register/Register.Component";
+import LoginComponent from "./locale/auth/components/login/Login.Component";
+// import OrderComponent from "./../src/locale/share/components/profile/Order.Component";
+
 
 function App() {
   return (
@@ -31,7 +39,12 @@ function App() {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="" element={<StorePage />} />
               <Route path="/store" element={<StorePage />} />
+
               <Route path="/profile" element={<ProfilePage />} />
+
+              <Route path="/profile/*" element={<ProfilePage/>} />
+              {/* <Route path="/profile/order" element={<ProfilePage/>} /> */}
+
               <Route path="/forum" element={<ForumPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/category" element={<CategoryPage />} />

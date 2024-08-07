@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import GoogleLoginButton from "./GoogleLoginButton.Component";
+
 
 const LoginComponent = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState("");
@@ -37,6 +37,7 @@ const LoginComponent = ({ onLoginSuccess }) => {
         })
         .then((data) => {
           const token = data.token;
+          localStorage.setItem("username", username);
           localStorage.setItem("accesstoken", token);
           const decodedToken = jwtDecode(token);
           onLoginSuccess(decodedToken);
