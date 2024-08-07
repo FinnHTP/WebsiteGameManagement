@@ -107,7 +107,7 @@ const LoginComponent = ({ onLoginSuccess }) => {
      
       <button
         type="submit"
-        className="w-4/12 ml-36 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md"
+        className="w-4/12 ml-36 bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-md"
       >
         Login
       </button>

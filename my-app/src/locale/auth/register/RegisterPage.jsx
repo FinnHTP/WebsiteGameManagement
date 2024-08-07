@@ -33,7 +33,7 @@ const RegisterPage = () => {
 
         </div>
         <div className="w-1/2  flex flex-col justify-center items-center">
-          <h2 className="text-center text-3xl font-extrabold text-white">
+          <h2 className="text-center text-3xl font-bold text-white mb-4">
             Register /{" "}
             <span
               onClick={handleRedirectLogin}
