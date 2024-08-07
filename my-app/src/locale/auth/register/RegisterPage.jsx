@@ -3,9 +3,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import RegisterComponent from "../components/register/Register.Component";
 import axios from "axios";
-
-
-
 import GoogleLogin from "react-google-login";
 import GoogleLoginButton from "../components/login/GoogleLoginButton.Component";
 const RegisterPage = () => {
@@ -29,11 +26,11 @@ const RegisterPage = () => {
             className="w-full h-full"
           />
 
-          <img src="image/logo-login.jpg" alt="Logo" className="w-full h-full" />
+      
 
         </div>
         <div className="w-1/2  flex flex-col justify-center items-center">
-          <h2 className="text-center text-3xl font-bold text-white mb-4">
+          <h2 className="text-center text-3xl font-bold text-white">
             Register /{" "}
             <span
               onClick={handleRedirectLogin}
@@ -45,13 +42,7 @@ const RegisterPage = () => {
           </h2>
           <RegisterComponent onLoginSuccess={handleRegisterSuccess} />
           <br></br>
-          <GoogleLoginButton />
-
-             Login
-     
-             <RegisterComponent onLoginSuccess={handleRegisterSuccess} />
-         <br></br>
-          <GoogleLoginButton/>
+    
 
         </div>
       </div>

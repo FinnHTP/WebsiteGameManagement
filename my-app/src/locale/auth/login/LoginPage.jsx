@@ -25,7 +25,7 @@ const LoginPage = () => {
             className="w-full h-full"
           />
 
-          <img src="image/logo-login.jpg" alt="Logo" className="w-full h-full" />
+    
 
         </div>
         <div className="w-1/2 flex flex-col justify-center items-center">
