@@ -15,8 +15,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-black-200">
-      <div className="flex max-w-4xl w-full bg-gray-700 p-0 rounded-lg shadow-lg">
+    <div className="flex justify-center items-center min-h-screen bg-gray-400">
+      <div className="flex max-w-4xl w-full bg-customLoginBg p-0 rounded-lg shadow-lg">
         <div className="w-1/2 flex justify-center items-center">
 
           <img
@@ -25,11 +25,11 @@ const LoginPage = () => {
             className="w-full h-full"
           />
 
-    
+        
 
         </div>
         <div className="w-1/2 flex flex-col justify-center items-center">
-          <h2 className="text-center text-3xl font-bold text-white mb-4">
+          <h2 className="text-center text-3xl font-bold mb-4 text-white">
             Login /{" "}
             <span
               onClick={handleRedirectRegister}

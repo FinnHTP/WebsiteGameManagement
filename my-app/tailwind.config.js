@@ -9,6 +9,7 @@ module.exports = {
         customFooterBg: "#262523",
         customInputBg1: "#303034",
         customTypeEdition: "#868080",
+        customLoginBg: "rgb(38,36,36)"
       },
     },
   },
