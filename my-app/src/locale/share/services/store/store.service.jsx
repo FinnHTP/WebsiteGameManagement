@@ -7,7 +7,6 @@ export const getAllGames = async () => {
     //   Authorization: `Bearer ${token}`,
     // },
   });
-  console.log(response.data);
   const data =
     typeof response.data === "string"
       ? JSON.parse(response.data)

@@ -1,15 +1,9 @@
-import React, { useState } from "react";
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 const CarouselGame = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [games, setGames] = useState([]);
-  const images = [
-    "/image/top-bg-game/honkaistar.jpg",
-    "/image/top-bg-game/apex.jpg",
-    "/image/top-bg-game/minecraft.jpg",
-    "/image/top-bg-game/apex.jpg",
-    "/image/top-bg-game/minecraft.jpg",
-  ];
+  const [isFading, setIsFading] = useState(false);
+  const [images, setImages] = useState([]);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -27,51 +21,40 @@ const CarouselGame = () => {
     setCurrentIndex(index);
   };
 
+  useEffect(() => {
+    fetch("./images.json")
+      .then((response) => response.json())
+      .then((data) => {
+        const formattedData = data.map((item) => ({
+          ...item,
+          image: `/image/top-bg-game/${item.image}.webp`,
+        }));
+        setImages(formattedData);
+      });
+  }, []);
 
-  const ListAllGames = async () => {
-    const token = localStorage.getItem("accesstoken");
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setIsFading(false);
+      }, 500); // Thời gian của hiệu ứng chuyển đổi
+    }, 3000); // Thời gian giữa các ảnh
 
-    if (!token) {
-      console.error("Không có token được tìm thấy");
-      return;
-    }
-
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/api/games/get8Game`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const data =
-        typeof response.data === "string"
-          ? JSON.parse(response.data)
-          : response.data;
-
-      console.log("Dữ liệu nhận được từ API:", data);
-
-      setGames(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error("Lỗi khi gửi yêu cầu:", error);
-    }
-  };
-
-
-
-
-
+    return () => clearTimeout(timer);
+  }, [currentIndex, images.length]);
   return (
     <div className="flex">
-      <div className="flex-1 relative">
+      <div className="w-11/12 relative ">
         <img
-          src={images[currentIndex]}
+          src={images[currentIndex]?.image}
           alt={`Slide ${currentIndex + 1}`}
-          className="w-full h-auto object-cover rounded-lg"
+          className={`w-full h-full object-cover rounded-3xl transform transition-opacity duration-500 ${
+            isFading ? "opacity-20" : "opacity-100"
+          }`}
         />
-        <button
+        {/* <button
           onClick={prevSlide}
           className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
         >
@@ -82,26 +65,30 @@ const CarouselGame = () => {
           className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
         >
           &gt;
-        </button>
+        </button> */}
       </div>
-
-      <div className="flex flex-col justify-center ml-4 space-y-4">
+      <div className="w-3/12 ms-5 ">
         {images.map((image, index) => (
-          <button
-            key={index}
-            onClick={() => handleThumbnailClick(index)}
-            className={`flex items-center p-2 cursor-pointer rounded-lg ${
-              index === currentIndex ? "bg-gray-600" : "bg-gray-700"
-            }`}
+          <div
+            className={`rounded-xl h-auto ${
+              index === currentIndex
+                ? "bg-customBgBtnCarouselActive"
+                : "bg-customBgBtnCarousel"
+            } transition-transform duration-500 ease-in-out hover:scale-110`}
           >
-            <img
-              src={image}
-              alt={`Thumbnail ${index + 1}`}
-              className={`w-24 h-16 object-cover rounded-lg border-2 ${
-                index === currentIndex ? "border-blue-500" : "border-gray-300"
-              }`}
-            />
-          </button>
+            <button
+              key={index}
+              onClick={() => handleThumbnailClick(index)}
+              className={`flex items-center p-2 py-6 cursor-pointer rounded-full my-3`}
+            >
+              <img
+                src={images[index]?.image}
+                alt={`Thumbnail ${index + 1}`}
+                className={`w-16 h-10 object-cover rounded-lg`}
+              />
+              <span className="text-white ms-2">{images[index]?.name}</span>
+            </button>
+          </div>
         ))}
       </div>
     </div>

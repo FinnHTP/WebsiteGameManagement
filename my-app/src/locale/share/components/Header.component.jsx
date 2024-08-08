@@ -5,7 +5,7 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <ul className="flex bg-customHeaderBg">
+      <ul className="flex bg-customHeaderBg p-3 px-4">
         <li className="mr-6 mt-2 ms-2">
           <button
             className="text-lg mt-1 text-gray-100 hover:text-yellow-500"
