@@ -126,7 +126,7 @@ const TopNewReleases = () => {
             <div className="pt-1 pb-2">
               {game.coupon !== null ? (
                 <span className="inline-block bg-customCouponBg rounded-full px-2 py-0 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  -{game.coupon.value}%
+                  -{game.coupon?.value}%
                 </span>
               ) : null}
 
@@ -137,7 +137,7 @@ const TopNewReleases = () => {
                   </p>
                   <p className="inline-block text-customTextPriceGame">
                     {new Intl.NumberFormat("de-DE").format(
-                      getDiscount(game.coupon.value, game.priceGame)
+                      getDiscount(game.coupon?.value, game.priceGame)
                     )}
                     đ{" "}
                   </p>
