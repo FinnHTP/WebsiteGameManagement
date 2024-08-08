@@ -33,6 +33,7 @@ module.exports = {
           lg: "4rem",
           xl: "5rem",
         },
+        customLoginBg: "rgb(38,36,36)",
       },
     },
   },
