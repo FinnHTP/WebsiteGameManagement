@@ -1,25 +1,17 @@
 package com.project.backend.controller;
 
-import java.util.List;
-
+import com.project.backend.dto.CommentDto;
+//import com.project.backend.dto.ReactionsCommentDto;
+import com.project.backend.dto.ReactionDto;
+import com.project.backend.service.CommentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.project.backend.dto.CommentDto;
-import com.project.backend.service.CommentService;
-
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import lombok.AllArgsConstructor;
+import java.util.List;
 
 @CrossOrigin("*")
 @AllArgsConstructor
@@ -48,14 +40,6 @@ public class CommentController {
         return ResponseEntity.ok(comments);
     }
 
-    
-    @GetMapping("/{id}")
-    public ResponseEntity<CommentDto> getCommentById(@PathVariable("id") Long commentId){
-        CommentDto comments = commentService.getCommentById(commentId);
-        return ResponseEntity.ok(comments);
-    }
-
-
     @GetMapping("/findByGame/{id}")
     public ResponseEntity<List<CommentDto>> getListCommentByGame(@PathVariable("id") Long gameId){
         List<CommentDto> comments = commentService.listCommentByGame(gameId);
@@ -79,5 +63,17 @@ public class CommentController {
         commentService.deleteComment(commentId);
         return ResponseEntity.ok("Comment is deleted");
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CommentDto> getCommentById(@PathVariable("id") Long commentId){
+        CommentDto comments = commentService.getCommentById(commentId);
+        return ResponseEntity.ok(comments);
+    }
+
+
+
+
+
+
 
 }

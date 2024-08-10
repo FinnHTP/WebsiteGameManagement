@@ -19,6 +19,14 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
              "ORDER BY MONTH(o.date)", nativeQuery = true)
 List<Object[]> getMonthlyStatistics(@Param("year") int year);
 
+//@Query(value = "SELECT MONTH(o.date) AS month, SUM(od.price) AS total_price " +
+//        "FROM orders o " +
+//        "JOIN orderdetails od ON o.id = od.order_id " +
+//        "WHERE YEAR(o.date) = :year " +
+//        "GROUP BY MONTH(o.date) " +
+//        "ORDER BY MONTH(o.date)", nativeQuery = true)
+//List<Object[]> getMonthlyStatistics(@Param("year") int year);
+
 
 //@Query(value = "SELECT MONTH(o.date) AS month, SUM(od.price) AS total_price " +
 //        "FROM orders o " +

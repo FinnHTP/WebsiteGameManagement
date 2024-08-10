@@ -13,6 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -61,12 +62,13 @@ public class Account implements UserDetails {
     @JsonIgnore
     @OneToMany (mappedBy = "account")
     private List<OTP> otpList;
-    @JsonIgnore
-    @OneToMany (mappedBy = "account")
-    private List<Favorite> favorites;
     @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable (name = "group_account", joinColumns = @JoinColumn (name = "account_id"), inverseJoinColumns = @JoinColumn (name = "group_id"))
     private Set<Group> groups = new HashSet<>();
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable (name = "account_reaction" , joinColumns = @JoinColumn  (name = "account_id") ,inverseJoinColumns = @JoinColumn(name = "reaction_id" ))
+    private List<Reaction> reactions = new ArrayList<>();
     
     @Override	
     public Collection<? extends GrantedAuthority> getAuthorities() {

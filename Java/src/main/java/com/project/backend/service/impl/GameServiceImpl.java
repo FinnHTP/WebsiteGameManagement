@@ -1,45 +1,24 @@
 package com.project.backend.service.impl;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
-
-import com.itextpdf.text.log.Logger;
-import com.itextpdf.text.log.LoggerFactory;
 import com.project.backend.dto.GameDto;
 import com.project.backend.entity.Game;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.mapper.GameMapper;
 import com.project.backend.repository.GameRepository;
 import com.project.backend.service.GameService;
-
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class GameServiceImpl implements GameService {
     private GameRepository gameRepository;
-    private static final Logger logger = LoggerFactory.getLogger(GameServiceImpl.class);
-
-    @Autowired
-    private RestTemplate restTemplate;
-
-    private final String epicGamesApiUrl = "https://www.epicgames.com/store/en-US/new-releases";
 
     @Override
     public GameDto createGame(GameDto gameDto) {
@@ -103,4 +82,7 @@ public class GameServiceImpl implements GameService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+    
+    
+
 }

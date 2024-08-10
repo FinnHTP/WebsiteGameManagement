@@ -19,6 +19,7 @@ public class CommentBlogMapper {
         commentDto.setParentId(comment.getParentId());
         commentDto.setGame(comment.getGame());
         commentDto.setBlog(comment.getBlog());
+        
         return commentDto;
     }
 

@@ -10,4 +10,6 @@ public class FavoriteMapper {
     public static Favorite MapToEntity(FavoriteDto favoriteDto){
         return new Favorite(favoriteDto.getId(),favoriteDto.getIsActive(),favoriteDto.getGame(),favoriteDto.getAccount());
     }
+    
+	
 }

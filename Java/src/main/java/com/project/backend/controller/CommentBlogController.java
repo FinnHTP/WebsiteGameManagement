@@ -32,24 +32,25 @@ public class CommentBlogController {
 	 @Autowired
 	    private CommentBlogService commentService;
 	 
-	 @PostMapping("")
-	    public ResponseEntity<CommentBlogDto> createComment(@RequestBody CommentBlogDto commentDto){
+	 @PostMapping("blog/{id}")
+	    public ResponseEntity<CommentBlogDto> createComment(@RequestBody CommentBlogDto commentDto, @PathVariable("id") Long blogId){
 	        CommentBlogDto savedComment = commentService.createComment(commentDto);
+	      
 	        return new ResponseEntity<>(savedComment, HttpStatus.CREATED);
 	    }
 
 	    @PostMapping("{id}")
-	    public ResponseEntity<CommentBlogDto> sendComment(@RequestBody CommentBlogDto commentDto,@PathVariable("id") Long gameId){
-	        CommentBlogDto savedComment = commentService.sendComment(commentDto, gameId);
+	    public ResponseEntity<CommentBlogDto> sendComment(@RequestBody CommentBlogDto commentDto,@PathVariable("id") Long blogId){
+	        CommentBlogDto savedComment = commentService.sendComment(commentDto, blogId);
 	        return new ResponseEntity<>(savedComment, HttpStatus.CREATED);
 
 	    }
-
 	    @GetMapping("blog/{id}")
 	    public ResponseEntity<List<CommentBlogDto>> getListComment(@PathVariable("id") Long blogId){
-	        List<CommentBlogDto> comments = commentService.listCommentByBlog(blogId);
-	        return ResponseEntity.ok(comments);
+	    	List<CommentBlogDto> comments = commentService.listCommentByBlog(blogId);
+	    	return ResponseEntity.ok(comments);
 	    }
+
 	    
 	    @GetMapping("/{id}")
 	    public ResponseEntity<CommentBlogDto> getCommentById(@PathVariable("id") Long commentId){

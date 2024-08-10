@@ -6,9 +6,12 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.backend.dto.AccountDto;
 import com.project.backend.dto.GroupAccountDto;
 import com.project.backend.dto.GroupDto;
 import com.project.backend.dto.JoinGroupDto;
+import com.project.backend.dto.UserDto;
+import com.project.backend.entity.User;
 
 public interface GroupService {
 GroupDto creategroup(GroupDto Dto);
@@ -23,6 +26,8 @@ void AccountOutGroup(JoinGroupDto joinGroupDto);
 boolean  isUserJoinedGroup(Long groupId, Long accountId);
 ResponseEntity<?> leaveGroup(JoinGroupDto joinGroupDto);
 List<GroupAccountDto> getAll2(Long groupId ,Long accountId );
+
+List<Integer> findAccountDetails(Long groupId);
 
 //void uploadAvatar (Long id, MultipartFile file) throws IOException;
 //byte[] getAvatar (Long id);

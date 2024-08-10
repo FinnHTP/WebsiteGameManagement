@@ -11,4 +11,8 @@ public interface FavoriteService {
     public FavoriteDto updateFavoriteById(Long favoriteId, FavoriteDto favoriteDto);
     public void deleteFavoriteById(Long favoriteId);
     public List<FavoriteDto> getAllFavorite();
+//    boolean  isUserFavoriteGame(Long gameId, Long accountId);
+    public List<FavoriteDto> getAllFavoriteIsActive();
+public	FavoriteDto deactivateFavorite(Long id);
+	
 }

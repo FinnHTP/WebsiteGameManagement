@@ -1,10 +1,14 @@
 package com.project.backend.mapper;
 
 
+import java.util.stream.Collectors;
+
 import com.project.backend.dto.CommentDto;
+import com.project.backend.dto.ReactionDto;
 import com.project.backend.entity.Account;
 import com.project.backend.entity.Comment;
 import com.project.backend.entity.Game;
+import com.project.backend.entity.Reaction;
 import com.project.backend.repository.CommentRepository;
 
 public class CommentMapper {
@@ -16,6 +20,7 @@ public class CommentMapper {
         commentDto.setDate(comment.getDate());
         commentDto.setParentId(comment.getParentId());
         commentDto.setGame(comment.getGame());
+       
         return commentDto;
     }
 
@@ -27,7 +32,11 @@ public class CommentMapper {
         comment.setDate(commentDto.getDate());
         comment.setParentId(commentDto.getParentId());
         comment.setGame(commentDto.getGame());
+     
         return comment;
+        
     }
+    
+
 
 }

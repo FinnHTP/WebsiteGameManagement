@@ -15,5 +15,5 @@ public interface AccountService {
     AccountDto updateAccount(Long id, AccountDto accountDto);
     AccountDto updateAccountBalance(Long id, AccountDto accountDto);
     void deleteAccount(Long id);
-
+    AccountDto getAccountByUsername(String username);
 }

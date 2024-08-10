@@ -90,4 +90,10 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.deleteById(id);
     }
 
+	@Override
+	public AccountDto getAccountByUsername(String username) {
+		Account account = accountRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("Account can't be found with username " + username));
+        return AccountMapper.MapToAccountDto(account);
+	}
+
 }

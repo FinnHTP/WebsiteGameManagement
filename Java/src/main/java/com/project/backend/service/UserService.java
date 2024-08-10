@@ -16,4 +16,5 @@ public interface UserService {
     void deleteUser(Long id);
     void uploadAvatar (Long id, MultipartFile file) throws IOException;
     byte[] getAvatar (Long id);
+    List<User> getListUserById(List<Integer> myList);
 }

@@ -1,5 +1,6 @@
 package com.project.backend.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -32,6 +33,12 @@ public class Group {
     private Long id;
     @Column(name = "namegroup")
     private String namegroup;
+    @Column(name="image")
+    private String image;
+    @Column(name="status")
+    private boolean status;
+    @Column(name="createDate")
+    private LocalDate createDate;
 
    
    

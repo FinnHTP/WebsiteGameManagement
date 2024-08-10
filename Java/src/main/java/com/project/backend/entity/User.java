@@ -1,6 +1,8 @@
 package com.project.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.backend.dto.UserDto;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

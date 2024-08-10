@@ -2,7 +2,9 @@ package com.project.backend.service.impl;
 
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,11 +107,28 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orders = orderRepository.findListById(accountId);
         return orders.stream().map((order) -> OrderMapper.mapToOrderDto(order)).collect(Collectors.toList());
     }
-	@Override
-	public List<Object[]> getMonthlyStatistics(int year) {
-		return orderDetailRepository.getMonthlyStatistics(year);
-		 
-	}
+    
+//	@Override
+//	public List<Object[]> getMonthlyStatistics(int year) {
+//		return orderDetailRepository.getMonthlyStatistics(year);
+//		 
+//	}
+	
+    public Map<String, Double> getMonthlyStatistics(int year) {
+        List<Object[]> results = orderDetailRepository.getMonthlyStatistics(year);
+        Map<String, Double> statistics = new HashMap<>();
+
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+        for (Object[] result : results) {
+            int month = ((Number) result[0]).intValue();
+            double totalPrice = ((Number) result[1]).doubleValue();
+            statistics.put(months[month - 1], totalPrice);
+        }
+
+        return statistics;
+    }
+	
     
 
 //	@Override

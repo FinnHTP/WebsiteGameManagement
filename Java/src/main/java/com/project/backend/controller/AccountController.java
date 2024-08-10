@@ -27,7 +27,7 @@ public class AccountController {
         AccountDto savedAccount = accountService.createAccount(accountDto);
         return new ResponseEntity<>(savedAccount, HttpStatus.CREATED);
     }
-
+    
     @GetMapping
     public ResponseEntity<List<AccountDto>> getAllAccount(){
         List<AccountDto> accounts = accountService.getAllAccount();
@@ -39,6 +39,14 @@ public class AccountController {
         AccountDto account = accountService.getAccountById(id);
         return ResponseEntity.ok(account);
     }
+    
+
+    @GetMapping("username/{username}")
+    public ResponseEntity<AccountDto> getAccountByUsername(@PathVariable("username") String username){
+        AccountDto account = accountService.getAccountByUsername(username);
+        return ResponseEntity.ok(account);
+    }
+
 
     @PutMapping("{id}")
     public ResponseEntity<AccountDto> updateAccount(@PathVariable("id") Long id, @RequestBody AccountDto accountDto){

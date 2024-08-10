@@ -58,6 +58,7 @@ public class KeycodeServiceImpl implements KeycodeService {
 		List<KeyCode> keyCode = repository.findByStatusEnable();
 		  return keyCode;
 	}
+    
 	@Override
 	public List<KeyCode> findByStatusEnable() {
 		List<KeyCode> keyCode = repository.findByStatusEnable();

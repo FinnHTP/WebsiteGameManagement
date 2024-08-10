@@ -3,8 +3,6 @@ package com.project.backend.service;
 import jakarta.mail.Message;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
 	private final JavaMailSender mailSender;
-
+	private final String adminEmail = "phuctphps26443@fpt.edu.vn";
 	public EmailService(JavaMailSender mailSender) {
 		this.mailSender = mailSender;
 	}
@@ -22,7 +20,7 @@ public class EmailService {
 		try
 		{
 
-			message.setFrom("hphat1078@gmail.com");
+			message.setFrom(adminEmail);
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			message.setSubject("FORGOT PASSWORD OTP");
 			message.setText("Your OTP code: " + otp);

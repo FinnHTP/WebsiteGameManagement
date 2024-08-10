@@ -1,16 +1,24 @@
 package com.project.backend.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.project.backend.dto.CommentDto;
+import com.project.backend.dto.ReactionDto;
+import com.project.backend.dto.ThrowReactionDTO;
+import com.project.backend.entity.Account;
 import com.project.backend.entity.Comment;
 import com.project.backend.entity.Game;
+import com.project.backend.entity.Reaction;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.mapper.CommentMapper;
+import com.project.backend.repository.AccountRepository;
 import com.project.backend.repository.CommentRepository;
+import com.project.backend.repository.ReactionRepository;
 import com.project.backend.service.CommentService;
 
 import lombok.AllArgsConstructor;
@@ -19,7 +27,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
+    private ReactionRepository reactionRepository;
 
+    private AccountRepository accountRepository;
 
     @Override
     public CommentDto sendComment(CommentDto commentDto, Long gameId) {
@@ -80,4 +90,52 @@ public class CommentServiceImpl implements CommentService {
         return comments.stream().map((comment) -> CommentMapper.MapToCommentDto(comment)).collect(Collectors.toList());
 		
 	}
+	
+	
+	@Override
+	public ThrowReactionDTO addReaction(ThrowReactionDTO throwReactionDTO) {
+	    Account account = accountRepository.findById(throwReactionDTO.getAccountId())
+	            .orElseThrow(() -> new ResourceNotFoundException("Account is not found: " + throwReactionDTO.getAccountId()));
+	    Comment comment = commentRepository.findById(throwReactionDTO.getCommentId())
+	            .orElseThrow(() -> new ResourceNotFoundException("Comment is not found: " + throwReactionDTO.getCommentId()));
+	    Reaction reaction = reactionRepository.findById(throwReactionDTO.getReactionId())
+	            .orElseThrow(() -> new ResourceNotFoundException("Reaction is not found: " + throwReactionDTO.getReactionId()));
+
+	    // Log the loaded entities
+	    System.out.println("Loaded Account: " + account.getId());
+	    System.out.println("Loaded Comment: " + comment.getId());
+	    System.out.println("Loaded Reaction: " + reaction.getId());
+
+	    // Add reaction to account and comment
+	    account.getReactions().add(reaction);
+	    comment.getReactions().add(reaction);
+
+	    // Log before saving
+	    System.out.println("Saving Comment: " + comment.getId());
+	    System.out.println("Saving Account: " + account.getId());
+
+	    commentRepository.save(comment);
+	    accountRepository.save(account);
+
+	    // Log after saving
+	    System.out.println("Saved Comment: " + comment.getId());
+	    System.out.println("Saved Account: " + account.getId());
+
+	    return throwReactionDTO;
+	}
+
+
+	@Override
+	public Long getReactionsByCommentId(Long commentId) {
+		// TODO Auto-generated method stub
+		Long countReaction = reactionRepository.getReactionComment(commentId);
+		return countReaction;
+	}
+	
+	
+
+
+
+	
+	 
 }

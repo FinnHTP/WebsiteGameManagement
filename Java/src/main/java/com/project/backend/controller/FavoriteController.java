@@ -50,6 +50,16 @@ public class FavoriteController {
         return new ResponseEntity<>(savedFavoriteDto, HttpStatus.OK);
     }
     
+    @GetMapping("/isactive")
+    public ResponseEntity<List<FavoriteDto>> getListFavoriteisActive() {
+        List<FavoriteDto> favorites = favoriteService.getAllFavoriteIsActive();
+        return new ResponseEntity<>(favorites, HttpStatus.OK);
+    }
     
-    
+    @PutMapping("/{id}/unlike")
+    public ResponseEntity<FavoriteDto> deactivateFavorite(@PathVariable Long id) {
+        FavoriteDto updatedFavorite = favoriteService.deactivateFavorite(id);
+        return ResponseEntity.ok(updatedFavorite);
+    }
+
 }

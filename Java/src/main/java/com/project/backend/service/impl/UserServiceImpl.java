@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -86,5 +87,22 @@ public class UserServiceImpl implements UserService {
         {
             throw new RuntimeException("Avatar not found");
         }
+    }
+
+    @Override
+    public List<User> getListUserById(List<Integer> myList) {
+        List<User> users = new ArrayList<>();
+        System.out.println("Input ID list: " + myList);
+        for (Integer number : myList) {
+            User user = userRepository.getUserById(number);
+            if (user != null) {
+                users.add(user);
+                System.out.println("User added: " + user.getId());
+            } else {
+                System.out.println("No user found with ID: " + number);
+            }
+        }
+        System.out.println("Total users added: " + users.size());
+        return users; // Or simply return users;
     }
 }

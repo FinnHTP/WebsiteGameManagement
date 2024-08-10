@@ -13,9 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.backend.dto.AccountDto;
 import com.project.backend.dto.GroupAccountDto;
 import com.project.backend.dto.GroupDto;
 import com.project.backend.dto.JoinGroupDto;
+import com.project.backend.dto.UserDto;
 import com.project.backend.entity.Account;
 import com.project.backend.entity.Group;
 import com.project.backend.entity.RankAccount;
@@ -153,6 +155,14 @@ public List<GroupAccountDto> getAll2(Long groupId, Long accountId) {
 	List<GroupAccountDto> ls = grouprepo.getAllGroupAccount(accountId, groupId);
 	return ls;
 }
+@Override
+public List<Integer> findAccountDetails(Long groupId) {
+	List<Integer> ls = grouprepo.findAccountDetails(groupId);
+	return ls;
+}
+
+
+
 
 //@Override
 //public List<Long> findAccountIdsByGroupId(Long groupId) {

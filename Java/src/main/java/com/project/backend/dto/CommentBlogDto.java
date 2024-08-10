@@ -1,6 +1,7 @@
 package com.project.backend.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.project.backend.entity.Account;
 import com.project.backend.entity.Blog;
@@ -20,4 +21,5 @@ public class CommentBlogDto {
     private Long parentId;
     private Game game;
     private Blog blog;
+    private List<ReactionDto> reactions;
 }

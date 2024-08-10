@@ -2,6 +2,7 @@ package com.project.backend.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -72,6 +73,20 @@ public class OrderController {
         service.deleteOrder(orderId);
         return ResponseEntity.ok("Order deleted Successfully");
     }
+    
+//    @GetMapping("/data{year}")
+//    public ResponseEntity<List<Object[]>> getChartdata(@PathVariable ("year") int year)
+//    {
+//    	List<Object[]> orders = service.getMonthlyStatistics(year);
+//        return new ResponseEntity<>(orders , HttpStatus.CREATED);
+//    }
+    
+    @GetMapping("/data{year}")
+    public ResponseEntity<Map<String, Double>> getChartdata(@PathVariable ("year") int year) {
+        Map<String, Double> orders = service.getMonthlyStatistics(year);
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+    
     public static class CreateOrderRequest {
         private Long accountId;
         private Long gameId;

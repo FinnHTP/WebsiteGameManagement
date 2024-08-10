@@ -1,6 +1,7 @@
 package com.project.backend.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.backend.dto.OrderDto;
 import com.project.backend.entity.Order;
@@ -13,7 +14,7 @@ public interface OrderService {
     OrderDto UpdateOrder(Long orderId ,OrderDto updatedOrderDto);
     void deleteOrder(Long orderId);
     List<OrderDto> GetAllOrderById(Long accountId);
-	List<Object[]> getMonthlyStatistics(int year);
+	Map<String, Double> getMonthlyStatistics(int year);
 //	List<Object[]> getMonthlyStatistics2024();
   
 }

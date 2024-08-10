@@ -23,15 +23,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.backend.dto.AccountDto;
 import com.project.backend.dto.GameDto;
 import com.project.backend.dto.GroupAccountDto;
 import com.project.backend.dto.GroupDto;
 import com.project.backend.dto.JoinGroupDto;
+import com.project.backend.dto.UserDto;
 import com.project.backend.entity.Group;
+import com.project.backend.entity.User;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.repository.AccountRepository;
 import com.project.backend.repository.GroupRepository;
 import com.project.backend.service.GroupService;
+import com.project.backend.service.UserService;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
@@ -43,6 +47,7 @@ import lombok.AllArgsConstructor;
 @SecurityRequirement(name = "bearerAuth")
 public class GroupController {
 private GroupService groupservice;
+private UserService userservice;
 
 
 
@@ -83,6 +88,13 @@ public ResponseEntity<Boolean> isUserJoined(@PathVariable Long groupId, @Request
 public ResponseEntity<GroupDto> getGroupById(@PathVariable("id") Long groupId){
     GroupDto groupDto = groupservice.getgroupById(groupId);
     return ResponseEntity.ok(groupDto);
+}
+
+@GetMapping("/member/{id}") 
+public ResponseEntity<List<User>> getAccountByGroup(@PathVariable("id") Long groupId){
+	List<Integer> myList = groupservice.findAccountDetails(groupId);
+    List <User> accountDto = userservice.getListUserById(myList);
+    return ResponseEntity.ok(accountDto);
 }
 
 
@@ -126,6 +138,7 @@ public ResponseEntity<?> leaveGroup(@RequestBody JoinGroupDto joinGroupDto) {
 
 
 
+
 @GetMapping("")
 public ResponseEntity<List<GroupDto>> getAll(){
     List<GroupDto> group = groupservice.getAll();
@@ -141,6 +154,8 @@ public ResponseEntity<GroupDto> updateGroup(@PathVariable("id") Long groupId, @R
 public ResponseEntity<String> deleteGroup(@PathVariable("id") Long groupId){
     groupservice.deleteGroup(groupId);
     return ResponseEntity.ok("Group deleted Successfully");
+    
+    
 }
 //@CrossOrigin(origins = "http://localhost:3000")
 //@PostMapping ("/{id}/avatar")
