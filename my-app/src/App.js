@@ -24,8 +24,8 @@ function App() {
     <BrowserRouter>
       <div className="bg-customBg">
         <Header></Header>
-        <div className="App  mx-auto container">
-          <div className="flex flex-col min-h-screen">
+        {/* <div className="App  mx-auto container">
+          <div className="flex flex-col min-h-screen"> */}
             <main className="flex-grow">
               <Routes>
                 {/* Shared */}
@@ -33,7 +33,7 @@ function App() {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="" element={<StorePage />} />
                 <Route path="/store" element={<StorePage />} />
-                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/profile/*" element={<ProfilePage />} />
                 <Route path="/forum" element={<ForumPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/category" element={<CategoryPage />} />
@@ -56,8 +56,8 @@ function App() {
                 <Route path="/pt/account" element={<RolePage />} />
               </Routes>
             </main>
-          </div>
-        </div>
+          {/* </div>
+        </div> */}
         <Footer></Footer>
       </div>
     </BrowserRouter>
