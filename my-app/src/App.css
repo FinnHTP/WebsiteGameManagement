@@ -1,1 +1,33 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+}
 
+
+.game-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    overflow: hidden;
+  }
+  
+  .game-description {
+    max-height: 200px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  .game-description.expanded {
+    max-height: none;
+  }
+  
+  .show-more-link {
+    color: #4A90E2;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .show-more-link:hover {
+    color: #2C3E50;
+  }
+  
