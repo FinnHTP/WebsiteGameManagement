@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getAllGameTypes } from "../../services/category/category.services";
 
 const AccordionItem = ({ title, gameTypes }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,14 +17,7 @@ const AccordionItem = ({ title, gameTypes }) => {
         <div className="p-4 text-white">
           {gameTypes.map((gameType, index) => (
             <div key={index} className="mb-2">
-              <h3 className="font-semibold text-lg">{gameType.title}</h3>
-              <ul className="list-disc pl-5 list-none">
-                {gameType.games.map((game, i) => (
-                  <li key={i} className="py-1">
-                    {game}
-                  </li>
-                ))}
-              </ul>
+              <h3 className="text-sm mb-3">{gameType.name}</h3>
             </div>
           ))}
         </div>
@@ -33,34 +27,33 @@ const AccordionItem = ({ title, gameTypes }) => {
 };
 
 const Accordion = () => {
+  const [gameTypes, setGameTypes] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAllGameTypes();
+        if (Array.isArray(data)) {
+          setGameTypes(data);
+        } else {
+          console.error("Dữ liệu không phải là mảng:", data);
+        }
+      } catch (error) {
+        console.error("Lỗi khi lấy dữ liệu:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Tạo danh sách item cho Accordion
   const items = [
     {
-      title: "Action Games",
-      gameTypes: [
-        {
-          games: ["Call of Duty", "Battlefield", "Halo"],
-        },
-        {
-          games: ["Street Fighter", "Mortal Kombat", "Tekken"],
-        },
-      ],
-    },
-    {
-      title: "Adventure Games",
-      gameTypes: [
-        {
-          games: [
-            "The Legend of Zelda",
-            "Red Dead Redemption",
-            "Assassin's Creed",
-          ],
-        },
-        {
-          games: ["Portal", "The Witness", "Baba Is You"],
-        },
-      ],
+      title: "Game Types",
+      gameTypes: gameTypes, // Sử dụng dữ liệu gameTypes lấy từ API
     },
   ];
+
   return (
     <div>
       {items.map((item, index) => (

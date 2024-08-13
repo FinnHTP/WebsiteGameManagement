@@ -15,7 +15,8 @@ public class GameMapper {
                 game.getReleaseDate(),
                 game.getVersion(),
                 game.getImage(),
-                game.getGameType()
+                game.getGameType(),
+                game.getCoupon()
         );
     }
     public static Game mapToGame(GameDto gameDto){
@@ -29,6 +30,7 @@ public class GameMapper {
         game.setImage(gameDto.getImage());
         game.setVersion(gameDto.getVersion());
         game.setName(gameDto.getName());
+        game.setCoupon(gameDto.getCoupon());
         return game;
     }
 }
