@@ -11,7 +11,7 @@ import {
   joinGroup,
   leaveGroup,
   createGroup,
-  fetchJoinedGroups, // Import fetchJoinedGroups
+  fetchJoinedGroups, 
 } from "../../services/group/Group.service"
 
 const GroupComponent = () => {
