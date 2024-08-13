@@ -11,10 +11,11 @@ import com.project.backend.dto.GroupAccountDto;
 import com.project.backend.dto.GroupDto;
 import com.project.backend.dto.JoinGroupDto;
 import com.project.backend.dto.UserDto;
+import com.project.backend.entity.Group;
 import com.project.backend.entity.User;
 
 public interface GroupService {
-GroupDto creategroup(GroupDto Dto);
+
 GroupDto getgroupById(Long groupId);
 List<GroupDto> getAll();
 GroupDto Update(Long groupId ,GroupDto updatedDto);
@@ -26,8 +27,17 @@ void AccountOutGroup(JoinGroupDto joinGroupDto);
 boolean  isUserJoinedGroup(Long groupId, Long accountId);
 ResponseEntity<?> leaveGroup(JoinGroupDto joinGroupDto);
 List<GroupAccountDto> getAll2(Long groupId ,Long accountId );
-
+void uploadAvatar (Long groupId, MultipartFile file) throws IOException;
+byte[] getAvatar (Long groupId);
 List<Integer> findAccountDetails(Long groupId);
+
+List<Group> findByName(String name);
+
+GroupDto creategroup(GroupDto Dto);
+void saveGroupImage(Long groupId, MultipartFile image) throws IOException;
+
+//void uploadAvatar (Long id, MultipartFile file) throws IOException;
+//byte[] getAvatar (Long id);
 
 //void uploadAvatar (Long id, MultipartFile file) throws IOException;
 //byte[] getAvatar (Long id);
@@ -35,5 +45,7 @@ List<Integer> findAccountDetails(Long groupId);
 //List<Long> findAccountIdsByGroupId(Long groupId);
 //
 //List<Long> findAccountIdsByGroupName(String groupName);
+
+
 
 }

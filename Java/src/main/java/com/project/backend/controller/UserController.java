@@ -50,6 +50,8 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.ok("User deleted successfully");
     }
+    
+    
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping ("/{id}/avatar")
     public ResponseEntity<String> uploadAvatar (@PathVariable Long id,  @RequestParam ("avatar") MultipartFile file) {
@@ -65,6 +67,9 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
+    
+    
+    
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping ("/{id}/avatar")
     public ResponseEntity<byte[]> getAvatar (@PathVariable Long id) {

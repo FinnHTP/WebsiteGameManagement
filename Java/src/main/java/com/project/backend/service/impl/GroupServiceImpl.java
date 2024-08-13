@@ -1,6 +1,7 @@
 package com.project.backend.service.impl;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +29,14 @@ import com.project.backend.repository.AccountRepository;
 import com.project.backend.repository.GroupRepository;
 import com.project.backend.service.GroupService;
 
+
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Service
 public class GroupServiceImpl implements GroupService {
 @Autowired
@@ -50,7 +59,7 @@ public List<GroupDto> getAll() {
 public GroupDto Update(Long groupId, GroupDto updatedDto) {
    Group group = grouprepo.findById(groupId).orElseThrow(() -> new ResourceNotFoundException("Group is not found with " + groupId));
 //   group.setId(updatedDto.getId());
-    group.setNamegroup(updatedDto.getName());
+    group.setName(updatedDto.getName());
     Group saved = grouprepo.save(group);
     return GroupMapper.mapToDTO(saved);
 }
@@ -61,12 +70,24 @@ public void deleteGroup(Long groupId) {
     Group group = grouprepo.findById(groupId).orElseThrow(() -> new ResourceNotFoundException("Group is not found with " + groupId));
     grouprepo.delete(group);
 }
+
+//@Override
+//public GroupDto creategroup(GroupDto Dto) {
+//	   Group group = GroupMapper.mapToEntity(Dto);
+//	    Group savedGroup = grouprepo.save(group);
+//	    return GroupMapper.mapToDTO(savedGroup);
+//}
+
 @Override
 public GroupDto creategroup(GroupDto Dto) {
-	   Group group = GroupMapper.mapToEntity(Dto);
-	    Group savedGroup = grouprepo.save(group);
-	    return GroupMapper.mapToDTO(savedGroup);
+    Group group = GroupMapper.mapToEntity(Dto);
+    group.setCreateDate(LocalDate.now()); 
+    Group savedGroup = grouprepo.save(group);
+    return GroupMapper.mapToDTO(savedGroup);
 }
+
+
+
 
 @Override
 public void AccountJoinGroup(JoinGroupDto joinGroupDto) {
@@ -78,7 +99,7 @@ public void AccountJoinGroup(JoinGroupDto joinGroupDto) {
 	boolean groupExists = false;
 
     for (Group group : groups) {
-        System.out.println("Existing group: " + group.getNamegroup());
+        System.out.println("Existing group: " + group.getName());
         if (group.getId().equals(groupById.getId())) {
             groupExists = true;
             
@@ -161,6 +182,52 @@ public List<Integer> findAccountDetails(Long groupId) {
 	return ls;
 }
 
+@Override
+public List<Group> findByName(String name) {
+    List<Group> ls = grouprepo.findByName(name);
+    return ls;
+}
+
+
+@Override
+public void uploadAvatar (Long id, MultipartFile file) throws IOException {
+    Optional<Group> optionalGroup = grouprepo.findById(id);
+    if (optionalGroup.isPresent())
+    {
+        Group group = optionalGroup.get();
+        group.setImage(file.getBytes());
+        grouprepo.save(group);
+    } else
+    {
+        throw new RuntimeException("User not found");
+    }
+}
+
+@Override
+public byte[] getAvatar (Long id) {
+    Optional<Group> optionalGroup = grouprepo.findById(id);
+    if (optionalGroup.isPresent() && optionalGroup.get().getImage() != null)
+    {
+        return optionalGroup.get().getImage();
+    } else
+    {
+        throw new RuntimeException("Avatar not found");
+    }
+}
+private static final String IMAGE_DIRECTORY = "C:/images/groups/";
+@Override
+public void saveGroupImage(Long groupId, MultipartFile image) throws IOException {
+    // Tạo thư mục nếu chưa tồn tại
+    File directory = new File(IMAGE_DIRECTORY);
+    if (!directory.exists()) {
+        directory.mkdirs();
+    }
+
+    // Lưu hình ảnh với tên file là ID của group
+    String imagePath = IMAGE_DIRECTORY + groupId + "_" + image.getOriginalFilename();
+    Path path = Paths.get(imagePath);
+    Files.write(path, image.getBytes());
+}
 
 
 

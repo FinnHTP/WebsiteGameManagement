@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -31,10 +32,11 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "namegroup")
-    private String namegroup;
-    @Column(name="image")
-    private String image;
+    @Column(name = "name")
+    private String name;
+    @Lob
+    @Column(name = "image")
+    private byte[] image;
     @Column(name="status")
     private boolean status;
     @Column(name="createDate")

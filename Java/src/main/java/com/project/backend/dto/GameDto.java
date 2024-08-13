@@ -1,6 +1,5 @@
 package com.project.backend.dto;
 
-import com.project.backend.entity.Coupon;
 import com.project.backend.entity.GameType;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
@@ -25,5 +24,5 @@ public class GameDto {
     private String version;
     private String image;
     private GameType gameType;
-    private Coupon coupon;
+    
 }

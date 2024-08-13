@@ -47,5 +47,8 @@ public interface GroupRepository extends JpaRepository<Group, Long>{
              "INNER JOIN users u ON a.user_id = u.id " +
              "WHERE ga.group_id = :groupId", nativeQuery = true)
 List<Integer> findAccountDetails(@Param("groupId") Long groupId);
+	 
+	  @Query(value = "SELECT * FROM groups WHERE name LIKE %:name%", nativeQuery = true)
+	    List<Group> findByName(@Param("name") String name);
 
 }

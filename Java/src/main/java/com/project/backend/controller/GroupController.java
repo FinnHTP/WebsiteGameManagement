@@ -1,6 +1,11 @@
 package com.project.backend.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,12 +19,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,11 +58,130 @@ private UserService userservice;
 
 
 
-@PostMapping
-public ResponseEntity<GroupDto> createGroup(@RequestBody GroupDto group){
-    GroupDto savedGroup = groupservice.creategroup(group);
+//@PostMapping("")
+//public ResponseEntity<GroupDto> createGroup(@RequestBody GroupDto group){
+//    GroupDto savedGroup = groupservice.creategroup(group);
+//    return new ResponseEntity<>(savedGroup, HttpStatus.CREATED);
+//}
+
+
+//@PostMapping("")
+//public ResponseEntity<GroupDto> createGroup(@ModelAttribute GroupDto group, @RequestParam("image") MultipartFile image) {
+//    // Tạo nhóm
+//    GroupDto savedGroup = groupservice.creategroup(group);
+//
+//    // Lưu hình ảnh
+//    try {
+//        groupservice.saveGroupImage(savedGroup.getId(), image);
+//    } catch (IOException e) {
+//        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
+//
+//    return new ResponseEntity<>(savedGroup, HttpStatus.CREATED);
+//}
+
+
+@PostMapping("")
+public ResponseEntity<GroupDto> createGroup(
+        @RequestParam("name") String name,
+        @RequestParam("status") boolean status,
+        @RequestParam("image") MultipartFile image,
+        @RequestParam("createDate") String createDate) {
+
+    GroupDto groupDto = new GroupDto();
+    groupDto.setName(name);
+    groupDto.setStatus(status);
+    groupDto.setCreateDate(LocalDate.parse(createDate));
+
+    try {
+        // Chuyển đổi MultipartFile sang byte[]
+        groupDto.setImage(image.getBytes());
+    } catch (IOException e) {
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    // Lưu group
+    GroupDto savedGroup = groupservice.creategroup(groupDto);
     return new ResponseEntity<>(savedGroup, HttpStatus.CREATED);
 }
+
+
+@CrossOrigin(origins = "http://localhost:3000")
+@PostMapping ("/{groupId}/image")
+public ResponseEntity<String> uploadAvatar (@PathVariable Long groupId,  @RequestParam ("image") MultipartFile file) {
+    try
+    {
+        groupservice.uploadAvatar(groupId, file);
+        return ResponseEntity.ok("Avatar uploaded successfully");
+    } catch (IOException e)
+    {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload avatar");
+    } catch (RuntimeException e)
+    {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    }
+}
+
+
+
+@CrossOrigin(origins = "http://localhost:3000")
+@GetMapping ("/{groupId}/image")
+public ResponseEntity<byte[]> getAvatar (@PathVariable Long groupId) {
+    try
+    {
+        byte[] avatar = groupservice.getAvatar(groupId);
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG) 
+                .body(avatar);
+    } catch (RuntimeException e)
+    {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+}
+
+    
+    
+
+//@PostMapping("")
+//public ResponseEntity<GroupDto> createGroup(
+//        @RequestPart("name") String name,
+//        @RequestPart("image") MultipartFile image,
+//        @RequestPart("status") boolean status,
+//        @RequestPart("createDate") String createDate) {
+//
+//  
+//    String imagePath = saveImage(image);
+//    GroupDto groupDto = new GroupDto();
+//    groupDto.setName(name);
+//    groupDto.setImage(imagePath);
+//    groupDto.setStatus(status);
+//    groupDto.setCreateDate(LocalDate.parse(createDate));
+//
+// 
+//    GroupDto savedGroup = groupservice.creategroup(groupDto);
+//    return ResponseEntity.status(HttpStatus.CREATED).body(savedGroup);
+//}
+//
+//
+//private String saveImage(MultipartFile image) {
+//    String directory = "uploads/";
+//    
+//
+//    File directoryFile = new File(directory);
+//    if (!directoryFile.exists()) {
+//        directoryFile.mkdirs();
+//    }
+//
+//    String filePath = directory + image.getOriginalFilename();
+//    File file = new File(filePath);
+//    
+//    try {
+//        image.transferTo(file);
+//    } catch (IOException e) {
+//        e.printStackTrace();
+//    }
+//    
+//    return filePath;
+//}
 //
 //@PostMapping("/{groupId}/addAccount/{accountId}")
 //public ResponseEntity<GroupDto> addAccountToGroup(
@@ -102,6 +228,14 @@ public ResponseEntity<List<User>> getAccountByGroup(@PathVariable("id") Long gro
 public ResponseEntity<?> leaveGroup(@RequestBody JoinGroupDto joinGroupDto) {
     return groupservice.leaveGroup(joinGroupDto);
 }
+
+@GetMapping("/search")
+public ResponseEntity<List<Group>> findByName(@RequestParam String name) {
+    List<Group> groups = groupservice.findByName(name);
+    return ResponseEntity.ok(groups);
+}
+
+
 
 
 //@GetMapping("/groups/{groupId}/accounts")
@@ -157,32 +291,5 @@ public ResponseEntity<String> deleteGroup(@PathVariable("id") Long groupId){
     
     
 }
-//@CrossOrigin(origins = "http://localhost:3000")
-//@PostMapping ("/{id}/avatar")
-//public ResponseEntity<String> uploadAvatar (@PathVariable Long id,  @RequestParam ("avatar") MultipartFile file) {
-//    try
-//    {
-//        userService.uploadAvatar(id , file);
-//        return ResponseEntity.ok("Avatar uploaded successfully");
-//    } catch (IOException e)
-//    {
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload avatar");
-//    } catch (RuntimeException e)
-//    {
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-//    }
-//}
-//@CrossOrigin(origins = "http://localhost:3000")
-//@GetMapping ("/{id}/avatar")
-//public ResponseEntity<byte[]> getAvatar (@PathVariable Long id) {
-//    try
-//    {
-//        byte[] avatar = userService.getAvatar(id);
-//        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG) // Adjust based on the image type stored
-//                .body(avatar);
-//    } catch (RuntimeException e)
-//    {
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//    }
-//}
+
 }

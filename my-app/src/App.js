@@ -18,15 +18,17 @@ import Footer from "./locale/share/components/Footer.component.jsx";
 import LoginPage from "./locale/auth/login/LoginPage.jsx";
 import RegisterPage from "./locale/auth/register/RegisterPage.jsx";
 import DetailPage from "./locale/share/detail/DetailPage.jsx";
+
 import GroupPageUser from "./locale/share/group/GroupPage.jsx";
+
+import GroupComponent from "./locale/share/components/group/Group.Component";
+import BlogComponent from "./locale/share/components/group/Blog.Component";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="bg-customBg">
-        <Header></Header>
-        {/* <div className="App  mx-auto container">
-          <div className="flex flex-col min-h-screen"> */}
+        <Header />
         <main className="flex-grow">
           <Routes>
             {/* Shared */}
@@ -40,6 +42,10 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/category" element={<CategoryPage />} />
             <Route path="/detail/:id" element={<DetailPage />} />
+            <Route path="/forum" element={<ForumPage />} />
+            <Route path="/group" element={<GroupComponent />} />
+            <Route path="/blogs/group/:groupId" element={<BlogComponent />} />
+            <Route path="/commentblog/blog/:id" element={<BlogComponent />} />
 
             {/* Admin */}
             <Route path="/api/game" element={<GamePage />} />
@@ -58,9 +64,7 @@ function App() {
             <Route path="/pt/account" element={<RolePage />} />
           </Routes>
         </main>
-        {/* </div>
-        </div> */}
-        <Footer></Footer>
+        <Footer />
       </div>
     </BrowserRouter>
   );

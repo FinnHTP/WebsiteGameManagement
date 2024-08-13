@@ -9,7 +9,7 @@ public class GroupMapper {
 	   public static Group mapToEntity(GroupDto GroupDto){
 	        Group gr = new Group();
 	        gr.setId(GroupDto.getId());
-	        gr.setNamegroup(GroupDto.getName());
+	        gr.setName(GroupDto.getName());
 	        gr.setImage(GroupDto.getImage());
 	        gr.setStatus(GroupDto.isStatus());
 	        gr.setCreateDate(GroupDto.getCreateDate());
@@ -19,7 +19,7 @@ public class GroupMapper {
 	    public static GroupDto mapToDTO(Group group){
 	        GroupDto groupDto = new GroupDto();
 	        groupDto.setId(group.getId());
-	        groupDto.setName(group.getNamegroup());
+	        groupDto.setName(group.getName());
 	        groupDto.setImage(group.getImage());
 	        groupDto.setStatus(group.isStatus());
 	        groupDto.setCreateDate(group.getCreateDate());

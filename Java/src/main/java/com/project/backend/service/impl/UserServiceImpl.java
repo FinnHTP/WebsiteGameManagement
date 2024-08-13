@@ -63,6 +63,8 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User can't be found with given id " + id));
         userRepository.deleteById(id);
     }
+    
+    
     @Override
     public void uploadAvatar (Long id, MultipartFile file) throws IOException {
         Optional<User> optionalUser = userRepository.findById(id);
