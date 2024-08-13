@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchGameById } from "../../services/detail/detail.servies";
+import {
+  fetchGameById,
+  fetchGameSystemRequirements,
+} from "../../services/detail/detail.servies";
 import { format } from "date-fns";
+import GameDescription from "./GameDescription.component";
+import SystemRequirements from "./GameSystemRequirement.component";
+import GameTypeButton from "./GameType.component";
+import CommentSection from "./GameComment.component";
 
 const Game = () => {
   const [game, setGame] = useState({});
+  const [systemRequirements, setSystemRequirements] = useState([]);
+  const [comments, setComments] = useState([]);
   const { id } = useParams();
 
   const getGameById = async (gameId) => {
@@ -20,18 +29,43 @@ const Game = () => {
     }
   };
 
+  const getGameSystemRequirements = async (gameId) => {
+    try {
+      const data = await fetchGameSystemRequirements(gameId);
+      if (Array.isArray(data) && data.length > 0) {
+        setSystemRequirements(data);
+      } else {
+        console.error("No system requirements found:", data);
+      }
+    } catch (error) {
+      console.error("Error fetching system requirements:", error);
+    }
+  };
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) {
-      // Nếu giá trị ngày tháng không hợp lệ, trả về giá trị mặc định
       return "Ngày không hợp lệ";
     }
     return format(date, "dd/MM/yyyy HH:mm:ss");
   };
 
+  const handleGameTypeClick = async (gameType) => {
+    try {
+      console.log(`Fetch games of type: ${gameType.name}`);
+    } catch (error) {
+      console.error("Error fetching games by type:", error);
+    }
+  };
+
+  const handleAddComment = (newComment) => {
+    setComments([...comments, newComment]);
+  };
+
   useEffect(() => {
     if (id) {
       getGameById(id);
+      getGameSystemRequirements(id);
     }
   }, [id]);
 
@@ -71,6 +105,41 @@ const Game = () => {
           </div>
         </div>
       </div>
+
+      {/* Game Detail */}
+      <div className="flex bg-customBgFreeGames justify-center px-2 mt-12 mb-12">
+        <div className="game-detail-container text-white mt-6 px-4 md:px-8">
+          <div>
+            <h3 className="mb-4 text-xl">Description</h3>
+            <GameDescription description={game.description} />
+          </div>
+
+          <div className="mt-6">
+            <h3 className="mt-6 mb-4 text-xl">Genres</h3>
+            {game.gameType ? (
+              <GameTypeButton
+                gameType={game.gameType}
+                onClick={handleGameTypeClick}
+              />
+            ) : (
+              <p>Not available</p>
+            )}
+          </div>
+
+          <div className="mt-6">
+            <h3 className="mt-6 mb-4 text-xl">Rating</h3>
+            <p>("Put some rating here...")</p>
+          </div>
+
+          <div className="mt-6">
+            <h3 className="mt-6 mb-4 text-xl">System Requirements</h3>
+            <SystemRequirements requirements={systemRequirements} />
+          </div>
+        </div>
+      </div>
+
+      {/* Comment */}
+      <CommentSection comments={comments} onAddComment={handleAddComment} />
     </div>
   );
 };
